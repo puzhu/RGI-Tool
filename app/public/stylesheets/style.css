@@ -1,0 +1,40 @@
+body {
+  padding: 10px;
+  font: 20px 'Rajdhani', sans-serif, Courier;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#chart{
+	border: 5px solid red;
+	min-height: 2400px;
+}
+
+#controls{
+	border: 5px solid red;
+	/*min-height: 600px;*/
+}
+
+#chartSVG{
+	/*border: 5px solid blue;*/
+}
+h1, h2{
+	font-family: 'Merriweather', serif;
+}
+
+.explainer{
+	font-family: 'Open Sans', sans-serif;
+}
+
+.countryLabels{
+	font-family: 'Merriweather', serif;
+	font-style: light;
+	font-size: 0.8em;
+	cursor: default;
+}
+
+.d3-tip.n::after{
+	opacity: 0.5;
+}
