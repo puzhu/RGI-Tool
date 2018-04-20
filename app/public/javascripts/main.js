@@ -25,13 +25,35 @@ const createSVG = (id = required(), margin = {top: 5, right: 5, bottom: 5, left:
       .append('g')
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
-  const xScale = d3.scaleOrdinal()
-      .range([0, width]);
-  const yScale = d3.scaleOrdinal()
-      .range([height, 0]);
+  // const xScale = d3.scaleOrdinal()
+  //     .range([0, width]);
 
-  return {width, height, plotVar, xScale, yScale}
+  // const yScale = d3.scaleBand()
+  //   .rangeRound([100, height])
+  //   .padding(0.1)
+
+  return {width, height, plotVar}
 }
+
+/**
+ * Compute the ranks of different countries for the index, component and subcomponents
+ * @function computeScores
+ * @param {object} countryScores - The scores for each indicator. This was added since the questions do not address the Enabling Environment component
+ * @param {object} level - This can be either be index, component or subComponent
+ * @description given the indicatorScores for each country compute the overall rank position for each country
+ */
+
+// const computeRanks = (countryScores = required(), countryNames = required()) => {
+//   //sort based on index score and then use the indices to generate the rank
+//   let ranked = countryScores.sort((a, b) => b.indexScore - a.indexScore)
+//     .reduce((accum, val, i) => {
+//       accum.push({country: val.country, alias: countryNames.filter((d) => d.country === val.country)[0].alias, sector: val.sector, score: val.indexScore, rank: i + 1,})
+
+//       return accum;
+//     }, [])
+//   return ranked;
+// }
+
 
 /**
  * Compute the scores of different countries for the index, component and subcomponents
@@ -40,7 +62,7 @@ const createSVG = (id = required(), margin = {top: 5, right: 5, bottom: 5, left:
  * @description given the indicatorScores for each country compute the overall rank position for each country
  */
 
-const computeScores = (indicatorScores = required()) => {
+const computeScores = (indicatorScores = required(), countryNames = required()) => {
   
   //Find the unique set of country sector combos
   const countrySectorList = [...new Set(indicatorScores.map(d => (d.country).concat("?").concat(d.sector)))];
@@ -103,27 +125,46 @@ const computeScores = (indicatorScores = required()) => {
     return accum;
   }, [])
 
-  return countryScores
-}
-
-/**
- * Compute the ranks of different countries for the index, component and subcomponents
- * @function computeScores
- * @param {object} countryScores - The scores for each indicator. This was added since the questions do not address the Enabling Environment component
- * @param {object} level - This can be either be index, component or subComponent
- * @description given the indicatorScores for each country compute the overall rank position for each country
- */
-
-const computeRanks = (countryScores = required(), countryNames = required()) => {
-  //sort based on index score and then use the indices to generate the rank
-  let ranked = countryScores.sort((a, b) => b.indexScore - a.indexScore)
+  const ranked = countryScores.sort((a, b) => b.indexScore - a.indexScore)
     .reduce((accum, val, i) => {
-      accum.push({country: val.country, alias: countryNames.filter((d) => d.country === val.country)[0].alias, sector: val.sector, score: val.indexScore, rank: i + 1,})
+      accum.push(Object.assign(val, {alias: countryNames.filter((d) => d.country === val.country)[0].alias, rank: i + 1,}))
 
       return accum;
     }, [])
-  return ranked;
+
+  return ranked
 }
+
+/**
+ * Extract data for the panel (indexScore and component scores)
+ * @function panelData
+ * @param {object} countryScores - The scores for each indicator. This was added since the questions do not address the Enabling Environment component
+ * @description given the countryScores extract the index and component scores along with rank for plotting
+ */
+
+const panelData = (countryScores = required()) => {
+  return countryScores.reduce((accum, score) => {
+    accum.push({
+      rank: score.rank,
+      valueRealization: score.componentScores.filter(d => d.component === "Value extraction")[0].score,
+      revenueManagement: score.componentScores.filter(d => d.component === "Revenue management")[0].score,
+      enablingEnvironment: score.componentScores.filter(d => d.component === "Enabling environment")[0].score,
+      indexScore: score.indexScore,
+    })
+
+    return accum
+  }, [])
+
+}
+
+/**
+ * Draw the labels
+ * @function drawLabels
+ * @param {string} selection - The css selector for the div
+ * @param {object} countryScores - The data object
+ * @description given the data draw the labels
+ */
+
 
 /**
  * Compute vertical positions
@@ -165,28 +206,48 @@ const computeRanks = (countryScores = required(), countryNames = required()) => 
  */
 
 const draw = (alLScores = required(), questionFramework = required(), questionScores = required(), indicatorScores = required(), countryNames = required()) => {
+  
   //draw the svg
-  const chart = createSVG('#chart', margin = {top: 5, right: 0, bottom: 5, left: 0}),
-    chartWidth = chart.width,
-    chartHeight = chart.height,
-    chartSVG = chart.plotVar.attr("id", "chartSVG"),
-    xChartScale = chart.xScale,
-    yChartScale = chart.yScale;
+  // const labelChart = createSVG('#chart', margin = {top: 5, right: 0, bottom: 5, left: 0}),
+  //   labelWidth = labelChart.width,
+  //   labelHeight = labelChart.height,
+  //   labelSVG = labelChart.plotVar.attr("id", "labels")
+  
+  const labelChart = createSVG("#labels", margin = {top: 0, right: 0, bottom: 0, left: 0}),
+    panelWidth = labelChart.width,
+    panelHeight = labelChart.height,
+    labelSVG = labelChart.plotVar.attr("id", "labels")
 
+  const indexChart = createSVG("#index", margin = {top: 0, right: 0, bottom: 0, left: 0}),
+    indexSVG = indexChart.plotVar.attr("id", "labels")
 
   indicatorScores = Array.from(indicatorScores);
 
-  const countryScores = computeScores(indicatorScores)
-  
-  const countryRanks = computeRanks(countryScores, countryNames)
+  const countryScores = computeScores(indicatorScores, countryNames)
+
+  const panelScores = panelData(countryScores)
+  console.log(countryScores)
 
 
+  //INITIALIZE CHARTING VARIABLES
   //Chart dimension controls
-  const labelXPos = 90,
-    iconPadding = 10,
-    labelYPos = 60,
-    labelYHeight = 25,
-    iconSize = 15;
+  const labelXPos = 120,
+    iconPadding = 5,
+    iconSize = 15,
+    barWidth = 0.5*(panelHeight)/89
+
+  //set the scales for the chart
+    //yScale: The Y axis is ordered based on the ranks
+  const yScale = d3.scaleBand()
+    .rangeRound([0, panelHeight])
+    .padding(0.1)
+    .domain(countryScores.map(d => d.rank));
+
+    //xScale: The chart area needs to be split into 4 different blocks of equal size with domains from 0 to 100. There also needs to be padding between each of these charts
+  const xScale = d3.scaleLinear()
+    .range([0, panelWidth])
+    .domain([0, 100])
+
 
   //All tool tips
   const iconTip = d3.tip()
@@ -195,23 +256,8 @@ const draw = (alLScores = required(), questionFramework = required(), questionSc
 
   const labelTip = d3.tip()
     .attr('class', 'd3-tip')
-    
-  //draw the icons
-  chartSVG.append('g')
-    .selectAll(".sectorIcons")
-    .data(countryRanks)
-    .enter()
-    .append("svg:image")
-    .attr("class", "sectorIcons")
-    .attr("xlink:href", (d) => {return d.sector === "Mining" ? "/images/mining-cubes.svg" : "/images/oil.svg"})
-    .attr("width", iconSize)
-    .attr("height", iconSize)
-    .attr("x", labelXPos + iconPadding)
-    .attr("y", (d, i) => labelYPos + (i + 1) * labelYHeight - iconSize + 2)
-    .call(iconTip)
-    .on("mouseover", iconTip.show)
-    .on("mouseout", iconTip.hide)
-  
+
+
   //draw the labels
     //mouseover function for labels
   const labelMouseOver = (d) => {
@@ -221,14 +267,17 @@ const draw = (alLScores = required(), questionFramework = required(), questionSc
     }
   }
 
-  chartSVG.append('g')
+  const yLabels = labelSVG.append('g')
     .selectAll(".countryLabels")
-    .data(countryRanks)
+    .data(countryScores)
     .enter()
+
+
+  yLabels.append('g')
     .append("text")
     .attr("class", "countryLabels")
     .attr("x", labelXPos)
-    .attr("y", (d, i) => labelYPos + (i + 1) * labelYHeight)
+    .attr("y", (d) => yScale(d.rank))
     .text(d => d.alias)
     .attr("text-anchor", "end")
     .call(labelTip)
@@ -236,13 +285,72 @@ const draw = (alLScores = required(), questionFramework = required(), questionSc
     .on("mouseout", labelTip.hide)
 
   
+  yLabels.append("svg:image")
+    .data(countryScores)
+    .attr("class", "sectorIcons")
+    .attr("xlink:href", (d) => {return d.sector === "Mining" ? "/images/mining-cubes.svg" : "/images/oil.svg"})
+    .attr("width", iconSize)
+    .attr("height", iconSize)
+    .attr("x", labelXPos + iconPadding)
+    .attr("y", (d) => yScale(d.rank) - 12)
+    .call(iconTip)
+    .on("mouseover", iconTip.show)
+    .on("mouseout", iconTip.hide)
 
+
+    //draw panels
+  // const indexPanel = indexSVG.append("g")
+  //   .selectAll(".bars")
+  //   .data(panelScores)
+  //   .enter()
+  //   .append("rect")
+  //   .attr("class", "indexBars")
+  //   .attr("x", 0)
+  //   .attr("y", d => yScale(d.rank) - barWidth/1.5)
+  //   .attr("width", d => xScale(d.indexScore))
+  //   .attr("height", barWidth)
+  
+  //   labelYPos = 60,
+  //   labelYHeight = 25,
+  //   
+  //   chartPadding = 5,
+  //   chartStart = labelXPos + iconPadding + iconSize + chartPadding
+  //   chartWidth = width - chartStart
+    ;
+
+    
+
+  //   // console.log(barWidth)
+  
+
+ 
+
+  // // console.log(width, chartStart, chartWidth, chartWidth/4, xScaleIndex.range())
+  
+    
 
   
   
+
+
+
+
+
+  
+  // const valuePanel = chartSVG.append("g")
+  //   .selectAll(".bars")
+  //   .data(panelScores)
+  //   .enter()
+  //   .append("rect")
+  //   .attr("class", "valueBars")
+  //   .attr("x", chartStart + chartPadding + chartWidth/4)
+  //   .attr("y", d => yScale(d.rank) - barWidth/1.5)
+  //   .attr("width", d => xScale(d.valueRealization))
+  //   .attr("height", barWidth)
+
 }
 
-
+//fix the top x axis: http://bl.ocks.org/lmatteis/895a134f490626b0e62796e92a06b9c1
 
 
 //Load all the data and draw

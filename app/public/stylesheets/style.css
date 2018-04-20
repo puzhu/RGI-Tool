@@ -1,6 +1,5 @@
 body {
-  padding: 10px;
-  font: 20px 'Rajdhani', sans-serif, Courier;
+
 }
 
 a {
@@ -8,17 +7,21 @@ a {
 }
 
 #chart{
-	border: 5px solid red;
-	min-height: 2400px;
+	/*border: 5px solid red;*/
+	/*min-height: 2400px;*/
+	height:900px;
+	overflow-y: scroll;
+	background-color: #F2F3EB;
 }
 
 #controls{
-	border: 5px solid red;
+	/*border: 5px solid red;*/
 	/*min-height: 600px;*/
 }
 
 #chartSVG{
 	/*border: 5px solid blue;*/
+	/*overflow: scroll;*/
 }
 h1, h2{
 	font-family: 'Merriweather', serif;
@@ -35,6 +38,53 @@ h1, h2{
 	cursor: default;
 }
 
-.d3-tip.n::after{
-	opacity: 0.5;
+
+.axis--y path, .axis--y line {
+    fill: none;
+    stroke: #fff;
+  }
+
+  .axis--y text {
+  	font-family: 'Merriweather', serif;
+	font-style: light;
+	font-size: 1.1em;
+	cursor: default;
+  }
+
+  #topLabels{
+  	height: 150px;
+  }
+
+  #labels{
+  	min-height:2400px;
+  }
+
+  #index{
+	min-height:2400px;
+	background-color: #EBEAE6;
+  }
+
+  #valueRealization{
+	min-height:2400px;
+	background-color: #EBEAE6;
+  }
+
+  #revenueManagement{
+	min-height:2400px;
+	background-color: #EBEAE6;
+  }
+
+  #enablingEnvironment{
+	min-height:2400px;
+	background-color: #EBEAE6;
+  }
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
