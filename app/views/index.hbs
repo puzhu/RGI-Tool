@@ -5,19 +5,77 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-6 card" id="chart">
-			<div class="row" id="topLabels"></div>
+			<div class="row" id="topDiv"></div>
 			<div class="row">
-				<div class="col-md-3 mb-4 p-0" id="labels"></div>
-				<div class="col-md-2 ml-1 mb-4 p-0 card" id="index"></div>
-				<div class="col-md-2 ml-2 mb-4 p-0 card" id="valueRealization"></div>
-				<div class="col-md-2 ml-2 mb-4 p-0 card" id="revenueManagement"></div>
-				<div class="col-md-2 ml-2 mb-4 p-0 card" id="enablingEnvironment"></div>
+				<div class="col-md-3 m-0 mb-4 p-0">
+					<div class="col-md-12 topLabelBlank sticky-top"></div>
+					<div class="col-md-12 pt-1 p-0" id="labels"></div>
+				</div>
+				<div class="col-md-2 ml-1 mb-4 p-0">
+					<div class="col-md-12 topLabel sticky-top" id="indexLabel">
+						<div class="row">
+							<div class="col-md-2 m-0 p-0">
+								<svg class="sortIcon sorted">
+									<image xlink:href="/images/sortAsc.svg" x="2" y="2" height="12px" width="12px" opacity="0.8"/>
+								</svg>
+							</div>
+							<div class="col-md-10 m-0 p-0">
+								<p>2017 RGI Index</p>
+							</div>	
+						</div>
+					</div>
+					<div class="col-md-12 pt-1 p-0 card" id="index"></div>
+				</div>
+				<div class="col-md-2 ml-2 mb-4 p-0">
+					<div class="col-md-12 topLabel sticky-top" id="valueLabel">
+						<div class="row">
+							<div class="col-md-1 m-0 p-0">
+								<svg class="sortIcon">
+									<image xlink:href="/images/sortAsc.svg" x="6" y="2" height="12px" width="12px" opacity="0.8"/>
+								</svg>
+							</div>
+							<div class="col-md-9 m-0 p-0">
+								<p>Value Realization</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12 pt-1 p-0 card" id="valueRealization"></div>
+				</div>
+				<div class="col-md-2 ml-2 mb-4 p-0">
+					<div class="col-md-12 topLabel sticky-top" id="revenueLabel">
+						<div class="row">
+							<div class="col-md-1 m-0 p-0">
+								<svg class="sortIcon">
+									<image xlink:href="/images/sortAsc.svg" x="3" y="2" height="12px" width="12px" opacity="0.8"/>
+								</svg>
+							</div>
+							<div class="col-md-9 m-0 p-0">
+								<p>Revenue Management</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12 pt-1 p-0 card" id="revenueManagement"></div>
+				</div>
+				<div class="col-md-2 ml-2 mb-4 p-0">
+					<div class="col-md-12 topLabel sticky-top" id="enablingLabel">
+						<div class="row">
+							<div class="col-md-1 m-0 p-0">
+								<svg class="sortIcon">
+									<image xlink:href="/images/sortAsc.svg" x="3" y="2" height="12px" width="12px" opacity="0.8"/>
+								</svg>
+							</div>
+							<div class="col-md-9 m-0 p-0">
+								<p>Enabling Environment</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12 pt-1 p-0 card" id="enablingEnvironment"></div>
+				</div>
 			</div>
 		</div>
 		<div class="col-md-6" id="controls">
 			<h2 id="dynamicTitle">Dynamic Title</h2>
 			<p class="explainer" id="dynamicExplainer">Dynamic Explainer text: But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth.</p>
-		</div>	
+		</div>
 	</div>
-	
 </div>

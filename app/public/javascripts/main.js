@@ -1,3 +1,8 @@
+//INITIALIZE CHART STATE VARS
+// const stateVars = {lockedRank: 0, sortBy: "indexScore", sortDirection: {indexScore: "ascending", valueRealization: "ascending", revenueManagement: "ascending", enablingEnvironment: "ascending"},}
+const stateVars = {lockedRank: 0, sortBy: "indexScore", sortDirection: "ascending",}
+
+
 /**
  * Check an function argument
  * @function required
@@ -25,34 +30,8 @@ const createSVG = (id = required(), margin = {top: 5, right: 5, bottom: 5, left:
       .append('g')
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
-  // const xScale = d3.scaleOrdinal()
-  //     .range([0, width]);
-
-  // const yScale = d3.scaleBand()
-  //   .rangeRound([100, height])
-  //   .padding(0.1)
-
   return {width, height, plotVar}
 }
-
-/**
- * Compute the ranks of different countries for the index, component and subcomponents
- * @function computeScores
- * @param {object} countryScores - The scores for each indicator. This was added since the questions do not address the Enabling Environment component
- * @param {object} level - This can be either be index, component or subComponent
- * @description given the indicatorScores for each country compute the overall rank position for each country
- */
-
-// const computeRanks = (countryScores = required(), countryNames = required()) => {
-//   //sort based on index score and then use the indices to generate the rank
-//   let ranked = countryScores.sort((a, b) => b.indexScore - a.indexScore)
-//     .reduce((accum, val, i) => {
-//       accum.push({country: val.country, alias: countryNames.filter((d) => d.country === val.country)[0].alias, sector: val.sector, score: val.indexScore, rank: i + 1,})
-
-//       return accum;
-//     }, [])
-//   return ranked;
-// }
 
 
 /**
@@ -62,7 +41,7 @@ const createSVG = (id = required(), margin = {top: 5, right: 5, bottom: 5, left:
  * @description given the indicatorScores for each country compute the overall rank position for each country
  */
 
-const computeScores = (indicatorScores = required(), countryNames = required()) => {
+const computeScores = (indicatorScores = required()) => {
   
   //Find the unique set of country sector combos
   const countrySectorList = [...new Set(indicatorScores.map(d => (d.country).concat("?").concat(d.sector)))];
@@ -125,14 +104,14 @@ const computeScores = (indicatorScores = required(), countryNames = required()) 
     return accum;
   }, [])
 
-  const ranked = countryScores.sort((a, b) => b.indexScore - a.indexScore)
-    .reduce((accum, val, i) => {
-      accum.push(Object.assign(val, {alias: countryNames.filter((d) => d.country === val.country)[0].alias, rank: i + 1,}))
+  // const ranked = countryScores.sort((a, b) => b.indexScore - a.indexScore)
+  //   .reduce((accum, val, i) => {
+  //     accum.push(Object.assign(val, {alias: countryNames.filter((d) => d.country === val.country)[0].alias, rank: i + 1,}))
 
-      return accum;
-    }, [])
+  //     return accum;
+  //   }, [])
 
-  return ranked
+  return countryScores
 }
 
 /**
@@ -142,10 +121,12 @@ const computeScores = (indicatorScores = required(), countryNames = required()) 
  * @description given the countryScores extract the index and component scores along with rank for plotting
  */
 
-const panelData = (countryScores = required()) => {
-  return countryScores.reduce((accum, score) => {
+const computePanelData = (countryScores = required(), countryNames = required()) => {
+  return countryScores.reduce((accum, score, i) => {
     accum.push({
-      rank: score.rank,
+      country: score.country,
+      sector: score.sector,
+      alias: countryNames.filter((d) => d.country === score.country)[0].alias,
       valueRealization: score.componentScores.filter(d => d.component === "Value extraction")[0].score,
       revenueManagement: score.componentScores.filter(d => d.component === "Revenue management")[0].score,
       enablingEnvironment: score.componentScores.filter(d => d.component === "Enabling environment")[0].score,
@@ -157,43 +138,41 @@ const panelData = (countryScores = required()) => {
 
 }
 
-/**
- * Draw the labels
- * @function drawLabels
- * @param {string} selection - The css selector for the div
- * @param {object} countryScores - The data object
- * @description given the data draw the labels
- */
-
 
 /**
- * Compute vertical positions
- * @function yposition
- * @param {object} countryRanks - Each country ranked and scored
- * @param {object} svgChars - The characteristics of the SVG
- * @description given the a set of ranks give the relative y position on the chart
- * @returns {object}
+ * Compute the ranks of different countries for the index, component and subcomponents
+ * @function computeScores
+ * @param {object} countryScores - The scores for each indicator. This was added since the questions do not address the Enabling Environment component
+ * @param {object} level - This can be either be index, component or subComponent
+ * @description given the indicatorScores for each country compute the overall rank position for each country
  */
+const computeRanks = (panelData = required(), rankVar = "indexScore", sortDirection = "ascending") => {
+  
+  //sort based on arguements
+  let ranked = sortDirection === "ascending" ? panelData.sort((a, b) => {return b[rankVar] - a[rankVar]}) : panelData.sort((a, b) => {return a[rankVar] - b[rankVar]})
+
+  //update the rank
+  ranked.forEach((d, i) => {d.rank = i + 1})
+
+  return ranked
+}
 
 
-/**
- * Draw the chart
- * @function drawChart
- * @param {object} countryRanks - Each country ranked and scored
- * @param {object} svgChars - The characteristics of the SVG
- * @description given the a set of ranks give the relative y position on the chart
- * @returns {object}
- */
 
- /**
- * Update the chart
- * @function updateChart
- * @param {object} countryRanks - Each country ranked and scored
- * @param {object} countryRanks - Each country ranked and scored
- * @param {object} svgChars - The characteristics of the SVG
- * @description given the a set of ranks give the relative y position on the chart
- * @returns {object}
- */
+// const labelClickHandler = (event) => {
+//   if(Object.keys(panelData[0]).filter(d => d === rankVar).length === 0){
+//     throw new Error("The ranking variable is incorrect in computeRanks function")
+//   }
+
+  
+//   //Toggle the active class
+//   document.querySelectorAll(idMaps[rankVar])[0].classList.toggle("sorted")
+
+//   //Toggle active on previous if current is not equal to past
+
+
+
+// }
 
 /**
  * Draw the RGI scores
@@ -207,47 +186,62 @@ const panelData = (countryScores = required()) => {
 
 const draw = (alLScores = required(), questionFramework = required(), questionScores = required(), indicatorScores = required(), countryNames = required()) => {
   
-  //draw the svg
-  // const labelChart = createSVG('#chart', margin = {top: 5, right: 0, bottom: 5, left: 0}),
-  //   labelWidth = labelChart.width,
-  //   labelHeight = labelChart.height,
-  //   labelSVG = labelChart.plotVar.attr("id", "labels")
-  
+//APPEND THE DIFFERENT SVGS  
   const labelChart = createSVG("#labels", margin = {top: 0, right: 0, bottom: 0, left: 0}),
-    panelWidth = labelChart.width,
     panelHeight = labelChart.height,
     labelSVG = labelChart.plotVar.attr("id", "labels")
 
-  const indexChart = createSVG("#index", margin = {top: 0, right: 0, bottom: 0, left: 0}),
-    indexSVG = indexChart.plotVar.attr("id", "labels")
+  const indexChart = createSVG("#index", margin = {top: 0, right: 0, bottom: 0, left: 1}),
+    panelWidth = indexChart.width,
+    indexSVG = indexChart.plotVar.attr("id", "index")
 
-  indicatorScores = Array.from(indicatorScores);
+  const valueChart = createSVG("#valueRealization", margin = {top: 0, right: 0, bottom: 0, left: 1}),
+    valueSVG = valueChart.plotVar.attr("id", "valueRealization")
 
-  const countryScores = computeScores(indicatorScores, countryNames)
+  const revenueChart = createSVG("#revenueManagement", margin = {top: 0, right: 0, bottom: 0, left: 1}),
+    revenueSVG = revenueChart.plotVar.attr("id", "revenueManagement")
 
-  const panelScores = panelData(countryScores)
-  console.log(countryScores)
+  const enablingChart = createSVG("#enablingEnvironment", margin = {top: 0, right: 0, bottom: 0, left: 1}),
+    enablingSVG = enablingChart.plotVar.attr("id", "enablingEnvironment")
+
+//GENERATE THE INITIAL DATA
+  indicatorScores = Array.from(indicatorScores); //convert to array
+
+  let countryScores = computeScores(indicatorScores) //compute the different component, subcomponent scores
+
+  let panelScores = computePanelData(countryScores, countryNames) //generate the panel data
+
+  //update the data for default plot that is sorted on overall index ranks
+  panelScores = computeRanks(panelScores, "indexScore")
 
 
   //INITIALIZE CHARTING VARIABLES
-  //Chart dimension controls
-  const labelXPos = 120,
-    iconPadding = 5,
-    iconSize = 15,
-    barWidth = 0.5*(panelHeight)/89
 
   //set the scales for the chart
     //yScale: The Y axis is ordered based on the ranks
   const yScale = d3.scaleBand()
     .rangeRound([0, panelHeight])
     .padding(0.1)
-    .domain(countryScores.map(d => d.rank));
+    .domain(panelScores.map(d => d.rank));
 
-    //xScale: The chart area needs to be split into 4 different blocks of equal size with domains from 0 to 100. There also needs to be padding between each of these charts
+    //xScale: Each panel has the same width since each of them are bootstrap columns
   const xScale = d3.scaleLinear()
     .range([0, panelWidth])
     .domain([0, 100])
 
+    //color scale
+  const colorDomain = [0, 30, 44, 59, 74, 100]
+  const colorRange = ["#A12A32", "#F78C4B", "#FEEF92", "#C1EDA2", "#75E180"]
+
+  const colorScale = d3.scaleThreshold()
+    .range(colorRange)
+    .domain(colorDomain)
+
+    //Chart dimension controls
+  const labelXPos = 120,
+    iconPadding = 5,
+    iconSize = 15,
+    barWidth = 0.5*yScale.bandwidth()
 
   //All tool tips
   const iconTip = d3.tip()
@@ -258,95 +252,349 @@ const draw = (alLScores = required(), questionFramework = required(), questionSc
     .attr('class', 'd3-tip')
 
 
-  //draw the labels
-    //mouseover function for labels
+  //DRAW THE LABELS
+    //mouseover function for label text
   const labelMouseOver = (d) => {
     if(d.country !== d.alias){
       labelTip.html(d.country)
       labelTip.show(d)
     }
+    //show the lock if the lock is not alread on
+    if(stateVars.lockedRank !== d.rank){
+      d3.selectAll(".lockIcons").filter(e => e.rank === d.rank).style("opacity", 0.2)  
+    }
+    
   }
 
+  const labelMouseOut = (d) => {
+    if(d.country !== d.alias){
+      labelTip.hide(d)
+    }
+    //show the lock
+    if(stateVars.lockedRank !== d.rank){
+      d3.selectAll(".lockIcons").filter(e => e.rank === d.rank).style("opacity", 0)  
+    }
+    
+  }
+    //on click function for locking country
+  const labelOnClick = (d) => {
+    let currRank = d.rank;
+
+    //update the locked global rank
+    if(currRank === stateVars.lockedRank){ //you click on the same country twice go back to default
+      //reset locked rank to zero
+      stateVars.lockedRank = 0;      
+    } else {
+      stateVars.lockedRank = currRank;
+    }
+
+    //show the lock
+    d3.selectAll(".lockIcons").filter(e => e.rank === stateVars.lockedRank).style("opacity", 1);
+    d3.selectAll(".lockIcons").filter(e => e.rank !== stateVars.lockedRank).style("opacity", 0);
+
+    //change the opacity on bars
+    d3.selectAll(".bars").filter(e => e.rank === stateVars.lockedRank).style("opacity", 1)//classed("notLocked", lockedRank === 0 ? false : true)
+    d3.selectAll(".bars").filter(e => e.rank !== stateVars.lockedRank).style("opacity", stateVars.lockedRank === 0 ? 1 : 0.2)
+
+    //change the opacity on labels
+    d3.selectAll(".countryLabels").filter(e => e.rank === stateVars.lockedRank).style("opacity", 1)
+    d3.selectAll(".countryLabels").filter(e => e.rank !== stateVars.lockedRank).style("opacity", stateVars.lockedRank === 0 ? 1 : 0.2)
+  }
+
+  const panelUpdate = (yLabels, panelData) => {
+    //SET: update the labels
+    yLabels.data(panelData)
+
+    //SET: Update all the label elements
+    yLabels.selectAll(".labelText")
+        .transition()
+        .duration(500)
+        .attr("y", d => yScale(d.rank))
+
+    yLabels.selectAll(".sectorIcons")
+        .transition()
+        .duration(500)
+        .attr("y", d => yScale(d.rank) - 2)
+
+    yLabels.selectAll(".lockIcons")
+        .transition()
+        .duration(500)
+        .attr("y", d => yScale(d.rank) - 2)
+
+    //SET: Update all the bars
+    d3.selectAll(".indexBars")
+        .transition()
+        .duration(500)
+        .attr("y", d => yScale(d.rank))
+        .attr("width", d => xScale(d.indexScore))
+        .attr("fill", d => colorScale(d.indexScore))
+    d3.selectAll(".indexText")
+        .transition()
+        .duration(500)
+        .attr("x", d => xScale(d.indexScore))
+        .attr("y", d => yScale(d.rank))
+        .text(d => Math.round(d.indexScore))
+        .attr("text-anchor", d => xScale(d.indexScore) < 9 ? "start" : "end")
+
+    d3.selectAll(".valueBars")
+        .transition()
+        .duration(500)
+        .attr("y", d => yScale(d.rank))
+        .attr("width", d => xScale(d.valueRealization))
+        .attr("fill", d => colorScale(d.valueRealization))
+    d3.selectAll(".valueText")
+        .transition()
+        .duration(500)
+        .attr("x", d => xScale(d.valueRealization))
+        .attr("y", d => yScale(d.rank))
+        .text(d => Math.round(d.valueRealization))
+        .attr("text-anchor", d => xScale(d.valueRealization) < 9 ? "start" : "end")
+
+    d3.selectAll(".revenueBars")
+        .transition()
+        .duration(500)
+        .attr("y", d => yScale(d.rank))
+        .attr("width", d => xScale(d.revenueManagement))
+        .attr("fill", d => colorScale(d.revenueManagement))
+    d3.selectAll(".revenueText")
+        .transition()
+        .duration(500)
+        .attr("x", d => xScale(d.revenueManagement))
+        .attr("y", d => yScale(d.rank))
+        .text(d => Math.round(d.revenueManagement))
+        .attr("text-anchor", d => xScale(d.revenueManagement) < 9 ? "start" : "end")
+
+    d3.selectAll(".enablingBars")
+        .transition()
+        .duration(500)
+        .attr("y", d => yScale(d.rank))
+        .attr("width", d => xScale(d.enablingEnvironment))
+        .attr("fill", d => colorScale(d.enablingEnvironment))
+
+    d3.selectAll(".enablingText")
+        .transition()
+        .duration(500)
+        .attr("x", d => xScale(d.enablingEnvironment))
+        .attr("y", d => yScale(d.rank))
+        .text(d => Math.round(d.enablingEnvironment))
+        .attr("text-anchor", d => xScale(d.enablingEnvironment) < 9 ? "start" : "end")
+
+    //SET: update the lock icon
+    // labelOnClick({rank: stateVars.lockedRank})
+    console.log(stateVars.lockedRank)
+    // if(stateVars.lockedRank !== 0){
+    //   d3.selectAll(".lockIcons").filter(e => e.rank === stateVars.lockedRank).style("opacity", 1);
+    //   d3.selectAll(".lockIcons").filter(e => e.rank !== stateVars.lockedRank).style("opacity", 0);
+    // }
+  }
+  //label svg and data
   const yLabels = labelSVG.append('g')
     .selectAll(".countryLabels")
-    .data(countryScores)
-    .enter()
+      .data(panelScores)
+      .enter()
 
-
+    //draw labels
   yLabels.append('g')
     .append("text")
-    .attr("class", "countryLabels")
-    .attr("x", labelXPos)
-    .attr("y", (d) => yScale(d.rank))
-    .text(d => d.alias)
-    .attr("text-anchor", "end")
-    .call(labelTip)
-    .on("mouseover", labelMouseOver)
-    .on("mouseout", labelTip.hide)
-
-  
-  yLabels.append("svg:image")
-    .data(countryScores)
-    .attr("class", "sectorIcons")
-    .attr("xlink:href", (d) => {return d.sector === "Mining" ? "/images/mining-cubes.svg" : "/images/oil.svg"})
-    .attr("width", iconSize)
-    .attr("height", iconSize)
-    .attr("x", labelXPos + iconPadding)
-    .attr("y", (d) => yScale(d.rank) - 12)
-    .call(iconTip)
-    .on("mouseover", iconTip.show)
-    .on("mouseout", iconTip.hide)
+      .attr("class", "countryLabels labelText")
+      .attr("x", labelXPos)
+      .attr("y", (d) => yScale(d.rank))
+      .text(d => d.alias)
+      .attr("text-anchor", "end")
+      .style("dominant-baseline", "hanging")
+      .call(labelTip)
+      .on("mouseover", labelMouseOver)
+      .on("mouseout", labelMouseOut)
+      .on("click", labelOnClick)
 
 
+    //add the mining and oil-gas icons
+  yLabels.append('g')
+    .append("svg:image")
+      .attr("class", "sectorIcons")
+      .attr("xlink:href", (d) => {return d.sector === "Mining" ? "/images/mining-cubes.svg" : "/images/oil.svg"})
+      .attr("class", "countryLabels sectorIcons")
+      .attr("width", iconSize)
+      .attr("height", iconSize)
+      .attr("x", labelXPos + iconPadding)
+      .attr("y", (d) => yScale(d.rank) - 2)
+      .call(iconTip)
+      .on("mouseover", iconTip.show)
+      .on("mouseout", iconTip.hide)
+
+    //add the lock icon
+  yLabels.append('g')
+    .append("svg:image")
+      .attr("class", "lockIcons")
+      .attr("xlink:href", "/images/lock.svg")
+      .attr("class", "lockIcons")
+      .attr("width", iconSize)
+      .attr("height", iconSize)
+      .attr("x", 5)
+      .attr("y", (d) => yScale(d.rank) - 2)
+      .attr("opacity", 0)
+
+  // console.log(panelScores)
     //draw panels
-  // const indexPanel = indexSVG.append("g")
-  //   .selectAll(".bars")
-  //   .data(panelScores)
-  //   .enter()
-  //   .append("rect")
-  //   .attr("class", "indexBars")
-  //   .attr("x", 0)
-  //   .attr("y", d => yScale(d.rank) - barWidth/1.5)
-  //   .attr("width", d => xScale(d.indexScore))
-  //   .attr("height", barWidth)
-  
-  //   labelYPos = 60,
-  //   labelYHeight = 25,
-  //   
-  //   chartPadding = 5,
-  //   chartStart = labelXPos + iconPadding + iconSize + chartPadding
-  //   chartWidth = width - chartStart
-    ;
+  const indexPanel = indexSVG.append("g")
+      .selectAll(".bars")
+      .data(panelScores)
+      .enter()
 
+  indexPanel.append("g")
+    .append("rect")
+      .attr("class", "bars indexBars")
+      .attr("x", 0)
+      .attr("y", d => yScale(d.rank))
+      .attr("width", d => xScale(d.indexScore))
+      .attr("height", barWidth)
+      .attr("fill", d => colorScale(d.indexScore))
+
+  indexPanel.append("g")
+    .append("text")
+      .attr("class", "indexText")
+      .attr("x", d =>  xScale(d.indexScore))
+      .attr("y", d => yScale(d.rank))
+      .text(d => Math.round(d.indexScore))
+      .attr("text-anchor", d => xScale(d.indexScore) < 9 ? "start" : "end")
+      .style("dominant-baseline", "hanging")
+
+  const valuePanel = valueSVG.append("g")
+      .selectAll(".bars")
+      .data(panelScores)
+      .enter()
+
+  valuePanel.append("g")
+    .append("rect")
+      .attr("class", "bars valueBars")
+      .attr("x", 0)
+      .attr("y", d => yScale(d.rank))
+      .attr("width", d => xScale(d.valueRealization))
+      .attr("height", barWidth)
+      .attr("fill", d => colorScale(d.valueRealization))
+
+  valuePanel.append("g")
+    .append("text")
+      .attr("class", "valueText")
+      .attr("x", d => xScale(d.valueRealization))
+      .attr("y", d => yScale(d.rank))
+      .text(d => Math.round(d.valueRealization))
+      .attr("text-anchor", d => xScale(d.valueRealization) < 9 ? "start" : "end")
+      .style("dominant-baseline", "hanging")
+
+  const revenuePanel = revenueSVG.append("g")
+      .selectAll(".bars")
+      .data(panelScores)
+      .enter()
+
+  revenuePanel.append("rect")
+      .attr("class", "bars revenueBars")
+      .attr("x", 0)
+      .attr("y", d => yScale(d.rank))
+      .attr("width", d => xScale(d.revenueManagement))
+      .attr("height", barWidth)
+      .attr("fill", d => colorScale(d.revenueManagement))
+
+  revenuePanel.append("g")
+    .append("text")
+      .attr("class", "revenueText")
+      .attr("x", d => xScale(d.revenueManagement))
+      .attr("y", d => yScale(d.rank))
+      .text(d => Math.round(d.revenueManagement))
+      .attr("text-anchor", d => xScale(d.revenueManagement) < 9 ? "start" : "end")
+      .style("dominant-baseline", "hanging")
+
+  const enablingPanel = enablingSVG.append("g")
+      .selectAll(".bars")
+      .data(panelScores)
+      .enter()
+
+  enablingPanel.append("rect")
+      .attr("class", "bars enablingBars")
+      .attr("x", 0)
+      .attr("y", d => yScale(d.rank))
+      .attr("width", d => xScale(d.enablingEnvironment))
+      .attr("height", barWidth)
+      .attr("fill", d => colorScale(d.enablingEnvironment))
+
+  enablingPanel.append("g")
+    .append("text")
+      .attr("class", "enablingText")
+      .attr("x", d => xScale(d.enablingEnvironment))
+      .attr("y", d => yScale(d.rank))
+      .text(d => Math.round(d.enablingEnvironment))
+      .attr("text-anchor", d => xScale(d.enablingEnvironment) < 9 ? "start" : "end")
+      .style("dominant-baseline", "hanging")
+
+
+  //Vanilla JS event listeners
+    //Sort panel based on clicks on the label
+    //callback for the label click
+  const labelCallback = (event) => {
+    // console.log(event)
+    const idMaps ={ //maps each ranking
+    "2017 RGI Index": "indexScore",
+    "Value Realization": "valueRealization",
+    "Revenue Management": "revenueManagement",
+    "Enabling Environment": "enablingEnvironment"
+    }
+      //GET: current sorting column
+    const labelVar = idMaps[event.target.innerText];
+
+      //GET: current sorticon el and classes of parent svg
+    const currSortIcon = event.target.parentNode.parentNode.children[0].children[0].children[0];
+    const currClasses = event.target.parentNode.parentNode.children[0].children[0].classList
+
+      //DO: The sort direction for eveny panel should mirror the current active sort direction. The sort direction can only be changed by clicking again on the current sorted panel
+      //SET the sort direction. 
+        //If the sort by variable is the same as the label that was clicked then change the sort direction for all panels
+        //Else update the sortBy variable
+      //SET the href for sort icons
+        //If sortby var is the same as clicked then update href to corresponding sort direction for all panels
+        //Else if the click is on a new panel then do nothing since we want to preserve the previous sort order until double click
+      //SET the classlist for sort icons
+        //If sortby var is the same as clicked do nothing i.e. icon is already visible
+        //Else remove sorted class from previous and apply to current
+
+    if(stateVars.sortBy === labelVar){
+      //SET the state of the sort direction
+      stateVars.sortDirection = stateVars.sortDirection === "ascending" ? "descending" : "ascending";
+
+      //SET the href for the sort icons for all to match the current
+      document.querySelectorAll(".sortIcon image").forEach(img => img.setAttribute('xlink:href', stateVars.sortDirection === "ascending" ? "/images/sortAsc.svg" : "/images/sortDesc.svg"))
+      
+    } else {
+      //SET the current sorted var state
+      stateVars.sortBy = labelVar;
+
+      //SET the sorted class to clicked svg
+      document.querySelector(".sorted").classList.remove("sorted") //remove the previous sorted
+      currClasses.add("sorted"); //apply to current
+    }
+
+    //GET current rank and locked country sector
+    const currRank = stateVars.lockedRank;
+    let lockedCountry,
+      lockedSector;
+
+    if(currRank !== 0){ //i.e. there is a lock on a rank
+      //GET the country and sector
+      lockedCountry = panelScores.filter(d => d.rank === currRank)[0].country
+      lockedSector = panelScores.filter(d => d.rank === currRank)[0].sector
+    }
+    //SET the panel data
+    panelScores = computeRanks(panelScores, labelVar, sortDirection = stateVars.sortDirection)
     
+    //SET: Update the locked rank
+    stateVars.lockedRank = currRank === 0 ? 0 : panelScores.filter(d => d.country === lockedCountry && d.sector === lockedSector)[0].rank
 
-  //   // console.log(barWidth)
-  
+    //redraw plots
+    panelUpdate(yLabels, panelScores)
+  }
+  //Bind the sort function on the label selection nodes
+  const labelSel = document.querySelectorAll(".topLabel p")
+  labelSel.forEach(node => node.addEventListener("click", labelCallback))
 
- 
-
-  // // console.log(width, chartStart, chartWidth, chartWidth/4, xScaleIndex.range())
-  
-    
-
-  
-  
-
-
-
-
-
-  
-  // const valuePanel = chartSVG.append("g")
-  //   .selectAll(".bars")
-  //   .data(panelScores)
-  //   .enter()
-  //   .append("rect")
-  //   .attr("class", "valueBars")
-  //   .attr("x", chartStart + chartPadding + chartWidth/4)
-  //   .attr("y", d => yScale(d.rank) - barWidth/1.5)
-  //   .attr("width", d => xScale(d.valueRealization))
-  //   .attr("height", barWidth)
 
 }
 
