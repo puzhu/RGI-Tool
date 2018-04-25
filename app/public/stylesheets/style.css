@@ -13,22 +13,41 @@ a {
 	overflow-y: scroll;
 	background-color: #F2F3EB;
 }
+#countryContent{
+	height:900px;
+}
+#dynamicTitle{
+	font-family: 'Merriweather', serif;
+	background-color: rgba(255, 255, 255, 0.8);
 
-#controls{
-	/*border: 5px solid red;*/
-	/*min-height: 600px;*/
+}
+#countryBlurb{
+	height: 200px;
+	overflow-y: scroll;
+}
+/*.inner {
+    width: 40%;
+    height: 1.5px;
+    margin: 0px auto;
+    border-bottom: 1.5px solid black;
+}*/
+#countryIndicators{
+	/*border: 1px red solid;*/
+	height: 650px;
 }
 
-#chartSVG{
-	/*border: 5px solid blue;*/
-	/*overflow: scroll;*/
+#pointerLines{
+	/*border: 1px blue solid;*/
+	height: 650px;
 }
+
 h1, h2{
 	font-family: 'Merriweather', serif;
 }
 
 .explainer{
 	font-family: 'Open Sans', sans-serif;
+	font-size: 0.8em;
 }
 
 #topDiv{
@@ -133,6 +152,7 @@ h1, h2{
 	
 }
 
+/*Country section*/
 
 
 
