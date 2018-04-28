@@ -1,35 +1,36 @@
-<div class="container">
-	<h1>{{title}}</h1>
+<div class="container introDiv mt-4">
+	<h2>{{title}}</h2>
 	<p class="explainer">THE DATA USED HERE IS RANDMLY GENERATED. THESE ARE NOT THE ACTUAL SCORES FOR THE INDEX.</p>
 	<p class="explainer"><a href="http://www.resourcegovernanceindex.org/" target="_blank" rel="noopener">The 2017 Resource Governance Index</a> (RGI) measures the quality of resource governance in 81 countries that together produce 82 percent of the world’s oil, 78 percent of its gas and a significant proportion of minerals. It is the product of 89 country assessments (eight countries were assessed in two sectors), compiled by 150 researchers, using almost 10,000 supporting documents to answer 149 questions. Use this tool to explore these scores and manipulate them to visualize the impact of policy changes on overall ranking in the index.</p>
 	<p class="explainer"></p>
 </div>
-<div class="container">
+
+<div class="container mt-1">
 	<div class="row">
 		<div class="col-md-6 card" id="chart">
-			<div class="row" id="topDiv"></div>
+			<div class="row topDiv"></div>
 			<div class="row">
-				<div class="col-md-3 m-0 mb-4 p-0">
+				<div class="col-sm-3 m-0 mb-4 p-0">
 					<div class="col-md-12 topLabelBlank sticky-top"></div>
-					<div class="col-md-12 pt-1 p-0" id="labels"></div>
+					<div class="col-md-12 pt-1 p-0 js-labels" id="labels"></div>
 				</div>
-				<div class="col-md-2 ml-1 mb-4 p-0">
-					<div class="col-md-12 topLabel sticky-top" id="indexLabel">
+				<div class="col-sm-2 ml-1 mb-4 p-0">
+					<div class="col-md-12 topLabel sticky-top indexLabel">
 						<div class="row">
-							<div class="col-md-2 m-0 p-0">
+							<div class="col-md-1 m-0 p-0">
 								<svg class="sortIcon sorted">
-									<image xlink:href="/images/sortAsc.svg" x="2" y="2" height="12px" width="12px" opacity="0.8"/>
+									<image xlink:href="/images/sortAsc.svg" x="6" y="2" height="12px" width="12px" opacity="0.8"/>
 								</svg>
 							</div>
-							<div class="col-md-10 m-0 p-0">
+							<div class="col-md-9 m-0 p-0">
 								<p>2017 RGI Index</p>
 							</div>	
 						</div>
 					</div>
-					<div class="col-md-12 pt-1 p-0 card" id="index"></div>
+					<div class="col-md-12 pt-1 p-0 card js-index" id="index"></div>
 				</div>
-				<div class="col-md-2 ml-2 mb-4 p-0">
-					<div class="col-md-12 topLabel sticky-top" id="valueLabel">
+				<div class="col-sm-2 ml-2 mb-4 p-0">
+					<div class="col-md-12 topLabel sticky-top valueLabel">
 						<div class="row">
 							<div class="col-md-1 m-0 p-0">
 								<svg class="sortIcon">
@@ -41,10 +42,10 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-12 pt-1 p-0 card" id="valueRealization"></div>
+					<div class="col-md-12 pt-1 p-0 card js-valueRealization" id="valueRealization"></div>
 				</div>
-				<div class="col-md-2 ml-2 mb-4 p-0">
-					<div class="col-md-12 topLabel sticky-top" id="revenueLabel">
+				<div class="col-sm-2 ml-2 mb-4 p-0">
+					<div class="col-md-12 topLabel sticky-top revenueLabel">
 						<div class="row">
 							<div class="col-md-1 m-0 p-0">
 								<svg class="sortIcon">
@@ -56,10 +57,10 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-12 pt-1 p-0 card" id="revenueManagement"></div>
+					<div class="col-md-12 pt-1 p-0 card js-revenueManagement" id="revenueManagement"></div>
 				</div>
-				<div class="col-md-2 ml-2 mb-4 p-0">
-					<div class="col-md-12 topLabel sticky-top" id="enablingLabel">
+				<div class="col-sm-2 ml-2 mb-4 p-0">
+					<div class="col-md-12 topLabel sticky-top enablingLabel">
 						<div class="row">
 							<div class="col-md-1 m-0 p-0">
 								<svg class="sortIcon">
@@ -71,19 +72,17 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-12 pt-1 p-0 card" id="enablingEnvironment"></div>
+					<div class="col-md-12 pt-1 p-0 card js-enablingEnvironment" id="enablingEnvironment"></div>
 				</div>
 			</div>
 		</div>
 		<div class="col-md-6" id="countryContent">
-			<div class="row ml-2" id="countryBlurb">
-				
-
+			<div class="row ml-2 js-countryBlurb countryBlurb">
 			</div>
-			<div class="inner pt-2">&nbsp;</div>
+			<div class="js-line pt-2">&nbsp;</div>
 			<div class="row ml-2 pt-2">
-				<div class="col-md-2" id="countryIndicators"></div>
-				<div class="col-md-2" id="pointerLines"></div>
+				<div class="col-md-2 js-countryIndicators" id="countryIndicators"></div>
+				<div class="col-md-2 pointerLines"></div>
 				<div class="col-md-8">	
 				</div>	
 			</div>

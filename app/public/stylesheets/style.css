@@ -5,43 +5,7 @@ body {
 a {
   color: #00B7FF;
 }
-
-#chart{
-	/*border: 5px solid red;*/
-	/*min-height: 2400px;*/
-	height:900px;
-	overflow-y: scroll;
-	background-color: #F2F3EB;
-}
-#countryContent{
-	height:900px;
-}
-#dynamicTitle{
-	font-family: 'Merriweather', serif;
-	background-color: rgba(255, 255, 255, 0.8);
-
-}
-#countryBlurb{
-	height: 200px;
-	overflow-y: scroll;
-}
-/*.inner {
-    width: 40%;
-    height: 1.5px;
-    margin: 0px auto;
-    border-bottom: 1.5px solid black;
-}*/
-#countryIndicators{
-	/*border: 1px red solid;*/
-	height: 650px;
-}
-
-#pointerLines{
-	/*border: 1px blue solid;*/
-	height: 650px;
-}
-
-h1, h2{
+h1, h2, h3, h4, h5{
 	font-family: 'Merriweather', serif;
 }
 
@@ -50,35 +14,79 @@ h1, h2{
 	font-size: 0.8em;
 }
 
-#topDiv{
-	height: 50px;
+.topDiv{
+
 }
-.topLabelBlank{
-	height: 30px;
+
+#countryContent, #chart{
+	height:600px;
+}
+
+
+/*Right Side CSS*/
+.countryContent{
+
+}
+.dynamicTitle{
+	font-family: 'Merriweather', serif;
+	background-color: rgba(255, 255, 255, 0.8);
+
+}
+.countryBlurb{
+	height: 150px;
+	overflow-y: scroll;
+}
+.inner {
+    width: 30%;
+    height: 1.5px;
+    margin: 0px auto;
+    border-bottom: 1.5px solid darkgrey;
+}
+.countryIndicators, .pointerLines {
+	/*border: 1px red solid;*/
+	height: 700px;
+}
+
+
+/*Left Side CSS*/
+#chart{
+	overflow-y: scroll;
+	background-color: #F2F3EB;
+}
+
+.topDiv{
+	height: 10px;
+}
+.topLabelBlank, .topLabel{
+	height: 40px;
 }
 	
 .topLabel{
-	height: 30px;
 	font-family: 'Merriweather', serif;
 	font-weight: bold;
 	font-size: 0.6em;
 	cursor: default;
 	text-align: center;
-	background-color: rgba(242,243,235, 0.6);
-	position: sticky;
-
+	background-color: rgba(242,243,235, 0.8);
+	z-index: 2;
 }
-
 .topLabel p{
 	cursor: pointer;
 }
+
+.topLabel:hover p{
+	font-weight: bold;
+}
+
+
 /*Sort icon*/
 .sortIcon{
+	position: relative;
 	height: 2em;
   	width: 2em;
   	opacity: 0;
 }
-#indexLabel:hover .sortIcon, #valueLabel:hover .sortIcon, #revenueLabel:hover .sortIcon, #enablingLabel:hover .sortIcon{
+.indexLabel:hover .sortIcon, .valueLabel:hover .sortIcon, .revenueLabel:hover .sortIcon, .enablingLabel:hover .sortIcon{
 	opacity: 0.4;
 }
 
@@ -87,28 +95,11 @@ h1, h2{
 }
 
 
-
-#labels{
+#labels, #index, #valueRealization, #revenueManagement, #enablingEnvironment{
 	min-height:1800px;
 }
 
-#index{
-	min-height:1800px;
-	background-color: #EBEAE6;
-}
-
-#valueRealization{
-	min-height:1800px;
-	background-color: #EBEAE6;
-}
-
-#revenueManagement{
-	min-height:1800px;
-	background-color: #EBEAE6;
-}
-
-#enablingEnvironment{
-	min-height:1800px;
+#index, #valueRealization, #revenueManagement, #enablingEnvironment{
 	background-color: #EBEAE6;
 }
 

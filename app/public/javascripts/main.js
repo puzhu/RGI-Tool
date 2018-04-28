@@ -3,7 +3,7 @@
 const stateVars = {lockedRank: 0, sortBy: "indexScore", sortDirection: "ascending",}
 
 const countryBlurbInitial = `
-  <div class="col-md-12 sticky-top" id="dynamicTitle">
+  <div class="col-md-12 sticky-top dynamicTitle">
     <h5>Click on a country to view profile</h5>
   </div>
   <div class="col-md-12" id="dynamicBlurb">
@@ -28,12 +28,12 @@ const required = () => {throw new Error("Missing a required input")};
  * @returns {object}
  * @description given an id an margin object, append an svg to DOM and return SVG characteristics
  */
-const createSVG = (id = required(), margin = {top: 5, right: 5, bottom: 5, left: 5}) => { //plotVar, margin, padding
-  const outerWidth = d3.select(id).node().clientWidth,
-    outerHeight = d3.select(id).node().clientHeight,
+const createSVG = (selector = required(), margin = {top: 5, right: 5, bottom: 5, left: 5}) => { //plotVar, margin, padding
+  const outerWidth = d3.select(selector).node().clientWidth,
+    outerHeight = d3.select(selector).node().clientHeight,
     width = outerWidth - (margin.left + margin.right),
     height = outerHeight - (margin.top + margin.bottom),
-    plotVar = d3.select(id).append('svg')
+    plotVar = d3.select(selector).append('svg')
         .attr('width', outerWidth)
         .attr('height', outerHeight)
       .append('g')
@@ -50,25 +50,35 @@ const createSVG = (id = required(), margin = {top: 5, right: 5, bottom: 5, left:
  */
 
 const renderInitialView = (countryBlurbInitial) => {
-  const countryBlurbEl = document.querySelector("#countryBlurb")
+  const countryBlurbEl = document.querySelector(".js-countryBlurb")
   while(countryBlurbEl.firstChild){
     countryBlurbEl.removeChild(countryBlurbEl.firstChild);
   }
-
+  document.querySelector(".js-line").classList.contains("inner") ? document.querySelector(".js-line").classList.remove("inner") : null;
   countryBlurbEl.innerHTML = countryBlurbInitial;
 }
 
-const renderCountryBlurb = (country, alias, sector) => {
-  const countryBlurbEl = document.querySelector("#countryBlurb")
+const renderCountryBlurb = (country, alias, sector, countryData) => {
+  const countryBlurbEl = document.querySelector(".js-countryBlurb")
   while(countryBlurbEl.firstChild){
     countryBlurbEl.removeChild(countryBlurbEl.firstChild);
   }
+  const blurbText = countryData.filter(d => d.country === country && d.sector === sector)[0].blurb
   const countryBlurb = `
-    <div class="col-md-12 sticky-top" id="dynamicTitle">
+    <div class = "col-md-12 sticky-top dynamicTitle">
       <h5>${country.concat(sector).length < 34 ? country : alias} - ${sector} sector</h5>
+    </div>
+    <div class = "col-md-12" >
+      <p class="explainer">${blurbText}</p>
     </div>
   `
   countryBlurbEl.innerHTML = countryBlurb;
+  document.querySelector(".js-line").classList.add("inner")
+}
+
+const renderIndicatorChart = (country, sector, indicatorScores) => {
+  const indicatorData = indicatorScores.filter(d => d.country === country && d.sector === sector)
+  console.log(indicatorData)
 }
 /**
  * Compute the scores of different countries for the index, component and subcomponents
@@ -142,7 +152,7 @@ const computeScores = (indicatorScores = required()) => {
 
   // const ranked = countryScores.sort((a, b) => b.indexScore - a.indexScore)
   //   .reduce((accum, val, i) => {
-  //     accum.push(Object.assign(val, {alias: countryNames.filter((d) => d.country === val.country)[0].alias, rank: i + 1,}))
+  //     accum.push(Object.assign(val, {alias: countryData.filter((d) => d.country === val.country)[0].alias, rank: i + 1,}))
 
   //     return accum;
   //   }, [])
@@ -157,13 +167,13 @@ const computeScores = (indicatorScores = required()) => {
  * @description given the countryScores extract the index and component scores along with rank for plotting
  */
 
-const computePanelData = (countryScores = required(), countryNames = required()) => {
+const computePanelData = (countryScores = required(), countryData = required()) => {
   return countryScores.reduce((accum, score, i) => {
     accum.push({
       country: score.country,
       sector: score.sector,
-      alias: countryNames.filter((d) => d.country === score.country)[0].alias,
-      valueRealization: score.componentScores.filter(d => d.component === "Value extraction")[0].score,
+      alias: countryData.filter((d) => d.country === score.country)[0].alias,
+      valueRealization: score.componentScores.filter(d => d.component === "Value realization")[0].score,
       revenueManagement: score.componentScores.filter(d => d.component === "Revenue management")[0].score,
       enablingEnvironment: score.componentScores.filter(d => d.component === "Enabling environment")[0].score,
       indexScore: score.indexScore,
@@ -171,7 +181,6 @@ const computePanelData = (countryScores = required(), countryNames = required())
 
     return accum
   }, [])
-
 }
 
 
@@ -194,22 +203,22 @@ const computeRanks = (panelData = required(), rankVar = "indexScore", sortDirect
 }
 
 
-const panelUpdate = (yLabels, panelData, xScale, yScale, colorScale) => {
+const panelUpdate = (xScale, yScale, colorScale) => {
     //SET: update the labels
-    yLabels.data(panelData)
+    //yLabels.data(panelData)
 
     //SET: Update all the label elements
-    yLabels.selectAll(".labelText")
+    d3.selectAll(".labelText")
         .transition()
         .duration(500)
         .attr("y", d => yScale(d.rank))
 
-    yLabels.selectAll(".sectorIcons")
+    d3.selectAll(".sectorIcons")
         .transition()
         .duration(500)
         .attr("y", d => yScale(d.rank) - 2)
 
-    yLabels.selectAll(".lockIcons")
+    d3.selectAll(".lockIcons")
         .transition()
         .duration(500)
         .attr("y", d => yScale(d.rank) - 2)
@@ -271,19 +280,11 @@ const panelUpdate = (yLabels, panelData, xScale, yScale, colorScale) => {
         .attr("y", d => yScale(d.rank))
         .text(d => Math.round(d.enablingEnvironment))
         .attr("text-anchor", d => xScale(d.enablingEnvironment) < 9 ? "start" : "end")
-
-    //SET: update the lock icon
-    // labelOnClick({rank: stateVars.lockedRank})
-    // console.log(stateVars.lockedRank)
-    // if(stateVars.lockedRank !== 0){
-    //   d3.selectAll(".lockIcons").filter(e => e.rank === stateVars.lockedRank).style("opacity", 1);
-    //   d3.selectAll(".lockIcons").filter(e => e.rank !== stateVars.lockedRank).style("opacity", 0);
-    // }
 }
 
 
     //on click function for locking country
-const labelOnClick = (d) => {
+const labelOnClick = (d, countryData, indicatorScores) => {
   let currRank = d.rank;
 
   //update the locked global rank
@@ -297,7 +298,10 @@ const labelOnClick = (d) => {
     stateVars.lockedRank = currRank;
 
     //trigger changes to the text
-    renderCountryBlurb(d.country, d.alias, d.sector) 
+    renderCountryBlurb(d.country, d.alias, d.sector, countryData)
+
+    //render indicator chart
+    renderIndicatorChart(d.country, d.sector, indicatorScores)
   }
 
   //show the lock
@@ -310,48 +314,52 @@ const labelOnClick = (d) => {
 
   //change the opacity on labels
   d3.selectAll(".countryLabels").filter(e => e.rank === stateVars.lockedRank).style("opacity", 1)
-  d3.selectAll(".countryLabels").filter(e => e.rank !== stateVars.lockedRank).style("opacity", stateVars.lockedRank === 0 ? 1 : 0.2)
-
-  
+  d3.selectAll(".countryLabels").filter(e => e.rank !== stateVars.lockedRank).style("opacity", stateVars.lockedRank === 0 ? 1 : 0.2)  
 }
 /**
  * Draw the RGI scores
  * @function draw
  * @param {object} allScores - The entire set of scores for each question for each country
- * @param {object} questionFramework - The additional information required for each question, i.e. map to indicators, labels etc
- * @param {object} questionScores - The scoring metric for each question
+ * @param {object} framework - The additional information required for each question, i.e. map to indicators, labels etc
+ * @param {object} scoringMetric - The scoring metric for each question
  * @param {object} indicatorScores - The scores for each indicator. This was added since the questions do not address the Enabling Environment component
  * @description given an id an margin object, append an svg to DOM and return SVG characteristics
  */
 
-const draw = (alLScores = required(), questionFramework = required(), questionScores = required(), indicatorScores = required(), countryNames = required()) => {
+const draw = (alLScores = required(), framework = required(), questionScores = required(), indicatorScores = required(), countryData = required()) => {
+  // console.log(framework)
   //RENDER THE INITIAL VIEW
   renderInitialView(countryBlurbInitial);
 
   //APPEND THE DIFFERENT SVGS  
   const labelChart = createSVG("#labels", margin = {top: 0, right: 0, bottom: 0, left: 0}),
     panelHeight = labelChart.height,
-    labelSVG = labelChart.plotVar.attr("id", "labels")
+    labelSVG = labelChart.plotVar;
 
   const indexChart = createSVG("#index", margin = {top: 0, right: 0, bottom: 0, left: 1}),
     panelWidth = indexChart.width,
-    indexSVG = indexChart.plotVar.attr("id", "index")
+    indexSVG = indexChart.plotVar;
 
   const valueChart = createSVG("#valueRealization", margin = {top: 0, right: 0, bottom: 0, left: 1}),
-    valueSVG = valueChart.plotVar.attr("id", "valueRealization")
+    valueSVG = valueChart.plotVar;
 
   const revenueChart = createSVG("#revenueManagement", margin = {top: 0, right: 0, bottom: 0, left: 1}),
-    revenueSVG = revenueChart.plotVar.attr("id", "revenueManagement")
+    revenueSVG = revenueChart.plotVar;
 
   const enablingChart = createSVG("#enablingEnvironment", margin = {top: 0, right: 0, bottom: 0, left: 1}),
-    enablingSVG = enablingChart.plotVar.attr("id", "enablingEnvironment")
+    enablingSVG = enablingChart.plotVar;
+
+  const indicatorChart = createSVG("#countryIndicators", margin = {top: 0, right: 0, bottom: 0, left: 0}),
+    indicatorWidth = indicatorChart.width,
+    indicatorHeight = indicatorChart.height,
+    indicatorSVG = indicatorChart.plotVar
 
   //GENERATE THE INITIAL DATA
   indicatorScores = Array.from(indicatorScores); //convert to array
 
   let countryScores = computeScores(indicatorScores) //compute the different component, subcomponent scores
 
-  let panelScores = computePanelData(countryScores, countryNames) //generate the panel data
+  let panelScores = computePanelData(countryScores, countryData) //generate the panel data
 
   //update the data for default plot that is sorted on overall index ranks
   panelScores = computeRanks(panelScores, "indexScore")
@@ -380,9 +388,10 @@ const draw = (alLScores = required(), questionFramework = required(), questionSc
     .domain(colorDomain)
 
     //Chart dimension controls
-  const labelXPos = 120,
+  const labelSpace = document.querySelector(".js-labels").clientWidth,
     iconPadding = 5,
     iconSize = 15,
+    labelXPos = labelSpace - iconPadding*2 - iconSize,
     barWidth = 0.5*yScale.bandwidth()
 
   //All tool tips
@@ -420,7 +429,6 @@ const draw = (alLScores = required(), questionFramework = required(), questionSc
   }
 
 
-  
   //label svg and data
   const yLabels = labelSVG.append('g')
     .selectAll(".countryLabels")
@@ -433,13 +441,13 @@ const draw = (alLScores = required(), questionFramework = required(), questionSc
       .attr("class", "countryLabels labelText")
       .attr("x", labelXPos)
       .attr("y", (d) => yScale(d.rank))
-      .text(d => d.alias)
+      .text(d => labelXPos/10 < d.country.length ? d.alias : d.country)
       .attr("text-anchor", "end")
       .style("dominant-baseline", "hanging")
       .call(labelTip)
       .on("mouseover", labelMouseOver)
       .on("mouseout", labelMouseOut)
-      .on("click", labelOnClick)
+      .on("click", d => labelOnClick(d, countryData, indicatorScores))
 
 
     //add the mining and oil-gas icons
@@ -467,9 +475,8 @@ const draw = (alLScores = required(), questionFramework = required(), questionSc
       .attr("x", 5)
       .attr("y", (d) => yScale(d.rank) - 2)
       .attr("opacity", 0)
-
-  // console.log(panelScores)
-    //draw panels
+  
+    //draw all the panels
   const indexPanel = indexSVG.append("g")
       .selectAll(".bars")
       .data(panelScores)
@@ -561,12 +568,39 @@ const draw = (alLScores = required(), questionFramework = required(), questionSc
       .style("dominant-baseline", "hanging")
 
 
-  //Vanilla JS event listeners
-    //Sort panel based on clicks on the label
+  //Draw the defaults indicator chart
+  
+  const indicatorFramework = [...new Set(framework.map(d => d.indicator))].reduce((accum, d) => {
+    let questions = framework.filter(q => q.indicator === d)
+    console.log(questions)
+    let component = questions[0].component;
+    let subComponent = questions[0].subComponent;
+    questions = questions.reduce((accum, quest) => {
+        accum.push({
+          question: quest.question,
+          questionID: quest.questionID,
+          questionLabel: "a",
+          questionScore: Math.floor(Math.random() * (100 - 0 + 1) ) + 0,
+          lawPractice: quest.lawPractice,
+          questionLabel: quest.questionLabel
+        })
+        return accum;
+      }, []);
+    accum.push({indicator: d, subComponent, component, questions})
+    return accum;
+  }, [])
+
+  console.log(indicatorFramework)
+  const indicatorYScale = d3.scaleBand()
+      .rangeRound([0, indicatorHeight])
+      .padding(0.1)
+      .domain(indicatorScores.map(d => d.rank));
+  //Label click event listener
+    //Sort panel based on clicks on the label, update state variables
     //callback for the label click
   const labelCallback = (event) => {
     // console.log(event)
-    const idMaps ={ //maps each ranking
+    const idMaps ={ //maps each ranking to the variable name used for scoring
     "2017 RGI Index": "indexScore",
     "Value Realization": "valueRealization",
     "Revenue Management": "revenueManagement",
@@ -575,21 +609,11 @@ const draw = (alLScores = required(), questionFramework = required(), questionSc
       //GET: current sorting column
     const labelVar = idMaps[event.target.innerText];
 
-      //GET: current sorticon el and classes of parent svg
-    const currSortIcon = event.target.parentNode.parentNode.children[0].children[0].children[0];
+      //GET: classes of parent svg
     const currClasses = event.target.parentNode.parentNode.children[0].children[0].classList
 
-      //DO: The sort direction for eveny panel should mirror the current active sort direction. The sort direction can only be changed by clicking again on the current sorted panel
-      //SET the sort direction. 
-        //If the sort by variable is the same as the label that was clicked then change the sort direction for all panels
-        //Else update the sortBy variable
-      //SET the href for sort icons
-        //If sortby var is the same as clicked then update href to corresponding sort direction for all panels
-        //Else if the click is on a new panel then do nothing since we want to preserve the previous sort order until double click
-      //SET the classlist for sort icons
-        //If sortby var is the same as clicked do nothing i.e. icon is already visible
-        //Else remove sorted class from previous and apply to current
-
+      //DO: The sort direction for eveny panel should mirror the current active sort direction. 
+          //The sort direction can only be changed by clicking again on the current sorted panel
     if(stateVars.sortBy === labelVar){
       //SET the state of the sort direction
       stateVars.sortDirection = stateVars.sortDirection === "ascending" ? "descending" : "ascending";
@@ -616,16 +640,17 @@ const draw = (alLScores = required(), questionFramework = required(), questionSc
       lockedCountry = panelScores.filter(d => d.rank === currRank)[0].country
       lockedSector = panelScores.filter(d => d.rank === currRank)[0].sector
     }
-    //SET the panel data
+    //Update the panel data
     panelScores = computeRanks(panelScores, labelVar, sortDirection = stateVars.sortDirection)
     
     //SET: Update the locked rank
     stateVars.lockedRank = currRank === 0 ? 0 : panelScores.filter(d => d.country === lockedCountry && d.sector === lockedSector)[0].rank
 
     //redraw plots
-    panelUpdate(yLabels, panelScores, xScale, yScale, colorScale)
+    panelUpdate(xScale, yScale, colorScale)
   }
-  //Bind the sort function on the label selection nodes
+  
+  //Bind the sort function on the label selection nodese
   const labelSel = document.querySelectorAll(".topLabel p")
   labelSel.forEach(node => node.addEventListener("click", labelCallback))
 }
@@ -636,22 +661,22 @@ const draw = (alLScores = required(), questionFramework = required(), questionSc
 //Load all the data and draw
 async function getData() {
     //load the all scores
-    let alLScores = await d3.csv("/javascripts/data/alLScores.csv");
+    let questionScores = await d3.csv("/javascripts/data/questionScores.csv");
     
     //load the question framework
-    let questionFramework = await d3.csv("/javascripts/data/questionFramework.csv");
+    let framework = await d3.csv("/javascripts/data/framework.csv");
 
     //load the scoring metric
-    let questionScores = await d3.csv("/javascripts/data/questionScores.csv");
+    let scoringMetric = await d3.csv("/javascripts/data/scoringMetric.csv");
 
     //load the indicator scores
     let indicatorScores = await d3.csv("/javascripts/data/indicatorScores.csv");
 
     //get country names
-    let countryNames = await d3.csv("/javascripts/data/countryNames.csv");
+    let countryData = await d3.csv("/javascripts/data/countryData.csv");
     
     //draw the charts using all the data
-    return draw(alLScores, questionFramework, questionScores, indicatorScores, countryNames)// something using both resultA and resultB
+    return draw(questionScores, framework, scoringMetric, indicatorScores, countryData)// something using both resultA and resultB
 }
 
 getData()

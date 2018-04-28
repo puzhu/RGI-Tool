@@ -1,0 +1,622 @@
+questionID,label,score,explaination,weight
+66,a,100,Both EIAs and SIAs are required under law.,1
+66,b,90,"Either EIAs or SIAs are required under law, with the other being required under a publicly documented policy.",1
+66,c,50,"Either EIAs or SIAs are required under law, with the other not required at all.",1
+66,d,50,Both EIAs and SIAs are required under a publicly documented policy.,1
+66,e,20,"Either EIAs or SIAs are required under policy, with the other not required at all (i.e. neither under law nor under a publicly documented policy).",1
+66,f,0,Neither EIAs nor SIAs are required.,1
+66,g,NA,Not applicable/Other.,1
+69,a,100,"Yes, the law requires extractive companies to prepare environmental mitigation management plans prior to project development.",1
+69,b,50,"Yes, a publicly documented policy requires extractive companies to prepare environmental mitigation management plans prior to project development.",1
+69,c,0,"No, extractive companies are not required to prepare environmental mitigation management plans prior to development.",1
+69,d,NA,Not applicable/Other.,1
+20,a,100,"Yes, the law requires senior public officials to disclose their financial holdings in extractive companies.",1
+20,b,50,"Yes, a publicly documented policy requires that senior public officials disclose their financial holdings in extractive companies.",1
+20,c,20,"No, senior public officials are not required to publicly disclose their financial holdings in extractive companies, but they are required to disclose their financial holdings to a government authority.",1
+20,d,0,"No, senior public officials are not required to disclose their financial holdings in extractive companies.",1
+20,e,NA,Not applicable/Other.,1
+150,a,100,"Yes, the law includes numeric rules governing the size of deposits into the fund.",1
+150,b,50,"Yes, a publicly documented policy includes numeric rules governing the size of deposits into the fund.",1
+150,c,0,"No, there is no numeric rule governing the size of deposits into the fund.",1
+150,d,NA,Not applicable/Other.,1
+146,a,100,"Yes, the law includes numeric rules governing the size of withdrawals from the fund.",1
+146,b,50,"Yes, a publicly documented policy includes numeric rules governing the size of withdrawals from the fund.",1
+146,c,0,"No, there are no numeric rules governing the size of withdrawals from the fund.",1
+146,d,NA,Not applicable/Other.,1
+73,a,100,"Yes, the law specifies procedures governing compensation to landowners or land users when development interferes with their access to or use of land.",1
+73,b,50,"Yes, a publicly documented policy specifies procedures governing compensation to landowners or land users when development interferes with their access to or use of land.",1
+73,c,0,"No, there are no procedures governing compensation to landowners or land users when development interferes with their access to or use of land.",1
+73,d,NA,Not applicable/Other.,1
+82,a,100,"Yes, the law specifies the rules governing fiscal transfers between the government and the SOE.",1
+82,b,50,"Yes, a publicly documented policy specifies the rules governing fiscal transfers between the government and the SOE.",1
+82,c,0,"No, there are no rules governing fiscal transfers between the government and the SOE.",1
+82,d,NA,Not applicable/Other.,1
+77,a,100,"Yes, the law specifies procedures governing rehabilitation and closure of extractive projects.",1
+77,b,50,"Yes, a publicly documented policy specifies procedures governing rehabilitation and closure of extractive projects.",1
+77,c,0,"No, there are no procedures governing rehabilitation and closure of extractive projects.",1
+77,d,NA,Not applicable/Other.,1
+43,a,100,"Yes, the law includes procedures that companies can follow to appeal license/contract allocation decisions.",1
+43,b,50,"Yes, a publicly documented policy includes procedures that companies can follow to appeal license/contract allocation decisions.",1
+43,c,0,"No, rules do not include procedures that companies can follow to appeal license/contract allocation decisions.",1
+43,d,NA,Not applicable/Other.,1
+106,a,100,"Yes, there are rules that determine the prices at which the SOE should sell its production.",1
+106,b,0,"No, there are no rules that determine the prices at which the SOE should sell its production.",1
+106,c,0,No procedures exist for the SOE to follow when selling its share of production.,1
+106,d,NA,Not applicable/Other.,1
+107,a,100,"Yes, there are rules that govern how the proceeds from the sale of the SOE's production should be transferred to the government.",1
+107,b,0,"No, there are no rules that govern how the proceeds from the sale of the SOE's production should be transferred to the government.",1
+107,c,0,No procedures exist for the SOE to follow when selling its share of production.,1
+107,d,NA,Not applicable/Other.,1
+105,a,100,"Yes, there are rules that govern how the SOE should select the buyers of its share of production.",1
+105,b,0,"No, there are no rules that govern how the SOE should select the buyers of its share of production.",1
+105,c,0,No procedures exist for the SOE to follow when selling its share of production.,1
+105,d,NA,Not applicable/Other.,1
+109,a,100,"Yes, the law requires the SOE or government to publicly disclose information on the sale of production by the SOE.",1
+109,b,50,"Yes, a publicly documented policy requires the SOE or government to publicly disclose information on the sale of production by the SOE.",1
+109,c,0,"No, the SOE or government is not required to publicly disclose information on the sale of production by the SOE.",1
+109,d,NA,Not applicable/Other.,1
+75,a,100,"Yes, the law specifies procedures governing the resettlement of land users when project development interferes with their access to or use of land.",1
+75,b,50,"Yes, a publicly documented policy specifies procedures governing the resettlement of land users when project development interferes with their access to or use of land.",1
+75,c,0,"No, there are no procedures governing the resettlement of land users when project development interferes with their access to or use of land.",1
+75,d,NA,Not applicable/Other.,1
+99,a,100,"Yes, the SOE's annual financial statements were audited over the most recently completed audit timeframe, with no known exceptions.",1
+99,b,0,"No, the SOE's annual financial statements were not audited over the most recently completed audit timeframe.",1
+99,c,0,The SOE's annual financial statements are not subject to audits.,1
+99,d,NA,Not applicable/Other.,1
+98,a,100,"Yes, the law requires the SOE's annual financial statements to be periodically audited by an external body.",1
+98,b,50,"Yes, a publicly documented policy requires the SOE's annual financial statements to be periodically audited by an external body.",1
+98,c,0,"No, there are no rules requiring the SOE's annual financial statements to be periodically audited by an external body.",1
+98,d,NA,Not applicable/Other.,1
+165,a,100,"Yes, the law requires the fund's annual financial reports to be periodically audited.",1
+165,b,50,"Yes, a publicly documented policy requires the fund's annual financial reports to be periodically audited.",1
+165,c,0,"No, these annual financial reports are not subject to a periodic external audit.",1
+165,d,NA,Not applicable/Other.,1
+22,a,100,"Yes, the law requires public disclosure of beneficial owners of extractive companies.",1
+22,b,50,"Yes, a publicly documented policy requires public disclosure of beneficial owners of extractive companies.",1
+22,c,0,"No, there is no requirement to publicly disclose the beneficial owners of extractive companies.",1
+22,d,NA,Not applicable/Other.,1
+142,a,100,"Yes, the law requires that an external body periodically audit the transfers of extractive resource revenues to subnational governments.",0.77
+142,b,50,"Yes, a publicly documented policy requires that an external body periodically audit the transfers of extractive resource revenues to subnational governments.",0.77
+142,c,0,"No, there are no rules requiring an external audit of the transfers of extractive resource revenues to subnational governments.",0.77
+142,d,NA,Not applicable/Other.,0.77
+119,a,100,"Yes, the law requires that an external body periodically monitor the government's adherence to the fiscal rule.",1
+119,b,50,"Yes, a publicly documented policy requires that an external body periodically monitor the government's adherence to the fiscal rule.",1
+119,c,0,"No, there is no requirement for the government's adherence to the fiscal rule to be periodically monitored.",1
+119,d,NA,Not applicable/Other.,1
+148,a,100,"Yes, the law requires that withdrawals/spending from the fund pass through the national budget.",1
+148,b,50,"Yes, a publicly documented policy requires that withdrawals/spending from the fund pass through the national budget.",1
+148,c,0,"No, there are no requirements that withdrawals/spending from the fund pass through the national budget.",1
+148,d,NA,Not applicable/Other.,1
+72,a,100,"Yes, the law sets penalties for non-compliance with environmental mitigation management plans.",1
+72,b,50,"Yes, a publicly documented policy sets penalties for non-compliance with environmental mitigation management plans.",1
+72,c,0,"No, there are no penalties for non-compliance with environmental mitigation management plans.",1
+72,d,NA,Not applicable/Other.,1
+133,a,100,"Yes, the law specifies a formula governing the transfer of extractive resource revenues between the central government and subnational governments.",0.77
+133,b,50,"Yes, a publicly documented policy specifies a formula governing the transfer of extractive resource revenues between the central government and subnational governments.",0.77
+133,c,0,No rules specify a formula governing the transfer of extractive resource revenues between the central government and subnational governments.,0.77
+133,d,NA,Not applicable/Other.,0.77
+50,a,100,"Yes, the law specifies the calculation of income tax rate(s) applying to extractive companies.",1
+50,b,50,"Yes, a publicly documented policy specifies the calculation of income tax rate(s) applying to extractive companies.",1
+50,c,0,"No, rules do not specify the calculation for income tax rate(s) applying to extractive companies.",1
+50,d,NA,Not applicable/Other.,1
+52,a,100,"Yes, the law specifies the level of state equity in extractive companies.",1
+52,b,50,"Yes, a publicly documented policy specifies the level of state equity in extractive companies.",1
+52,c,0,"No, rules do not specify the level of state equity in extractive companies.",1
+52,d,NA,Not applicable/Other.,1
+51,a,100,"Yes, the law specifies the calculation of royalty rate(s) applying to extractive companies.",1
+51,b,50,"Yes, a publicly documented policy specifies the calculation of royalty rate(s) applying to extractive companies.",1
+51,c,0,"No, rules do not specify the calculation for royalty rate(s) applying to extractive companies.",1
+51,d,NA,Not applicable/Other.,1
+53,a,100,"Yes, the law specifies the withholding tax rate(s) applying to extractive companies.",1
+53,b,50,"Yes, a publicly documented policy specifies the withholding tax rate(s) applying to extractive companies.",1
+53,c,0,"No, rules do not specify the withholding tax rate(s) applying to extractive companies.",1
+53,d,NA,Not applicable/Other.,1
+132,a,100,"Yes, the law specifies which subnational agencies receive the extractive resource revenues transferred from the central government.",0.77
+132,b,50,"Yes, a publicly documented policy specifies which subnational agencies receive the extractive resource revenues transferred from the central government.",0.77
+132,c,0,No rules specify which subnational agencies receive the extractive resource revenues transferred from the central government.,0.77
+132,d,NA,Not applicable/Other.,0.77
+169,a,100,"Yes, the registry contains at least the following information:
+- Name of license holder 
+- Coordinates 
+- Date/year of application and award 
+- Duration 
+- Type of license 
+- Names of companies that hold an interest in the block",1
+169,b,50,"Yes, the registry contains at least the following information:
+- Name of license holder 
+- Coordinates 
+- Date/year of application and award 
+- Type of license 
+",1
+169,c,20,"Yes, the registry contains at least the following information:
+- Name of license holder 
+- Coordinates
+",1
+169,d,0,No registry of licenses/contracts exists.,1
+169,e,NA,Not applicable/Other.,1
+117,a,100,"Yes, the law includes a numerical fiscal rule for the government.",1
+117,b,80,"Yes, a publicly documented policy includes a numerical fiscal rule for the government.",1
+117,c,0,"No, there is no numerical fiscal rule.",1
+117,d,NA,Not applicable/Other.,1
+11,a,100,"Yes, the government has a online data portal where the data listed is publicly available.",1
+11,b,0,No such portal exists.,1
+11,c,NA,Not applicable/Other.,1
+2,a,100,"Yes, at the project level.",1
+2,b,80,"Yes, in the aggregate.",1
+2,c,0,"No, the government does not publicly disclose data on the stock of extractive resource reserves.",1
+2,d,NA,Not applicable/Other.,1
+8,a,100,"Yes, at the project level.",1
+8,b,50,"Yes, in the aggregate.",1
+8,c,0,"No, the government does not publicly disclose data on the value of extractive resource exports.",1
+8,d,NA,Not applicable/Other.,1
+59,a,100,"Yes, at the company-level.",1
+59,b,50,"Yes, in the aggregate.",1
+59,c,0,"No, the government does not publicly disclose data on the value of tax/payment receipts.",1
+59,d,NA,Not applicable/Other.,1
+5,a,100,"Yes, at the project level.",1
+5,b,50,"Yes, in the aggregate.",1
+5,c,0,"No, the government does not publicly disclose data on the volume of extractive resource production.",1
+5,d,NA,Not applicable/Other.,1
+84,a,100,"Yes, the most recent publicly available data covers a fiscal year ending in 2015 or 2016.",1
+84,b,80,"Yes, the most recent publicly available data covers a fiscal year ending in 2012, 2013 or 2014.",1
+84,c,20,"Yes, the most recent publicly available data covers a fiscal year ending in 2011 or earlier.",1
+84,d,0,"No, the government does not publicly disclose how much revenue it receives from the SOE.",1
+84,e,NA,Not applicable/Other.,1
+121,a,100,"Yes, the most recent projections were disclosed in 2015 or 2016.",1
+121,b,80,"Yes, the most recent projections were disclosed in 2012, 2013 or 2014.",1
+121,c,20,"Yes, the most recent projections were disclosed in 2011 or earlier.",1
+121,d,0,"No, the government does not publicly disclose such projections.",1
+121,e,NA,Not applicable/Other.,1
+126,a,100,"Yes, the most recent publicly available information on the level of national debt covers a fiscal year ending in 2015 or 2016.",1
+126,b,80,"Yes, the most recent publicly available information on the level of national debt covers a fiscal year ending in 2012, 2013 or 2014.",1
+126,c,20,"Yes, the most recent publicly available information on the level of national debt covers a fiscal year ending in 2011 or earlier.",1
+126,d,0,"No, the government does not publicly disclose information on the level of national debt.",1
+126,e,NA,Not applicable/Other.,1
+12,a,100,"Yes, the online data portal contains the most publicly available data on reserves, production and exports.",1
+12,b,0,"No, the online data portal does not contain the most recent publicly available data on reserves, production and exports.",1
+12,c,0,No such portal exists.,1
+12,d,NA,Not applicable/Other.,1
+46,a,100,"Yes, the registry includes information on both assigned and unassigned areas/blocks.",1
+46,b,50,"No, the registry excludes information on unassigned areas/blocks.",1
+46,c,0,"No, the registry contains no information on areas/blocks.",1
+46,d,0,No registry of licenses/contracts exists.,1
+46,e,NA,Not applicable/Other.,1
+47,a,100,"Yes, the registry gives the names of all companies holding an interest in areas/blocks.",1
+47,b,50,"Yes, the registry gives the names for companies holding a majority interest in areas/blocks.",1
+47,c,0,"Yes, the registry gives the names for companies holding a minority interest in areas/blocks.",1
+47,d,0,"No, the registry does not give the names of companies that hold an interest in areas/blocks.",1
+47,e,0,No registry of licenses/contracts exists.,1
+47,f,NA,Not applicable/Other.,1
+115,a,100,"Yes, the SOE has a publicly available code of conduct.",1
+115,b,0,"No, the SOE does not have a publicly available code of conduct.",1
+115,c,NA,Not applicable/Other.,1
+112,a,100,"Yes, the SOE or government publicly discloses the date of the production sales executed by the SOE, for each sale.",1
+112,b,50,"Yes, the SOE or government publicly discloses the date of the production sales executed by the SOE, in the aggregate.",1
+112,c,0,"No, the SOE or government does not publicly disclose this information.",1
+112,d,NA,Not applicable/Other.,1
+113,a,100,"Yes, the SOE or government publicly discloses the names of the companies that bought the production sold by the SOE, for each sale.",1
+113,b,50,"Yes, the SOE or government publicly discloses the names of the companies that bought the production sold by the SOE, in the aggregate.",1
+113,c,0,"No, the SOE or government does not publicly disclose this information.",1
+113,d,NA,Not applicable/Other.,1
+111,a,100,"Yes, the SOE or government publicly discloses the value of production sold by the SOE, for each sale.",1
+111,b,50,"Yes, the SOE or government publicly discloses the value of production sold by the SOE, in the aggregate.",1
+111,c,0,"No, the SOE or government does not publicly disclose this information.",1
+111,d,NA,Not applicable/Other.,1
+110,a,100,"Yes, the SOE or government publicly discloses the volume of production sold by the SOE, for each sale.",1
+110,b,50,"Yes, the SOE or government publicly discloses the volume of production sold by the SOE, in the aggregate.",1
+110,c,0,"No, the SOE or government does not publicly disclose this information.",1
+110,d,NA,Not applicable/Other.,1
+94,a,100,"Yes, the SOE publicly discloses a list of its subsidiaries, covering a fiscal year ending in 2015 or 2016.",1
+94,b,80,"Yes, the SOE publicly discloses a list of its subsidiaries, covering a fiscal year ending in 2012, 2013 or 2014.",1
+94,c,20,"Yes, the SOE publicly discloses a list of its subsidiaries, covering a fiscal year ending in 2011 or earlier.",1
+94,d,0,"No, the SOE does not publicly disclose a list of its subsidiaries.",1
+94,e,NA,Not applicable/Other.,1
+85,a,100,"Yes, the most recent publicly available data covers a fiscal year ending in 2015 or 2016.",1
+85,b,80,"Yes, the most recent publicly available data covers a fiscal year ending in 2012, 2013 or 2014.",1
+85,c,20,"Yes, the most recent publicly available data covers a fiscal year ending in 2011 or earlier.",1
+85,d,0,"No, the SOE does not publicly disclose this data.",1
+85,e,NA,Not applicable/Other.,1
+96,a,100,"Yes, the SOE publicly discloses its aggregate production volume, covering a fiscal year ending in 2015 or 2016.",1
+96,b,80,"Yes, the SOE publicly discloses its aggregate production volume, covering a fiscal year ending in 2012, 2013 or 2014.",1
+96,c,20,"Yes, the SOE publicly discloses its aggregate production volume, covering a fiscal year ending in 2011 or earlier.",1
+96,d,0,"No, the SOE does not publicly disclose its aggregate production volume.",1
+96,e,NA,Not applicable/Other.,1
+97,a,100,"Yes, the SOE publicly discloses its aggregate sales volume, covering a fiscal year ending in 2015 or 2016.",1
+97,b,80,"Yes, the SOE publicly discloses its aggregate sales volume, covering a fiscal year ending in 2012, 2013 or 2014.",1
+97,c,20,"Yes, the SOE publicly discloses its aggregate sales volume, covering a fiscal year ending in 2011 or earlier.",1
+97,d,0,"No, the SOE does not publicly disclose its aggregate sales volume.",1
+97,e,NA,Not applicable/Other.,1
+92,a,100,"Yes, the SOE publicly discloses its levels of ownership in joint ventures, covering a fiscal year ending in 2015 or 2016.",1
+92,b,80,"Yes, the SOE publicly discloses its levels of ownership in joint ventures, covering a fiscal year ending in 2012, 2013 or 2014.",1
+92,c,20,"Yes, the SOE publicly discloses its levels of ownership in joint ventures, covering a fiscal year ending in 2011 or earlier.",1
+92,d,0,"No, the SOE does not publicly disclose its levels of ownership in joint ventures.",1
+92,e,NA,Not applicable/Other.,1
+91,a,100,"Yes, the SOE publicly discloses its participation in joint ventures covering a fiscal year ending in 2015 or 2016.",1
+91,b,80,"Yes, the SOE publicly discloses its participation in joint ventures covering a fiscal year ending in 2012, 2013 or 2014.",1
+91,c,20,"Yes, the SOE publicly discloses its participation in joint ventures covering a fiscal year ending in 2011 or earlier.",1
+91,d,0,"No, the SOE does not publicly disclose it participation in joint ventures.",1
+91,e,NA,Not applicable/Other.,1
+93,a,100,"Yes, the SOE publicly discloses the costs and revenues deriving from its participation in joint ventures, covering a fiscal year ending in 2015 or 2016.",1
+93,b,80,"Yes, the SOE publicly discloses the costs and revenues deriving from its participation in joint ventures, covering a fiscal year ending in 2012, 2013 or 2014.",1
+93,c,20,"Yes, the SOE publicly discloses the costs and revenues deriving from its participation in joint ventures, covering a fiscal year ending in 2011 or earlier.",1
+93,d,0,"No, the SOE does not publicly disclose the costs and revenues deriving from its participation in joint ventures.",1
+93,e,NA,Not applicable/Other.,1
+95,a,100,"Yes, the SOE publicly discloses the costs and revenues deriving from its subsidiaries, covering a fiscal year ending in 2015 or 2016.",1
+95,b,80,"Yes, the SOE publicly discloses the costs and revenues deriving from its subsidiaries, covering a fiscal year ending in 2012, 2013 or 2014.",1
+95,c,20,"Yes, the SOE publicly discloses the costs and revenues deriving from its subsidiaries, covering a fiscal year ending in 2011 or earlier.",1
+95,d,0,"No, the SOE does not publicly disclose the costs and revenues deriving from its subsidiaries.",1
+95,e,NA,Not applicable/Other.,1
+88,a,100,"Yes, the SOE's most recent publicly available annual report includes a balance sheet statement for the fiscal year covered by the report.",1
+88,b,80,"Yes, the SOE's most recent publicly available annual report includes a balance sheet statement for the fiscal year prior to that covered by the report.",1
+88,c,50,"Yes, the SOE's most recent publicly available annual report includes a balance sheet statement for a fiscal year more than one year prior to that covered by the report.",1
+88,d,0,"No, the SOE's most recent publicly available annual report does not include a balance sheet statement.",1
+88,e,0,The SOE does not publicly disclose annual reports.,1
+88,f,NA,Not applicable/Other.,1
+89,a,100,"Yes, the SOE's most recent publicly available annual report includes a cash flow statement for the fiscal year covered by the report.",1
+89,b,80,"Yes, the SOE's most recent publicly available annual report includes a cash flow statement for the fiscal year prior to that covered by the report.",1
+89,c,50,"Yes, the SOE's most recent publicly available annual report includes a cash flow statement for a fiscal year more than one year prior to that covered by the report.",1
+89,d,0,"No, the SOE's most recent publicly available annual report does not include a cash flow statement.",1
+89,e,0,The SOE does not publicly disclose annual reports.,1
+89,f,NA,Not applicable/Other.,1
+90,a,100,"Yes, the SOE's most recent publicly available annual report includes an income statement for the fiscal year covered by the report.",1
+90,b,80,"Yes, the SOE's most recent publicly available annual report includes an income statement for the fiscal year prior to that covered by the report.",1
+90,c,50,"Yes, the SOE's most recent publicly available annual report includes an income statement for a fiscal year more than one year prior to that covered by the report.",1
+90,d,0,"No, the SOE's most recent publicly available annual report does not include an income statement.",1
+90,e,0,The SOE does not publicly disclose annual reports.,1
+90,f,NA,Not applicable/Other.,1
+159,a,100,"Yes, the sovereign wealth fund's most recent publicly available report covers a fiscal year ending in 2015 or 2016.",1
+159,b,80,"Yes, the sovereign wealth fund's most recent publicly available report covers a fiscal year ending in 2012, 2013 or 2014.",1
+159,c,20,"Yes, the sovereign wealth fund's most recent publicly available report covers a fiscal year ending in 2011 or earlier.",1
+159,d,0,"No, the sovereign wealth fund does not publicly disclose its annual financial reports.",1
+159,e,0,The sovereign wealth fund does not produce annual financial reports.,1
+159,f,NA,Not applicable/Other.,1
+161,a,100,"Yes, the sovereign wealth fund's most recent publicly available annual financial report discloses deposit and withdrawal amounts for the fiscal year covered by the report.",1
+161,b,80,"Yes, the sovereign wealth fund's most recent publicly available annual financial report discloses deposit and withdrawal amounts, for the fiscal year prior to that covered by the report.",1
+161,c,50,"Yes, the sovereign wealth fund's most recent publicly available annual financial report discloses deposit and withdrawal amounts, for a fiscal year more than one year prior to that covered by the report.",1
+161,d,0,"No, the sovereign wealth fund's most recent publicly available report does not disclose deposit and withdrawal amounts.",1
+161,e,0,The sovereign wealth fund does not publicly disclose annual financial reports.,1
+161,f,NA,Not applicable/Other.,1
+163,a,100,"Yes, the sovereign wealth fund's most recent publicly available annual financial report includes a list of assets held for the fiscal year covered by the report.",1
+163,b,80,"Yes, the sovereign wealth fund's most recent publicly available annual financial report includes a list of assets held, for the fiscal year prior to that covered by the report.",1
+163,c,50,"Yes, the sovereign wealth fund's most recent publicly available annual financial report includes a list of assets held, for a fiscal year more than one year prior to that covered by the report.",1
+163,d,0,"No, the sovereign wealth fund's most recent publicly available report does not include a list of assets held.",1
+163,e,0,The sovereign wealth fund does not publicly disclose annual financial reports.,1
+163,f,NA,Not applicable/Other.,1
+164,a,100,"Yes, the sovereign wealth fund's most recent publicly available annual financial report specifies the fund's asset allocation by asset class for the fiscal year covered by the report.",1
+164,b,80,"Yes, the sovereign wealth fund's most recent publicly available annual financial report specifies the fund's asset allocation by asset class, for the fiscal year prior to that covered by the report.",1
+164,c,50,"Yes, the sovereign wealth fund's most recent publicly available annual financial report specifies the fund's asset allocation by asset class, for a fiscal year more than one year prior to that covered by the report.",1
+164,d,0,"No, the sovereign wealth fund's most recent publicly available report does not specify asset allocation by asset class.",1
+164,e,0,The sovereign wealth fund does not publicly disclose annual financial reports.,1
+164,f,NA,Not applicable/Other.,1
+162,a,100,"Yes, the sovereign wealth fund's most recent publicly available annual financial report specifies investment returns for the fiscal year covered by the report.",1
+162,b,80,"Yes, the sovereign wealth fund's most recent publicly available annual financial report specifies investment returns, for the fiscal year prior to that covered by the report.",1
+162,c,50,"Yes, the sovereign wealth fund's most recent publicly available annual financial report specifies investment returns, for a fiscal year more than one year prior to that covered by the report.",1
+162,d,0,"No, the sovereign wealth fund's most recent publicly available report does not specify investment returns.",1
+162,e,0,The sovereign wealth fund does not publicly disclose annual financial reports.,1
+162,f,NA,Not applicable/Other.,1
+160,a,100,"Yes, the sovereign wealth fund's most recent publicly available report specifies the size of the fund for the fiscal year covered by the report.",1
+160,b,80,"Yes, the sovereign wealth fund's most recent publicly available report specifies the size of the fund, for the fiscal year prior to that covered by the report.",1
+160,c,50,"Yes, the sovereign wealth fund's most recent publicly available report specifies the size of the fund, for a fiscal year more than one year prior to that covered by the report.",1
+160,d,0,"No, the sovereign wealth fund's most recent publicly available report does not specify the size of the fund.",1
+160,e,0,The sovereign wealth fund does not publicly disclose annual financial reports.,1
+160,f,NA,Not applicable/Other.,1
+37,a,100,"Yes, the law requires the licensing authority to publicly disclose the list of companies that submitted bids or applications.",1
+37,b,50,"Yes, a publicly documented policy requires the licensing authority to publicly disclose the list of companies that submitted bids or applications.",1
+37,c,0,"No, the licensing authority is not required to publicly disclose the list of companies that submitted bids or applications.",1
+37,d,NA,Not applicable/Other.,1
+39,a,100,"Yes, the law requires the licensing authority to publicly disclose the identity of the winning bidder or applicant.",1
+39,b,50,"Yes, a publicly documented policy requires the licensing authority to publicly disclose the identity of the winning bidder or applicant.",1
+39,c,0,"No, the licensing authority is not required to publicly disclose the identity of the winning bidder or applicant.",1
+39,d,NA,Not applicable/Other.,1
+41,a,100,"Yes, the law requires the licensing authority to publicly disclose the list of areas or blocks allocated.",1
+41,b,50,"Yes, a publicly documented policy requires the licensing authority to publicly disclose the list of areas or blocks allocated.",1
+41,c,0,"No, the licensing authority is not required to publicly disclose the list of areas or blocks allocated.",1
+41,d,NA,Not applicable/Other.,1
+54,a,100,"Yes, the law specifies the company and government production shares.",1
+54,b,50,"Yes, a publicly documented policy specifies the company and government production shares.",1
+54,c,0,"No, rules do not specify the company and government production shares.",1
+54,d,NA,Not applicable/Other.,1
+124,a,100,"Yes, the government has publicly disclosed the total resource revenue received.",1
+124,b,0,"No, the government has not publicly disclosed the total resource revenue received.",1
+124,c,NA,Not applicable/Other.,1
+125,a,100,"Yes, the government has publicly disclosed total government expenditures.",1
+125,b,0,"No, the government has not publicly disclosed total government expenditures.",1
+125,c,NA,Not applicable/Other.,1
+40,a,100,"Yes, the licensing authority disclosed the identity of the winning bidder/applicant, in all known cases.",1
+40,b,50,"The licensing authority disclosed the identity of the winning bidder/applicant, in some but not all known cases.",1
+40,c,20,"No, the licensing authority has not disclosed the identity of the winning bidder/applicant from 215, but has prior to 215.",1
+40,d,0,"No, the licensing authority has not disclosed the identity of the winning bidder/applicant, in any known cases.",1
+40,e,NA,Not applicable/Other.,1
+42,a,100,"Yes, the licensing authority has disclosed the list of areas/blocks allocated, in all known cases.",1
+42,b,50,The licensing authority has disclosed the list of areas/blocks allocated in some but not all known cases.,1
+42,c,20,"No, the licensing authority has not disclosed the list of areas/blocks allocated from 215, but has prior to 215.",1
+42,d,0,"No, the licensing authority has not disclosed the list of areas/blocks allocated, in any known cases.",1
+42,e,NA,Not applicable/Other.,1
+38,a,100,"Yes, the licensing authority disclosed the list of companies that submitted bids/applications, in all known cases.",1
+38,b,50,The licensing authority disclosed the list of companies that submitted bids/applications in some but not all known cases.,1
+38,c,20,"No, the licensing authority has not disclosed the list of companies that submitted bids/applications from 2015, but has prior to 2015.",1
+38,d,0,"No, the licensing authority has not disclosed the list of companies that submitted bids/applications, in any known cases.",1
+38,e,NA,Not applicable/Other.,1
+33,a,100,"Yes, the licensing authority disclosed a list of biddable or negotiable terms, in all known cases.",1
+33,b,50,The licensing authority disclosed a list of biddable or negotiable terms in some but not all known cases.,1
+33,c,20,"No, the licensing authority has not disclosed a list of biddable or negotiable terms from 215, but has prior to 215.",1
+33,d,0,"No, the licensing authority has not disclosed a list of biddable or negotiable terms, in any known cases.",1
+33,e,NA,Not applicable/Other.,1
+35,a,100,"Yes, the licensing authority disclosed the rules governing the licensing process, in all known cases.",1
+35,b,50,The licensing authority disclosed the rules governing the licensing process in some but not all known cases.,1
+35,c,20,"No, the licensing authority has not disclosed the rules governing the allocation process from 215, but has prior to 215.",1
+35,d,0,"No, the licensing authority has not disclosed the rules governing the allocation process, in any known cases.",1
+35,e,NA,Not applicable/Other.,1
+135,a,100,"Yes, for each subnational government the central government has publicly disclosed the amount of revenues transferred.",0.77
+135,b,50,"Yes, in the aggregate the central government has publicly disclosed the amount of revenues transferred.",0.77
+135,c,20,"No, the central government has not publicly disclosed the amount of revenues transferred from 215, but did prior to 215.",0.77
+135,d,0,"No, the central government has not publicly disclosed the amount of revenues transferred.",0.77
+135,e,NA,Not applicable/Other.,0.77
+29,a,100,"Yes, the licensing authority actually publicly disclosed minimum pre-defined criteria by which companies become qualified to participate in each licensing process in all known cases.",1
+29,b,50,The licensing authority actually publicly disclosed minimum pre-defined criteria by which companies become qualified to participate in each licensing process in some but not all known cases.,1
+29,c,20,"No, the licensing authority has not publicly disclosed minimum pre-defined criteria by which companies become qualified to participate in award processes for licenses/contracts from 215, but has prior to 215.",1
+29,d,0,"No, the licensing authority has not publicly disclosed minimum pre-defined criteria by which companies become qualified to participate in award processes for licenses/contracts, in any known cases.",1
+29,e,NA,Not applicable/Other.,1
+100,a,100,"No, the SOE did not engage in any non-operational activities.",1
+100,b,20,"Yes, the SOE engaged in non-operational activities prior to 215.",1
+100,c,0,"Yes, the SOE engaged in non-operational activities.",1
+100,d,NA,Not applicable/Other.,1
+138,a,100,"Yes, the central government has publicly disclosed the amount of revenue transferred by revenue stream, covering a fiscal year ending in 2015 or 2016.",0.77
+138,b,50,"Yes, the central government has publicly disclosed the amount of revenue transferred by revenue stream, covering a fiscal year ending in 2012, 2013 or 2014.",0.77
+138,c,20,"Yes, the central government has publicly disclosed the amount of revenue transferred by revenue stream, covering a fiscal year ending in 2011 or earlier.",0.77
+138,d,0,"No, the government does not publicly disclose the amount of revenue transferred by revenue stream.",0.77
+138,e,NA,Not applicable/Other.,0.77
+151,a,100,"Yes, the government has adhered to the rules governing the size of deposits into the sovereign wealth fund, with no known exceptions.",1
+151,b,20,"No, the government failed to adhere to the numeric rules governing the size of deposits into the sovereign wealth fund from 215, but did prior to 215.",1
+151,c,0,"No, the government failed to adhere to the numeric rules governing the size of deposits into the sovereign wealth fund in one or more cases.",1
+151,d,0,The rules governing the size of deposits into the sovereign wealth fund have not been publicly disclosed.,1
+151,e,0,There are no such rules governing the size of deposits into the sovereign wealth fund.,1
+151,f,NA,Not applicable/Other.,1
+147,a,100,"Yes, the numeric rules governing the size of withdrawals from sovereign wealth funds have been adhered to, with no known exceptions.",1
+147,b,20,"No, the government failed to adhere to the numeric rules governing the size of withdrawals from sovereign wealth funds from 215, but did prior to 215.",1
+147,c,0,"No, the government failed to adhere to the numeric rules governing the size of withdrawals from sovereign wealth funds in one or more cases.",1
+147,d,0,The rules governing the size of withdrawals from the sovereign wealth fund have not been publicly disclosed.,1
+147,e,0,There are no such rules governing the size of withdrawals from the sovereign wealth fund.,1
+147,f,NA,Not applicable/Other.,1
+16,a,100,"Yes, the government has publicly disclosed all the signed licences/contracts.",1
+16,b,50,The government has publicly disclosed some but not all of the signed licences/contracts.,1
+16,c,20,"No, the government disclosed none of the signed licences/contracts from 215, but did prior to 215.",1
+16,d,0,"No, the government disclosed none of the signed licences/contracts.",1
+16,e,NA,Not applicable/Other.,1
+168,a,100,"Yes, the legislature has reviewed the fund's annual financial reports, with no known exceptions.",1
+168,b,20,"No, the legislature failed to review the fund's annual financial reports from 215, but did prior to 215.",1
+168,c,0,"No, the legislature failed to review the fund's annual financial reports in one or more cases.",1
+168,d,0,The legislature is not required to review the fund's annual financial reports.,1
+168,e,NA,Not applicable/Other.,1
+156,a,100,"Yes, the fund has only invested in allowed asset classes or investment types, with no known exceptions.",1
+156,b,20,"No, the fund has invested in prohibited asset classes or investment types from 215, but did adhere to rules prior to 215.",1
+156,c,0,"No, the fund has invested in prohibited asset classes or investment types, in one or more cases.",1
+156,d,NA,Not applicable/Other.,1
+68,a,100,"Yes, both EIAs and SIAs have been publicly disclosed, with no known exceptions.",1
+68,b,50,"Yes, either EIAs or SIAs have been publicly disclosed, with no known exceptions.",1
+68,c,20,"No, at least one known EIA or SIA has not been publicly disclosed from 215, but has prior to 215.",1
+68,d,0,"No, neither EIAs nor SIAs have been publicly disclosed.",1
+68,e,NA,Not applicable/Other.,1
+71,a,100,"Yes, environmental mitigation management plans have been publicly disclosed, with no known exceptions.",1
+71,b,50,"No, at least one known environmental mitigation management plans has not been publicly disclosed from 215, but they have prior to 215.",1
+71,c,0,"No, at least one known environmental mitigation management plan has not been publicly disclosed.",1
+71,d,NA,Not applicable/Other.,1
+21,a,100,"Yes, senior public officials have publicly disclosed their financial holdings in extractive companies, with no known exceptions.",1
+21,b,20,"No, one or more senior public officials failed to publicly disclose their financial holdings in extractive companies from 215, but did publicly disclose their financial holdings prior to 215.",1
+21,c,0,"No, one or more senior public officials failed to publicly disclose their financial holdings in extractive companies.",1
+21,d,NA,Not applicable/Other.,1
+23,a,100,"Yes, all beneficial owners of extractive companies have been disclosed, in all known cases.",1
+23,b,50,The beneficial owners of extractive companies have been disclosed in some but not all known cases.,1
+23,c,20,"No, the beneficial owners in extractive companies have not been disclosed from 215, but were disclosed prior to 215.",1
+23,d,0,"No, the beneficial owners in extractive companies have not been disclosed, in any known cases.",1
+23,e,NA,Not applicable/Other.,1
+78,a,100,"Yes, these procedures governing rehabilitation and closure of extractive projects have been adhered to, with no known exceptions.",1
+78,b,20,"No, these procedures governing rehabilitation and closure of extractive projects have not been adhered to from 215, but have been adhered to prior to 215.",1
+78,c,0,"No, these procedures governing rehabilitation and closure of extractive projects have not been adhered to, in one or more cases.",1
+78,d,0,"No, there are no procedures governing rehabilitation and closure of extractive projects.",1
+78,e,NA,Not applicable/Other.,1
+149,a,100,"Yes, withdrawals/spending from the sovereign wealth fund actually passed through the normal budgetary process, with no known exceptions.",1
+149,b,20,"No, withdrawals/spending from the sovereign wealth fund failed to pass through the normal budgetary process from 215, but did prior to 215.",1
+149,c,0,"No, withdrawals/spending from the sovereign wealth fund failed to pass through the normal budgetary process in one or more cases.",1
+149,d,NA,Not applicable/Other.,1
+122,a,100,"Yes, the government has publicly disclosed a national budget that has been enacted for the current fiscal year.",1
+122,b,0,"No, the government has not publicly disclosed a national budget that has been enacted for the current fiscal year.",1
+122,c,NA,Not applicable/Other.,1
+17,a,100,"Yes, the government has publicly disclosed all active licences/contracts.",1
+17,b,50,The government has publicly disclosed some but not all active licences/contracts.,1
+17,c,0,"No, the government has not disclosed any active licenses/contracts.",1
+17,d,NA,Not applicable/Other.,1
+87,a,100,"Yes, the SOE's most recent publicly available annual report on its finances and operations covers a fiscal year ending in 2015 or 2016.",1
+87,b,80,"Yes, but the SOE's most recent publicly available annual report on its finances and operations covers a fiscal year ending in 2012, 2013 or 2014.",1
+87,c,20,"Yes, but the SOE's most recent publicly available annual report on its finances and operations covers a fiscal year ending in 2011 or earlier.",1
+87,d,0,"No, the SOE does not publicly disclose reports on its finances and operations.",1
+87,e,NA,Not applicable/Other.,1
+101,a,100,"Yes, the SOE publicly disclosed the amount spent on each non-operational activity.",1
+101,b,50,"Yes, the SOE publicly disclosed the aggregate amount spent on non-operational activities.",1
+101,c,0,"No, the SOE did not publicly disclose the amount spent on non-operational activities.",1
+101,d,NA,The SOE has not engaged in non-operational activities from 215 onwards.,1
+101,e,NA,Not applicable/Other.,1
+60,a,100,The most recent publicly available data covers a fiscal year ending in 2015 or 2016.,1
+60,b,80,"The most recent publicly available data covers a fiscal year ending in 2012, 2013 or 2014.",1
+60,c,20,The most recent publicly available data covers a fiscal year ending in 2011 or earlier.,1
+60,d,0,The government does not publicly disclose data on the value of tax/payment receipts.,1
+60,e,NA,Not applicable/Other.,1
+19,a,100,The data contained in the country's most recent EITI report covers 2015 or 2016.,1
+19,b,70,"The data contained in the country's most recent EITI report covers 2012, 2013 or 2014.",1
+19,c,40,The data contained in the country's most recent EITI report covers 2011 or earlier years.,1
+19,d,40,The country has not published an EITI report.,1
+19,e,NA,The country has no EITI affiliation.,1
+136,a,100,The most recent publicly available information covers a fiscal year ending in 2015 or 2016.,0.77
+136,b,80,"The most recent publicly available information covers a fiscal year ending in 2012, 2013 or 2014.",0.77
+136,c,20,The most recent publicly available information covers a fiscal year ending in 2011 or earlier.,0.77
+136,d,0,The government does not publicly disclose this information.,0.77
+136,e,NA,Not applicable/Other.,0.77
+3,a,100,The most recent publicly available data covers 2015 or 2016.,1
+3,b,80,"The most recent publicly available data covers 2012, 2013 or 2014.",1
+3,c,20,The most recent publicly available data covers 2011 or earlier years.,1
+3,d,0,The government does not publicly disclose this data.,1
+3,e,NA,Not applicable/Other.,1
+9,a,100,The most recent publicly available data covers 2015 or 2016.,1
+9,b,80,"The most recent publicly available data covers 2012, 2013 or 2014.",1
+9,c,20,The most recent publicly available data covers 2011 or earlier years.,1
+9,d,0,The government does not publicly disclose this data.,1
+9,e,NA,Not applicable/Other.,1
+6,a,100,The most recent publicly available data covers 2015 or 2016.,1
+6,b,80,"The most recent publicly available data covers 2012, 2013 or 2014.",1
+6,c,20,The most recent publicly available data covers 2011 or earlier years.,1
+6,d,0,The government does not publicly disclose this data.,1
+6,e,NA,Not applicable/Other.,1
+134,a,100,"Yes, this formula specifies the amount of revenue received by each subnational government, either by amount or share.",0.77
+134,b,0,"No, this formula does not specify the amount of revenue received by each subnational government, either by amount or share.",0.77
+134,c,NA,Not applicable/Other.,0.77
+18,a,100,"Yes, the country is EITI compliant and has yielded satisfactory progress according to the 2016 EITI Standard.",1
+18,b,70,"Yes, the country is EITI compliant.",1
+18,c,50,"No, the country is an EITI candidate.",1
+18,d,40,"No, the country was formerly EITI-compliant, but has been suspended.",1
+18,e,30,"No, the country has no EITI affiliation (i.e. it has never applied for EITI candidacy or its application was rejected).",1
+14,a,100,"Yes, the data is available under an open license which imposes no restrictions on use, redistribution or modification, including for commercial purposes.",1
+14,b,50,"No, the data is available under a license which imposes restrictions in some of these areas.",1
+14,c,0,The data has unknown licensing status.,1
+14,d,0,No such portal exists.,1
+14,e,NA,Not applicable/Other.,1
+13,a,100,The data is available via an API that is accompanied by a landing page and associated documentation.,1
+13,b,90,"The data is available in a non-proprietary machine-readable format (e.g. CSV, TSV or JSON).",1
+13,c,80,The data is available in a proprietary machine-readable format (e.g. Access or XLS).,1
+13,d,20,The data is available in a text-based format (e.g. PDF or Word).,1
+13,e,0,No such portal exists.,1
+13,f,NA,Not applicable/Other.,1
+4,a,100,The data is available via an API that is accompanied by a landing page and associated documentation.,1
+4,b,90,"The data is available in a non-proprietary machine-readable format (e.g. CSV, TSV or JSON).",1
+4,c,80,The data is available in a proprietary machine-readable format (e.g. Access or XLS).,1
+4,d,50,The data is available in a text-based format (e.g. PDF or Word).,1
+4,e,0,The government does not publicly disclose data on extractive resource reserves in digital format.,1
+4,f,0,The government does not publicly disclose this data.,1
+4,g,NA,Not applicable/Other.,1
+10,a,100,The data is available via an API that is accompanied by a landing page and associated documentation.,1
+10,b,90,"The data is available in a non-proprietary machine-readable format (e.g. CSV, TSV or JSON).",1
+10,c,80,The data is available in a proprietary machine-readable format (e.g. Access or XLS).,1
+10,d,50,The data is available in a text-based format (e.g. PDF or Word).,1
+10,e,0,The government does not publicly disclose it in digital format.,1
+10,f,0,The government does not publicly disclose data on the value of extractive resource exports.,1
+10,g,NA,Not applicable/Other.,1
+7,a,100,The data is available via an API that is accompanied by a landing page and associated documentation.,1
+7,b,90,"The data is available in a non-proprietary machine-readable format (e.g. CSV, TSV or JSON).",1
+7,c,80,The data is available in a proprietary machine-readable format (e.g. Access or XLS).,1
+7,d,50,The data is available in a text-based format (e.g. PDF or Word).,1
+7,e,0,The government  does not publicly disclose the data in digital format.,1
+7,f,0,The government does not publicly disclose data on volume of extractive resource production.,1
+7,g,NA,Not applicable/Other.,1
+62,a,100,"Yes, the law requires the government to make all payments to the national treasury or deposit them into a national resource account, aside from amounts legally retained by SOEs.",1
+62,b,50,"Yes, a publicly documented policy requires the government to make all payments to the national treasury or deposit them into a national resource account, aside from amounts legally retained by SOEs.",1
+62,c,0,"No, the government is not required to make all payments to the national treasury or deposit them into a national resource account, aside from amounts legally retained by SOEs.",1
+62,d,NA,Not applicable/Other.,1
+15,a,100,"Yes, the law requires the government to publicly disclose all signed licences/contracts with extractive companies.",1
+15,b,50,"Yes, a publicly documented policy requires the government to publicly disclose all signed licences/contracts with extractive companies.",1
+15,c,0,"No, the government is not required to publicly disclose all signed licenses/contracts with extractive companies.",1
+15,d,NA,Not applicable/Other.,1
+56,a,100,"Yes, the law requires the government to publicly disclose data on payments from extractive companies to the government.",1
+56,b,50,"Yes, a publicly documented policy requires the government to publicly disclose data on payments from extractive companies to the government.",1
+56,c,0,"No, the government is not required to publicly disclose data on payments from extractive companies to the government.",1
+56,d,NA,Not applicable/Other.,1
+28,a,100,"Yes, the law requires the licensing authority to set minimum pre-defined criteria by which companies become qualified to participate in a licensing process.",1
+28,b,50,"Yes, a publicly documented policy requires the licensing authority to set minimum pre-defined criteria by which companies become qualified to participate in a licensing process.",1
+28,c,0,"No, rules do not require the licensing authority to set minimum pre-defined criteria by which companies become qualified to participate in award processes for licenses/contracts.",1
+28,d,NA,Not applicable/Other.,1
+167,a,100,"Yes, the law requires the legislature to review the fund's annual financial reports.",1
+167,b,50,"Yes, a publicly documented policy requires the legislature to review the fund's annual financial reports.",1
+167,c,0,"No, the legislature is not required to review the fund's annual financial reports.",1
+167,d,NA,Not applicable/Other.,1
+25,a,100,"Yes, the law requires the licensing authority to be independent from the SOE.",1
+25,b,50,"Yes, a publicly documented policy requires the licensing authority to be independent from the SOE.",1
+25,c,0,"No, rules do not require the licensing authority to be independent from the SOE.",1
+25,d,NA,Not applicable/Other.,1
+114,a,100,"Yes, the majority of the SOE's board of directors is independent of the government.",1
+114,b,20,"No, the majority of the SOE's board of directors is not independent of the government.",1
+114,c,0,The SOE does not publicly disclose a list of board members.,1
+114,d,NA,Not applicable/Other.,1
+61,a,100,"Yes, at the project-level.",1
+61,b,50,"Yes, in the aggregate.",1
+61,c,20,"No, the most recent publicly available data on tax/payment receipts is not disaggregated by payment type.",1
+61,d,0,The government does not publicly disclose data on the value of tax/payment receipts.,1
+61,e,NA,Not applicable/Other.,1
+127,a,100,"Yes, the most recent publicly available information on the national debt is disaggregated by currency denomination.",1
+127,b,0,"No, the most recent publicly available information on the national debt is not disaggregated by currency denomination.",1
+127,c,0,"No, the government does not publicly disclose the level of national debt.",1
+127,d,NA,Not applicable/Other.,1
+63,a,100,"Yes, the law requires the national tax authority to audit extractive companies.",1
+63,b,50,"Yes, a publicly documented policy requires the national tax authority to audit extractive companies.",1
+63,c,0,"No, the national tax authority is not required to audit extractive companies.",1
+63,d,NA,Not applicable/Other.,1
+64,a,100,"Yes, the law requires an external body to periodically audit the national tax authority.",1
+64,b,50,"Yes, a publicly documented policy requires an external body to periodically audit the national tax authority.",1
+64,c,0,"No, the national tax authority is not required to periodically be audited by an external body.",1
+64,d,NA,Not applicable/Other.,1
+45,a,100,A government agency maintains a publicly available registry of license details online.,1
+45,b,50,"A government agency maintains a publicly available registry of license details in digital format, but offline.",1
+45,c,20,A government agency maintains a publicly available registry of license details in paper format only.,1
+45,d,0,No registry of licenses/contracts exists.,1
+45,e,NA,Not applicable/Other.,1
+86,a,100,"Yes, the law requires the SOE to publicly disclose annual reports on its finances and operations.",1
+86,b,50,"Yes, a publicly documented policy requires the SOE to publicly disclose annual reports on its finances and operations.",1
+86,c,0,"No, the SOE is not required to publicly disclose annual reports on its finances and operations.",1
+86,d,NA,Not applicable/Other.,1
+116,a,100,"Yes, the law requires the SOE to submit annual reports on all its activities to the legislature.",1
+116,b,50,"Yes, a publicly documented policy requires the SOE to submit annual reports on all its activities to the legislature.",1
+116,c,0,"No, the SOE is not required to submit annual reports to the legislature on its activities.",1
+116,d,NA,Not applicable/Other.,1
+155,a,100,"Yes, the law prohibits the fund from investing in certain asset classes or investment types.",1
+155,b,50,"Yes, a publicly documented policy prohibits the fund from investing in certain asset classes or investment types.",1
+155,c,0,"No, the fund is not prohibited from investing in any asset class or investment type.",1
+155,d,NA,Not applicable/Other.,1
+154,a,100,"Yes, the law prohibits the fund from investing in domestic assets without budgetary approval.",1
+154,b,50,"Yes, a publicly documented policy prohibits the fund from investing in domestic assets without budgetary approval.",1
+154,c,0,"No, the sovereign wealth fund is not prohibited from investing in domestic assets without budgetary approval.",1
+154,d,NA,Not applicable/Other.,1
+157,a,100,"Yes, the law requires the fund to produce annual financial reports.",1
+157,b,50,"Yes, a publicly documented policy requires the fund to produce annual financial reports.",1
+157,c,0,"No, the fund is not required to produce annual financial reports.",1
+157,d,NA,Not applicable/Other.,1
+158,a,100,"Yes, the law requires the fund to publicly disclose annual financial reports.",1
+158,b,50,"Yes, a publicly documented policy requires the fund to publicly disclose annual financial reports.",1
+158,c,0,"No, the fund is not required to publicly disclose annual financial reports.",1
+158,d,NA,Not applicable/Other.,1
+70,a,100,"Yes, the law requires environmental mitigation management plans to be publicly disclosed.",1
+70,b,50,"Yes, a publicly documented policy requires environmental mitigation management plans to be publicly disclosed.",1
+70,c,0,"No, there is no requirement for environmental mitigation management plans to be publicly disclosed.",1
+70,d,NA,Not applicable/Other.,1
+67,a,100,Both EIAs and SIAs are required to be publicly disclosed under law.,1
+67,b,90,"Either EIAs or SIAs are required to be publicly disclosed under law, with the other being required under a policy.",1
+67,c,50,"Either EIAs or SIAs are required to be publicly disclosed under law, with the other not required at all.",1
+67,d,50,Both EIAs and SIAs are required to be publicly disclosed under a publicly documented policy.,1
+67,e,20,"Either EIAs or SIAs are required to be publicly disclosed under a publicly documented policy, with the other not required at all (i.e. neither under law nor under policy).",1
+67,f,0,Neither EIAs nor SIAs are required to be publicly disclosed.,1
+67,g,NA,Not applicable/Other.,1
+118,a,100,"Yes, the government adhered to the fiscal rule in the most recently completed fiscal year.",1
+118,b,0,"No, the government suspended, modified or disregarded the fiscal rule in the most recently completed fiscal year.",1
+118,c,0,No numerical fiscal rule has been set.,1
+118,d,NA,Not applicable/Other.,1
+34,a,100,"Yes, the law requires the licensing authority to publicly disclose the rules governing the licensing process, such as auction or negotiation rules.",1
+34,b,50,"Yes, a publicly documented policy requires the licensing authority to publicly disclose the rules governing the licensing process, such as auction or negotiation rules.",1
+34,c,0,"No, the licensing authority is not required to publicly disclose the rules governing the licensing process, such as auction or negotiation rules.",1
+34,d,NA,Not applicable/Other.,1
+32,a,100,"Yes, the law requires the licensing authority to publicly disclose a list of biddable or negotiable terms.",1
+32,b,50,"Yes, a publicly documented policy requires the licensing authority to publicly disclose a list of biddable or negotiable terms.",1
+32,c,0,"No, the licensing authority is not required to publicly disclose a list of biddable or negotiable terms.",1
+32,d,NA,Not applicable/Other.,1
+120,a,100,"Yes, the government's adherence to the fiscal rule was monitored over the most recently completed audit timeframe, with no known exceptions.",1
+120,b,0,"No, the government's adherence to the fiscal rule was not monitored over the recently completed audit timeframe.",1
+120,c,0,There is no requirement for the government's adherence to the fiscal rule to be subject to a periodic external monitoring.,1
+120,d,NA,Not applicable/Other.,1
+65,a,100,"Yes, an external audit took place over the most recently completed audit timeframe and the results were publicly disclosed.",1
+65,b,50,"Yes, an external audit took place over the most recently completed audit timeframe, but the results were not publicly disclosed.",1
+65,c,0,"No, no external audit took place over the most recently completed audit timeframe.",1
+65,d,0,The national tax authority is not subject to audits.,1
+65,e,NA,Not applicable/Other.,1
+166,a,100,"Yes, these annual financial reports were audited over the most recently completed audit timeframe, with no known exceptions.",1
+166,b,0,"No, these annual financial reports were not audited over the most recently completed audit timeframe.",1
+166,c,0,"No, there is no requirement for a periodic external audit of the annual financial reports.",1
+166,d,NA,Not applicable/Other.,1
+143,a,100,"Yes, transfers of extractive resource revenues to subnational governments were audited over the most recently completed audit timeframe, with no known exceptions.",0.77
+143,b,0,"No, transfers of extractive resource revenues to subnational governments were not audited over the most recently completed audit timeframe.",0.77
+143,c,0,There is no requirement for transfers of extractive resource revenues to subnational governments to be subject to a periodic external audit.,0.77
+143,d,NA,Not applicable/Other.,0.77
