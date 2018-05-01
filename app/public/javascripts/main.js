@@ -25,7 +25,7 @@ const required = () => {throw new Error("Missing a required input")};
  * @function createSVG
  * @param {string} id - The id of the chart element to append SVG to.
  * @param {object} margin - The top, bottom, right and left margins.
- * @returns {object}
+ * @returns {object} - Returns the width, height and svg
  * @description given an id an margin object, append an svg to DOM and return SVG characteristics
  */
 const createSVG = (selector = required(), margin = {top: 5, right: 5, bottom: 5, left: 5}) => { //plotVar, margin, padding
@@ -78,12 +78,12 @@ const renderCountryBlurb = (country, alias, sector, countryData) => {
 
 const renderIndicatorChart = (country, sector, indicatorScores) => {
   const indicatorData = indicatorScores.filter(d => d.country === country && d.sector === sector)
-  console.log(indicatorData)
 }
 /**
  * Compute the scores of different countries for the index, component and subcomponents
  * @function computeScores
  * @param {object} indicatorScores - The scores for each indicator. This was added since the questions do not address the Enabling Environment component
+ * @returns {object} - Returns an intermediate data object
  * @description given the indicatorScores for each country compute the overall rank position for each country
  */
 
@@ -150,13 +150,6 @@ const computeScores = (indicatorScores = required()) => {
     return accum;
   }, [])
 
-  // const ranked = countryScores.sort((a, b) => b.indexScore - a.indexScore)
-  //   .reduce((accum, val, i) => {
-  //     accum.push(Object.assign(val, {alias: countryData.filter((d) => d.country === val.country)[0].alias, rank: i + 1,}))
-
-  //     return accum;
-  //   }, [])
-
   return countryScores
 }
 
@@ -202,7 +195,14 @@ const computeRanks = (panelData = required(), rankVar = "indexScore", sortDirect
   return ranked
 }
 
-
+/**
+ * Update the panel based on the new version of the component data
+ * @function panelUpdate
+ * @param {object} xScale - The x-axis scale for the chart
+ * @param {object} yScale - The y-axis scale for the chart
+ * @param {object} colorScale - The colorScale for the bars
+ * @description given the new panel data, update the charts and the labels
+ */
 const panelUpdate = (xScale, yScale, colorScale) => {
     //SET: update the labels
     //yLabels.data(panelData)
@@ -283,7 +283,14 @@ const panelUpdate = (xScale, yScale, colorScale) => {
 }
 
 
-    //on click function for locking country
+/**
+ * Update the html content, lock a bar and show country level plot based on click
+ * @function labelOnClick
+ * @param {datum} d - the datum associated with the clicked node
+ * @param {object} countryData - The data specific to that country i.e. its blurb and any additional values to pass in later
+ * @param {object} indicatorScores - The scores for each indicator/country
+ * @description when a label is clicked lock it and update the charts
+ */
 const labelOnClick = (d, countryData, indicatorScores) => {
   let currRank = d.rank;
 
@@ -316,6 +323,39 @@ const labelOnClick = (d, countryData, indicatorScores) => {
   d3.selectAll(".countryLabels").filter(e => e.rank === stateVars.lockedRank).style("opacity", 1)
   d3.selectAll(".countryLabels").filter(e => e.rank !== stateVars.lockedRank).style("opacity", stateVars.lockedRank === 0 ? 1 : 0.2)  
 }
+
+/**
+ * Initialize the country indicator data
+ * @function initializeIndicators
+ * @param {object} indicatorScores - The entire set of scores for each question for each country
+ * @param {object} framework - The additional information required for each question, i.e. map to indicators, labels etc
+ * @description given an id an margin object, append an svg to DOM and return SVG characteristics
+ */
+const initializeIndicatorChartData = (indicatorScores, framework) => {
+  //find the list of questions for each indicator and initialize their scores to zero. 
+  // in the case of the component enabling environment these scores are predetermined and not 
+  //based on survey questions, so these are initialized to questionID = "" and score = 100
+  const initialData = [...new Set(indicatorScores.map(d => d.indicator))]
+    .reduce((accum, d) => {
+      let component = indicatorScores.filter(e => e.indicator === d)[0].component;
+      let subComponent = indicatorScores.filter(e => e.indicator === d)[0].subComponent;
+      let questions = framework.filter(frame => frame.indicator === d)
+        .map(frame => {
+          return {questionID: frame.questionID, score: 100}
+        })
+
+      accum.push({ //generate the output
+        indicator: d,
+        subComponent,
+        component,
+        questions: questions.questionID ? questions : {questionID: "", score: 100},
+      })
+      return accum;
+      }, 
+    [])
+
+    return initialData
+}
 /**
  * Draw the RGI scores
  * @function draw
@@ -326,8 +366,8 @@ const labelOnClick = (d, countryData, indicatorScores) => {
  * @description given an id an margin object, append an svg to DOM and return SVG characteristics
  */
 
-const draw = (alLScores = required(), framework = required(), questionScores = required(), indicatorScores = required(), countryData = required()) => {
-  // console.log(framework)
+
+const draw = (allScores = required(), framework = required(), questionScores = required(), indicatorScores = required(), countryData = required()) => {
   //RENDER THE INITIAL VIEW
   renderInitialView(countryBlurbInitial);
 
@@ -356,14 +396,16 @@ const draw = (alLScores = required(), framework = required(), questionScores = r
 
   //GENERATE THE INITIAL DATA
   indicatorScores = Array.from(indicatorScores); //convert to array
+  // console.log(indicatorScores)
+
 
   let countryScores = computeScores(indicatorScores) //compute the different component, subcomponent scores
-
+  // console.log(countryScores)
   let panelScores = computePanelData(countryScores, countryData) //generate the panel data
-
+  // console.log(panelScores)
   //update the data for default plot that is sorted on overall index ranks
   panelScores = computeRanks(panelScores, "indexScore")
-
+  // console.log(panelScores)
 
   //INITIALIZE CHARTING VARIABLES
 
@@ -569,32 +611,19 @@ const draw = (alLScores = required(), framework = required(), questionScores = r
 
 
   //Draw the defaults indicator chart
-  
-  const indicatorFramework = [...new Set(framework.map(d => d.indicator))].reduce((accum, d) => {
-    let questions = framework.filter(q => q.indicator === d)
-    console.log(questions)
-    let component = questions[0].component;
-    let subComponent = questions[0].subComponent;
-    questions = questions.reduce((accum, quest) => {
-        accum.push({
-          question: quest.question,
-          questionID: quest.questionID,
-          questionLabel: "a",
-          questionScore: Math.floor(Math.random() * (100 - 0 + 1) ) + 0,
-          lawPractice: quest.lawPractice,
-          questionLabel: quest.questionLabel
-        })
-        return accum;
-      }, []);
-    accum.push({indicator: d, subComponent, component, questions})
-    return accum;
-  }, [])
+  const initialIndicatorData = initializeIndicatorChartData(indicatorScores, framework)
 
-  console.log(indicatorFramework)
+  console.log(initialIndicatorData)
+
+  // console.log(indicatorFramework)
   const indicatorYScale = d3.scaleBand()
       .rangeRound([0, indicatorHeight])
       .padding(0.1)
       .domain(indicatorScores.map(d => d.rank));
+
+
+
+
   //Label click event listener
     //Sort panel based on clicks on the label, update state variables
     //callback for the label click
