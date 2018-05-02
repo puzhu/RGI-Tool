@@ -42,9 +42,9 @@ h1, h2, h3, h4, h5{
     margin: 0px auto;
     border-bottom: 1.5px solid darkgrey;
 }
-.countryIndicators, .pointerLines {
-	/*border: 1px red solid;*/
-	height: 700px;
+#countryIndicators{
+	border: 1px red solid;
+	height: 600px;
 }
 
 

@@ -54,7 +54,7 @@ const renderInitialView = (countryBlurbInitial) => {
   while(countryBlurbEl.firstChild){
     countryBlurbEl.removeChild(countryBlurbEl.firstChild);
   }
-  document.querySelector(".js-line").classList.contains("inner") ? document.querySelector(".js-line").classList.remove("inner") : null;
+  // document.querySelector(".js-line").classList.contains("inner") ? document.querySelector(".js-line").classList.remove("inner") : null;
   countryBlurbEl.innerHTML = countryBlurbInitial;
 }
 
@@ -73,84 +73,96 @@ const renderCountryBlurb = (country, alias, sector, countryData) => {
     </div>
   `
   countryBlurbEl.innerHTML = countryBlurb;
-  document.querySelector(".js-line").classList.add("inner")
+  // document.querySelector(".js-line").classList.add("inner")
 }
 
 const renderIndicatorChart = (country, sector, indicatorScores) => {
   const indicatorData = indicatorScores.filter(d => d.country === country && d.sector === sector)
 }
+
 /**
- * Compute the scores of different countries for the index, component and subcomponents
- * @function computeScores
- * @param {object} indicatorScores - The scores for each indicator. This was added since the questions do not address the Enabling Environment component
- * @returns {object} - Returns an intermediate data object
- * @description given the indicatorScores for each country compute the overall rank position for each country
+ * Calculate the indicator scores from the clean data + ee data
+ * @function computeIndicatorData
+ * @param {object} indicatorScores - The entire set of scores for each question for each country
+ * @param {object} framework - The additional information required for each question, i.e. map to indicators, labels etc
+ * @description given an id an margin object, append an svg to DOM and return SVG characteristics
  */
+const computeIndicatorData = (allScores, eeScores, framework) => {
+  // console.log(indicatorScores)
+  const indicatorList = [...new Set(framework.map(d => d.indicator))]
 
-const computeScores = (indicatorScores = required()) => {
-  
-  //Find the unique set of country sector combos
-  const countrySectorList = [...new Set(indicatorScores.map(d => (d.country).concat("?").concat(d.sector)))];
+  const surveyIndicatorList = [...new Set(framework.filter(d => d.component !== "Enabling environment").map(d => d.indicator))]
+  const enablingIndicatorList = [...new Set(framework.filter(d => d.component === "Enabling environment").map(d => d.indicator))]
 
-  //initiate vars
-  let sector,
-    country,
-    subComponentScores,
-    componentScores;
+  //Loop through country sector combo and get the indicator scores using chunk below
+  const countrySectorList = [...new Set(allScores.map(d => (d.country).concat("?").concat(d.sector)))];
 
-  //Loop through each combo
-  const countryScores = countrySectorList.reduce((accum, combo) => {
+  const data = countrySectorList.reduce((outArray, countrySector) => { 
     //get the country
-    country = combo.split("?")[0]
+    let country = countrySector.split("?")[0]
 
     //get the sector
-    sector = combo.split("?")[1]
+    let sector = countrySector.split("?")[1]
 
-    //get the country data for current sector
-    let countryData = indicatorScores.filter((d) => {return d.country === country && d.sector === sector})
+    //get the country data for values realization and revenue management
+    let countrySurveyData = allScores.filter(d => d.country === country && d.sector === sector)
+    let countryEnablingData = eeScores.filter(d => d.country === country && d.sector === sector)
 
-    //calculate the subComponent scores
-    subComponentScores = [...new Set(countryData.map(d => d.subComponent))].reduce((out, subComponent) => {
-      //find the data relevant to this subcomponent
-      let scores = countryData.filter((d) => d.subComponent === subComponent);
+    //loop through survey indicators to calculate the scores for each indicator
+    //mirror the structure of the indicator scores data
+    surveyIndicatorList.forEach((surveyIndicator) => {
+      let component = framework.filter(d => d.indicator === surveyIndicator)[0].component
+      let subComponent = framework.filter(d => d.indicator === surveyIndicator)[0].subComponent
+      let indicatorData = countrySurveyData.filter(d => d.indicator === surveyIndicator)
+      let indiScore = indicatorData.reduce((sum, d) => {
+        sum += parseFloat(d.score)
+        return sum
+      }, 0)
+      //if the sum is zero it means that the particular survey indicator was not covered in that country + sector
+      //the array should not be pushed for these cases
+      if(indicatorData.length !== 0) {
+        outArray.push({
+          country,
+          sector,
+          indicator: surveyIndicator,
+          component,
+          subComponent,
+          score: indiScore/indicatorData.length
+        })
+      }
+    })
 
-      //calculate the average score
-      let average = scores.map(d => parseFloat(d.score))
-        .reduce((sum, val) => sum + val, 0)/scores.length;
 
-      //find the component
-      let component = scores[0].component //since each subcomponents are mapped to a distinct component
+    //loop through enabling indicators
+    enablingIndicatorList.forEach((eeIndicator) => {
+      let component = framework.filter(d => d.indicator === eeIndicator)[0].component
+      let subComponent = framework.filter(d => d.indicator === eeIndicator)[0].subComponent
+      let indicatorData = countryEnablingData.filter(d => d.indicator === eeIndicator)
 
-      //push to the accumulator
-      out.push({subComponent, score: average, component})
+      let indiScore = indicatorData.reduce((sum, d) => {
+        sum += parseFloat(d.score)
+        return sum
+      }, 0)
+      
+      //if the sum is zero it means that the particular survey indicator was not covered in that country + sector
+      //the array should not be pushed for these cases
+      if(indicatorData.length !== 0) {
+        outArray.push({
+          country,
+          sector,
+          indicator: eeIndicator,
+          component,
+          subComponent,
+          score: indiScore/indicatorData.length
+        })
+      }
+    })
 
-      return out;
-    }, [])
-
-    //calculate the component scores
-    componentScores = [...new Set(subComponentScores.map(d => d.component))].reduce((out, component) => {
-      //find the scores
-      let scores = subComponentScores.filter(d => d.component === component);
-
-      //calculate the average
-      let average = scores.map(d => d.score)
-        .reduce((sum, val) => sum + val, 0)/scores.length
-
-      out.push({component, score: average});
-
-      return out;
-    }, [])
-
-    //index score
-    let indexScore = componentScores.reduce((sum, d) => sum + d.score, 0)/3
-
-    //add the new data
-    accum.push({country, sector, subComponentScores, componentScores, indexScore})//Object.assign({}, accum, {country: country})
-
-    return accum;
+    return outArray
+    
   }, [])
 
-  return countryScores
+  return data;
 }
 
 /**
@@ -159,22 +171,94 @@ const computeScores = (indicatorScores = required()) => {
  * @param {object} countryScores - The scores for each indicator. This was added since the questions do not address the Enabling Environment component
  * @description given the countryScores extract the index and component scores along with rank for plotting
  */
+const computePanelData = (indicatorScores, countryData, framework) => {
+  // console.log(countryData)
+  const countrySectorList = [...new Set(indicatorScores.map(d => (d.country).concat("?").concat(d.sector)))]
+  // const subComponentList = [...new Set(framework.map(d => d.subComponent))]
+  const componentList = [...new Set(framework.map(d => d.component))]
 
-const computePanelData = (countryScores = required(), countryData = required()) => {
-  return countryScores.reduce((accum, score, i) => {
-    accum.push({
-      country: score.country,
-      sector: score.sector,
-      alias: countryData.filter((d) => d.country === score.country)[0].alias,
-      valueRealization: score.componentScores.filter(d => d.component === "Value realization")[0].score,
-      revenueManagement: score.componentScores.filter(d => d.component === "Revenue management")[0].score,
-      enablingEnvironment: score.componentScores.filter(d => d.component === "Enabling environment")[0].score,
-      indexScore: score.indexScore,
+  // console.log(countrySectorList)
+  //loop through each country list combo
+  const panelData = countrySectorList.reduce((outArray, countrySector) => {
+    //get the country
+    let country = countrySector.split("?")[0]
+
+    //get the sector
+    let sector = countrySector.split("?")[1]
+
+    //get the alias
+    let alias = countryData.filter(d => d.country === country && d.sector === sector)[0].alias
+
+    //get the country sector data to calculate the panel scores
+    let countrySectorData = indicatorScores.filter(d => d.country === country && d.sector === sector)
+    
+    //loop through the component list
+    let countryComponentData = componentList.reduce((componentData, component) => {
+      //find the list of correponding subcomponents
+      let subComponentList = [...new Set(framework.filter(d => d.component === component).map(d => d.subComponent))]
+      
+      //store the subComponent Scores
+      let subComponentScores = []
+
+      subComponentList.forEach((subComponent) => {
+        //filter the relevant sub component data
+        let subComponentData = countrySectorData.filter(d => d.subComponent === subComponent)
+
+
+        //compute the total
+        let scoreTotal = subComponentData.reduce((sum, value) => {
+          sum += parseFloat(value.score)
+          return sum
+        }, 0)
+
+
+        //only push if a subcomponent is covered
+        if(subComponentData.length > 0){
+
+          subComponentScores.push(scoreTotal/subComponentData.length)
+        }
+      })
+
+      //reduce the subComponent scores
+      let componentTotal = subComponentScores.reduce((sum, value) => {
+        sum += parseFloat(value)
+        return sum
+      }, 0)
+
+      //only push if component is covered
+      if(subComponentScores.length > 0){
+        componentData.push({
+          component,
+          score: componentTotal/subComponentScores.length
+        })
+      }
+      return componentData
+    }, [])
+    //convert the component data to the format required for the panel dataset
+    let valueRealization = countryComponentData.filter(d => d.component === "Value realization")[0].score
+    let revenueManagement = countryComponentData.filter(d => d.component === "Revenue management")[0].score
+    let enablingEnvironment = countryComponentData.filter(d => d.component === "Enabling environment")[0].score
+    let indexScore = countryComponentData.reduce((sum, val) => {
+        sum += val.score
+        return sum
+      }, 0)/3
+
+    outArray.push({
+      country,
+      sector,
+      alias,
+      valueRealization,
+      revenueManagement,
+      enablingEnvironment,
+      indexScore,
+
     })
-
-    return accum
+    return outArray
   }, [])
+
+  return panelData
 }
+
 
 
 /**
@@ -196,7 +280,7 @@ const computeRanks = (panelData = required(), rankVar = "indexScore", sortDirect
 }
 
 /**
- * Update the panel based on the new version of the component data
+ * Update the panel using the indicator data
  * @function panelUpdate
  * @param {object} xScale - The x-axis scale for the chart
  * @param {object} yScale - The y-axis scale for the chart
@@ -324,38 +408,13 @@ const labelOnClick = (d, countryData, indicatorScores) => {
   d3.selectAll(".countryLabels").filter(e => e.rank !== stateVars.lockedRank).style("opacity", stateVars.lockedRank === 0 ? 1 : 0.2)  
 }
 
-/**
- * Initialize the country indicator data
- * @function initializeIndicators
- * @param {object} indicatorScores - The entire set of scores for each question for each country
- * @param {object} framework - The additional information required for each question, i.e. map to indicators, labels etc
- * @description given an id an margin object, append an svg to DOM and return SVG characteristics
- */
-const initializeIndicatorChartData = (indicatorScores, framework) => {
-  //find the list of questions for each indicator and initialize their scores to zero. 
-  // in the case of the component enabling environment these scores are predetermined and not 
-  //based on survey questions, so these are initialized to questionID = "" and score = 100
-  const initialData = [...new Set(indicatorScores.map(d => d.indicator))]
-    .reduce((accum, d) => {
-      let component = indicatorScores.filter(e => e.indicator === d)[0].component;
-      let subComponent = indicatorScores.filter(e => e.indicator === d)[0].subComponent;
-      let questions = framework.filter(frame => frame.indicator === d)
-        .map(frame => {
-          return {questionID: frame.questionID, score: 100}
-        })
+//given an indicator country and sector find its score by reducing corresponding question scores
+const calculateIndicatorScores = (indicator, country, sector, framework) => {
 
-      accum.push({ //generate the output
-        indicator: d,
-        subComponent,
-        component,
-        questions: questions.questionID ? questions : {questionID: "", score: 100},
-      })
-      return accum;
-      }, 
-    [])
-
-    return initialData
 }
+
+
+
 /**
  * Draw the RGI scores
  * @function draw
@@ -367,7 +426,7 @@ const initializeIndicatorChartData = (indicatorScores, framework) => {
  */
 
 
-const draw = (allScores = required(), framework = required(), questionScores = required(), indicatorScores = required(), countryData = required()) => {
+const draw = (allScores = required(), framework = required(), questionScores = required(), countryData = required(), eeScores = required()) => {
   //RENDER THE INITIAL VIEW
   renderInitialView(countryBlurbInitial);
 
@@ -395,17 +454,12 @@ const draw = (allScores = required(), framework = required(), questionScores = r
     indicatorSVG = indicatorChart.plotVar
 
   //GENERATE THE INITIAL DATA
-  indicatorScores = Array.from(indicatorScores); //convert to array
-  // console.log(indicatorScores)
+  let indicatorScores = computeIndicatorData(allScores, eeScores, framework)
 
-
-  let countryScores = computeScores(indicatorScores) //compute the different component, subcomponent scores
-  // console.log(countryScores)
-  let panelScores = computePanelData(countryScores, countryData) //generate the panel data
-  // console.log(panelScores)
+  let panelScores = computePanelData(indicatorScores, countryData, framework)
+  
   //update the data for default plot that is sorted on overall index ranks
   panelScores = computeRanks(panelScores, "indexScore")
-  // console.log(panelScores)
 
   //INITIALIZE CHARTING VARIABLES
 
@@ -611,17 +665,27 @@ const draw = (allScores = required(), framework = required(), questionScores = r
 
 
   //Draw the defaults indicator chart
-  const initialIndicatorData = initializeIndicatorChartData(indicatorScores, framework)
+  // const initialIndicatorData = initializeIndicatorChartData(allScores, indicatorScores, framework, eeScores)
 
-  console.log(initialIndicatorData)
+  // calcIndicatorScores(initialIndicatorData)
+  
+  // const indicatorYScale = d3.scaleBand()
+  //     .rangeRound([0, indicatorHeight])
+  //     .padding(0.1)
+  //     .domain([...new Set(initialIndicatorData.map(d => d.indicator))]);
 
-  // console.log(indicatorFramework)
-  const indicatorYScale = d3.scaleBand()
-      .rangeRound([0, indicatorHeight])
-      .padding(0.1)
-      .domain(indicatorScores.map(d => d.rank));
 
+  // const countryChart = indicatorSVG.append("g")
+  //     .selectAll(".countryIndicators")
+  //     .data(initialIndicatorData)
+  //     .enter()
 
+  // countryChart.append("g")
+  //   .append("rect")
+  //     .attr("x", 2*indicatorWidth/5)
+  //     .attr("y", d => indicatorYScale(d.indicator))
+  //     .attr("width", indicatorWidth/5)
+  //     .attr("height", indicatorYScale.bandwidth())
 
 
   //Label click event listener
@@ -699,13 +763,16 @@ async function getData() {
     let scoringMetric = await d3.csv("/javascripts/data/scoringMetric.csv");
 
     //load the indicator scores
-    let indicatorScores = await d3.csv("/javascripts/data/indicatorScores.csv");
+    // let indicatorScores = await d3.csv("/javascripts/data/indicatorScores.csv");
 
     //get country names
     let countryData = await d3.csv("/javascripts/data/countryData.csv");
+
+    //get ee scores
+    let eeScores = await d3.csv("/javascripts/data/eeScores.csv");
     
     //draw the charts using all the data
-    return draw(questionScores, framework, scoringMetric, indicatorScores, countryData)// something using both resultA and resultB
+    return draw(questionScores, framework, scoringMetric, countryData, eeScores)// something using both resultA and resultB
 }
 
 getData()

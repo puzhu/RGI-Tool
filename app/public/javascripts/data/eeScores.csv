@@ -1,0 +1,730 @@
+country,sector,indicator,subComponent,component,score
+Afghanistan,Mining,Control of corruption,Control of corruption,Enabling environment,9.7
+Afghanistan,Mining,Government effectiveness,Government effectiveness,Enabling environment,12.1
+Afghanistan,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,2.4
+Afghanistan,Mining,Regulatory quality,Regulatory quality,Enabling environment,24.3
+Afghanistan,Mining,Rule of law,Rule of law,Enabling environment,4.8
+Afghanistan,Mining,Voice and accountability,Voice and accountability,Enabling environment,29.2
+Algeria,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,48.7
+Algeria,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,52.4
+Algeria,Oil and Gas,Open Data Index,Open data,Enabling environment,20.3
+Algeria,Oil and Gas,Open data inventory,Open data,Enabling environment,9.4
+Algeria,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,21.9
+Algeria,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,20.7
+Algeria,Oil and Gas,Rule of law,Rule of law,Enabling environment,39
+Algeria,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,46.3
+Angola,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,7.3
+Angola,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,25.6
+Angola,Oil and Gas,Open data inventory,Open data,Enabling environment,12.9
+Angola,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,47.5
+Angola,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,30.4
+Angola,Oil and Gas,Rule of law,Rule of law,Enabling environment,21.9
+Angola,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,28
+Argentina,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,57.3
+Argentina,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,68.2
+Argentina,Oil and Gas,Open Data Barometer,Open data,Enabling environment,55.5
+Argentina,Oil and Gas,Open Data Index,Open data,Enabling environment,71.1
+Argentina,Oil and Gas,Open data inventory,Open data,Enabling environment,35.2
+Argentina,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,75.6
+Argentina,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,28
+Argentina,Oil and Gas,Rule of law,Rule of law,Enabling environment,41.4
+Argentina,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,84.1
+Australia (Western),Mining,Control of corruption,Control of corruption,Enabling environment,97.5
+Australia (Western),Mining,Government effectiveness,Government effectiveness,Enabling environment,95.1
+Australia (Western),Mining,Open Data Barometer,Open data,Enabling environment,92.5
+Australia (Western),Mining,Open Data Index,Open data,Enabling environment,93.2
+Australia (Western),Mining,Open data inventory,Open data,Enabling environment,91.7
+Australia (Western),Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,93.9
+Australia (Western),Mining,Regulatory quality,Regulatory quality,Enabling environment,97.5
+Australia (Western),Mining,Rule of law,Rule of law,Enabling environment,96.3
+Australia (Western),Mining,Voice and accountability,Voice and accountability,Enabling environment,96.3
+Azerbaijan,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,36.5
+Azerbaijan,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,60.9
+Azerbaijan,Oil and Gas,Open Data Index,Open data,Enabling environment,55.9
+Azerbaijan,Oil and Gas,Open data inventory,Open data,Enabling environment,83.5
+Azerbaijan,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,40.2
+Azerbaijan,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,65.8
+Azerbaijan,Oil and Gas,Rule of law,Rule of law,Enabling environment,53.6
+Azerbaijan,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,14.6
+Bahrain,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,85.3
+Bahrain,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,87.8
+Bahrain,Oil and Gas,Open Data Barometer,Open data,Enabling environment,48.1
+Bahrain,Oil and Gas,Open Data Index,Open data,Enabling environment,55.9
+Bahrain,Oil and Gas,Open data inventory,Open data,Enabling environment,60
+Bahrain,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,18.2
+Bahrain,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,90.2
+Bahrain,Oil and Gas,Rule of law,Rule of law,Enabling environment,85.3
+Bahrain,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,20.7
+Bangladesh,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,32.9
+Bangladesh,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,36.5
+Bangladesh,Oil and Gas,Open Data Barometer,Open data,Enabling environment,22.2
+Bangladesh,Oil and Gas,Open Data Index,Open data,Enabling environment,1.6
+Bangladesh,Oil and Gas,Open data inventory,Open data,Enabling environment,49.4
+Bangladesh,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,17
+Bangladesh,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,29.2
+Bangladesh,Oil and Gas,Rule of law,Rule of law,Enabling environment,47.5
+Bangladesh,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,51.2
+Bolivia,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,47.5
+Bolivia,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,41.4
+Bolivia,Oil and Gas,Open data inventory,Open data,Enabling environment,65.8
+Bolivia,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,63.4
+Bolivia,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,31.7
+Bolivia,Oil and Gas,Rule of law,Rule of law,Enabling environment,20.7
+Bolivia,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,73.1
+Botswana,Mining,Control of corruption,Control of corruption,Enabling environment,89
+Botswana,Mining,Government effectiveness,Government effectiveness,Enabling environment,86.5
+Botswana,Mining,Open Data Barometer,Open data,Enabling environment,14.8
+Botswana,Mining,Open Data Index,Open data,Enabling environment,44
+Botswana,Mining,Open data inventory,Open data,Enabling environment,44.7
+Botswana,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,96.3
+Botswana,Mining,Regulatory quality,Regulatory quality,Enabling environment,84.1
+Botswana,Mining,Rule of law,Rule of law,Enabling environment,89
+Botswana,Mining,Voice and accountability,Voice and accountability,Enabling environment,87.8
+Brazil,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,65.8
+Brazil,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,64.6
+Brazil,Oil and Gas,Open Data Barometer,Open data,Enabling environment,87
+Brazil,Oil and Gas,Open Data Index,Open data,Enabling environment,89.8
+Brazil,Oil and Gas,Open data inventory,Open data,Enabling environment,72.9
+Brazil,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,60.9
+Brazil,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,68.2
+Brazil,Oil and Gas,Rule of law,Rule of law,Enabling environment,74.3
+Brazil,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,85.3
+Burkina Faso,Mining,Control of corruption,Control of corruption,Enabling environment,73.1
+Burkina Faso,Mining,Government effectiveness,Government effectiveness,Enabling environment,48.7
+Burkina Faso,Mining,Open Data Barometer,Open data,Enabling environment,29.6
+Burkina Faso,Mining,Open Data Index,Open data,Enabling environment,67.7
+Burkina Faso,Mining,Open data inventory,Open data,Enabling environment,44.7
+Burkina Faso,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,42.6
+Burkina Faso,Mining,Regulatory quality,Regulatory quality,Enabling environment,62.1
+Burkina Faso,Mining,Rule of law,Rule of law,Enabling environment,56
+Burkina Faso,Mining,Voice and accountability,Voice and accountability,Enabling environment,68.2
+Cambodia,Mining,Control of corruption,Control of corruption,Enabling environment,24.3
+Cambodia,Mining,Government effectiveness,Government effectiveness,Enabling environment,39
+Cambodia,Mining,Open Data Index,Open data,Enabling environment,28.8
+Cambodia,Mining,Open data inventory,Open data,Enabling environment,9.4
+Cambodia,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,74.3
+Cambodia,Mining,Regulatory quality,Regulatory quality,Enabling environment,54.8
+Cambodia,Mining,Rule of law,Rule of law,Enabling environment,32.9
+Cambodia,Mining,Voice and accountability,Voice and accountability,Enabling environment,34.1
+Cameroon,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,25.6
+Cameroon,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,31.7
+Cameroon,Oil and Gas,Open Data Barometer,Open data,Enabling environment,16.6
+Cameroon,Oil and Gas,Open Data Index,Open data,Enabling environment,55.9
+Cameroon,Oil and Gas,Open data inventory,Open data,Enabling environment,60
+Cameroon,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,24.3
+Cameroon,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,32.9
+Cameroon,Oil and Gas,Rule of law,Rule of law,Enabling environment,30.4
+Cameroon,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,41.4
+Canada (Alberta),Oil and Gas,Control of corruption,Control of corruption,Enabling environment,95.1
+Canada (Alberta),Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,97.5
+Canada (Alberta),Oil and Gas,Open Data Barometer,Open data,Enabling environment,94.4
+Canada (Alberta),Oil and Gas,Open data inventory,Open data,Enabling environment,96.4
+Canada (Alberta),Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,98.7
+Canada (Alberta),Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,96.3
+Canada (Alberta),Oil and Gas,Rule of law,Rule of law,Enabling environment,97.5
+Canada (Alberta),Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,97.5
+Chad,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,13.4
+Chad,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,8.5
+Chad,Oil and Gas,Open data inventory,Open data,Enabling environment,30.5
+Chad,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,25.6
+Chad,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,18.2
+Chad,Oil and Gas,Rule of law,Rule of law,Enabling environment,19.5
+Chad,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,18.2
+Chile,Mining,Control of corruption,Control of corruption,Enabling environment,92.6
+Chile,Mining,Government effectiveness,Government effectiveness,Enabling environment,91.4
+Chile,Mining,Open Data Barometer,Open data,Enabling environment,79.6
+Chile,Mining,Open Data Index,Open data,Enabling environment,83
+Chile,Mining,Open data inventory,Open data,Enabling environment,76.4
+Chile,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,84.1
+Chile,Mining,Regulatory quality,Regulatory quality,Enabling environment,93.9
+Chile,Mining,Rule of law,Rule of law,Enabling environment,92.6
+Chile,Mining,Voice and accountability,Voice and accountability,Enabling environment,92.6
+China,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,75.6
+China,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,85.3
+China,Oil and Gas,Open Data Barometer,Open data,Enabling environment,53.7
+China,Oil and Gas,Open Data Index,Open data,Enabling environment,38.9
+China,Oil and Gas,Open data inventory,Open data,Enabling environment,76.4
+China,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,51.2
+China,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,64.6
+China,Oil and Gas,Rule of law,Rule of law,Enabling environment,69.5
+China,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,9.7
+Colombia,Mining,Control of corruption,Control of corruption,Enabling environment,74.3
+Colombia,Mining,Government effectiveness,Government effectiveness,Enabling environment,71.9
+Colombia,Mining,Open Data Barometer,Open data,Enabling environment,81.4
+Colombia,Mining,Open Data Index,Open data,Enabling environment,94.9
+Colombia,Mining,Open data inventory,Open data,Enabling environment,65.8
+Colombia,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,19.5
+Colombia,Mining,Regulatory quality,Regulatory quality,Enabling environment,82.9
+Colombia,Mining,Rule of law,Rule of law,Enabling environment,70.7
+Colombia,Mining,Voice and accountability,Voice and accountability,Enabling environment,71.9
+Colombia,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,74.3
+Colombia,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,71.9
+Colombia,Oil and Gas,Open Data Barometer,Open data,Enabling environment,81.4
+Colombia,Oil and Gas,Open Data Index,Open data,Enabling environment,94.9
+Colombia,Oil and Gas,Open data inventory,Open data,Enabling environment,65.8
+Colombia,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,19.5
+Colombia,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,82.9
+Colombia,Oil and Gas,Rule of law,Rule of law,Enabling environment,70.7
+Colombia,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,71.9
+Congo,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,18.2
+Congo,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,24.3
+Congo,Oil and Gas,Open data inventory,Open data,Enabling environment,23.5
+Congo,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,53.6
+Congo,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,19.5
+Congo,Oil and Gas,Rule of law,Rule of law,Enabling environment,25.6
+Congo,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,40.2
+Côte d'Ivoire,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,68.2
+Côte d'Ivoire,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,42.6
+Côte d'Ivoire,Oil and Gas,Open data inventory,Open data,Enabling environment,16.4
+Côte d'Ivoire,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,36.5
+Côte d'Ivoire,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,51.2
+Côte d'Ivoire,Oil and Gas,Rule of law,Rule of law,Enabling environment,51.2
+Côte d'Ivoire,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,53.6
+Cuba,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,84.1
+Cuba,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,74.3
+Cuba,Oil and Gas,Open data inventory,Open data,Enabling environment,72.9
+Cuba,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,87.8
+Cuba,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,15.8
+Cuba,Oil and Gas,Rule of law,Rule of law,Enabling environment,50
+Cuba,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,12.1
+Democratic Republic of Congo,Mining,Control of corruption,Control of corruption,Enabling environment,17
+Democratic Republic of Congo,Mining,Government effectiveness,Government effectiveness,Enabling environment,4.8
+Democratic Republic of Congo,Mining,Open data inventory,Open data,Enabling environment,16.4
+Democratic Republic of Congo,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,7.3
+Democratic Republic of Congo,Mining,Regulatory quality,Regulatory quality,Enabling environment,12.1
+Democratic Republic of Congo,Mining,Rule of law,Rule of law,Enabling environment,6
+Democratic Republic of Congo,Mining,Voice and accountability,Voice and accountability,Enabling environment,21.9
+Democratic Republic of Congo,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,17
+Democratic Republic of Congo,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,4.8
+Democratic Republic of Congo,Oil and Gas,Open data inventory,Open data,Enabling environment,16.4
+Democratic Republic of Congo,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,7.3
+Democratic Republic of Congo,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,12.1
+Democratic Republic of Congo,Oil and Gas,Rule of law,Rule of law,Enabling environment,6
+Democratic Republic of Congo,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,21.9
+Ecuador,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,51.2
+Ecuador,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,56
+Ecuador,Oil and Gas,Open Data Barometer,Open data,Enabling environment,64.8
+Ecuador,Oil and Gas,Open Data Index,Open data,Enabling environment,67.7
+Ecuador,Oil and Gas,Open data inventory,Open data,Enabling environment,90.5
+Ecuador,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,70.7
+Ecuador,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,21.9
+Ecuador,Oil and Gas,Rule of law,Rule of law,Enabling environment,26.8
+Ecuador,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,62.1
+Egypt,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,59.7
+Egypt,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,32.9
+Egypt,Oil and Gas,Open Data Barometer,Open data,Enabling environment,25.9
+Egypt,Oil and Gas,Open Data Index,Open data,Enabling environment,52.5
+Egypt,Oil and Gas,Open data inventory,Open data,Enabling environment,56.4
+Egypt,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,14.6
+Egypt,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,42.6
+Egypt,Oil and Gas,Rule of law,Rule of law,Enabling environment,58.5
+Egypt,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,32.9
+Equatorial Guinea,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,1.2
+Equatorial Guinea,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,9.7
+Equatorial Guinea,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,65.8
+Equatorial Guinea,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,10.9
+Equatorial Guinea,Oil and Gas,Rule of law,Rule of law,Enabling environment,9.7
+Equatorial Guinea,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,3.6
+Eritrea,Mining,Control of corruption,Control of corruption,Enabling environment,10.9
+Eritrea,Mining,Government effectiveness,Government effectiveness,Enabling environment,6
+Eritrea,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,31.7
+Eritrea,Mining,Regulatory quality,Regulatory quality,Enabling environment,2.4
+Eritrea,Mining,Rule of law,Rule of law,Enabling environment,8.5
+Eritrea,Mining,Voice and accountability,Voice and accountability,Enabling environment,2.4
+Ethiopia,Mining,Control of corruption,Control of corruption,Enabling environment,69.5
+Ethiopia,Mining,Government effectiveness,Government effectiveness,Enabling environment,43.9
+Ethiopia,Mining,Open Data Barometer,Open data,Enabling environment,18.5
+Ethiopia,Mining,Open Data Index,Open data,Enabling environment,30.5
+Ethiopia,Mining,Open data inventory,Open data,Enabling environment,12.9
+Ethiopia,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,13.4
+Ethiopia,Mining,Regulatory quality,Regulatory quality,Enabling environment,25.6
+Ethiopia,Mining,Rule of law,Rule of law,Enabling environment,60.9
+Ethiopia,Mining,Voice and accountability,Voice and accountability,Enabling environment,24.3
+Gabon,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,50
+Gabon,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,35.3
+Gabon,Oil and Gas,Open data inventory,Open data,Enabling environment,7
+Gabon,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,79.2
+Gabon,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,41.4
+Gabon,Oil and Gas,Rule of law,Rule of law,Enabling environment,54.8
+Gabon,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,42.6
+Ghana,Mining,Control of corruption,Control of corruption,Enabling environment,79.2
+Ghana,Mining,Government effectiveness,Government effectiveness,Enabling environment,59.7
+Ghana,Mining,Open Data Barometer,Open data,Enabling environment,31.4
+Ghana,Mining,Open data inventory,Open data,Enabling environment,23.5
+Ghana,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,78
+Ghana,Mining,Regulatory quality,Regulatory quality,Enabling environment,75.6
+Ghana,Mining,Rule of law,Rule of law,Enabling environment,82.9
+Ghana,Mining,Voice and accountability,Voice and accountability,Enabling environment,90.2
+Ghana,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,79.2
+Ghana,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,59.7
+Ghana,Oil and Gas,Open Data Barometer,Open data,Enabling environment,31.4
+Ghana,Oil and Gas,Open data inventory,Open data,Enabling environment,23.5
+Ghana,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,78
+Ghana,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,75.6
+Ghana,Oil and Gas,Rule of law,Rule of law,Enabling environment,82.9
+Ghana,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,90.2
+Guatemala,Mining,Control of corruption,Control of corruption,Enabling environment,45.1
+Guatemala,Mining,Government effectiveness,Government effectiveness,Enabling environment,37.8
+Guatemala,Mining,Open Data Index,Open data,Enabling environment,64.4
+Guatemala,Mining,Open data inventory,Open data,Enabling environment,20
+Guatemala,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,43.9
+Guatemala,Mining,Regulatory quality,Regulatory quality,Enabling environment,70.7
+Guatemala,Mining,Rule of law,Rule of law,Enabling environment,29.2
+Guatemala,Mining,Voice and accountability,Voice and accountability,Enabling environment,56
+Guinea,Mining,Control of corruption,Control of corruption,Enabling environment,29.2
+Guinea,Mining,Government effectiveness,Government effectiveness,Enabling environment,20.7
+Guinea,Mining,Open Data Index,Open data,Enabling environment,33.8
+Guinea,Mining,Open data inventory,Open data,Enabling environment,65.8
+Guinea,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,57.3
+Guinea,Mining,Regulatory quality,Regulatory quality,Enabling environment,36.5
+Guinea,Mining,Rule of law,Rule of law,Enabling environment,18.2
+Guinea,Mining,Voice and accountability,Voice and accountability,Enabling environment,45.1
+India,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,71.9
+India,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,78
+India,Oil and Gas,Open Data Barometer,Open data,Enabling environment,75.9
+India,Oil and Gas,Open Data Index,Open data,Enabling environment,84.7
+India,Oil and Gas,Open data inventory,Open data,Enabling environment,87
+India,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,28
+India,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,59.7
+India,Oil and Gas,Rule of law,Rule of law,Enabling environment,78
+India,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,86.5
+Indonesia,Mining,Control of corruption,Control of corruption,Enabling environment,63.4
+Indonesia,Mining,Government effectiveness,Government effectiveness,Enabling environment,62.1
+Indonesia,Mining,Open Data Barometer,Open data,Enabling environment,68.5
+Indonesia,Mining,Open Data Index,Open data,Enabling environment,77.9
+Indonesia,Mining,Open data inventory,Open data,Enabling environment,60
+Indonesia,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,46.3
+Indonesia,Mining,Regulatory quality,Regulatory quality,Enabling environment,69.5
+Indonesia,Mining,Rule of law,Rule of law,Enabling environment,63.4
+Indonesia,Mining,Voice and accountability,Voice and accountability,Enabling environment,78
+Indonesia,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,63.4
+Indonesia,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,62.1
+Indonesia,Oil and Gas,Open Data Barometer,Open data,Enabling environment,68.5
+Indonesia,Oil and Gas,Open Data Index,Open data,Enabling environment,77.9
+Indonesia,Oil and Gas,Open data inventory,Open data,Enabling environment,60
+Indonesia,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,46.3
+Indonesia,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,69.5
+Indonesia,Oil and Gas,Rule of law,Rule of law,Enabling environment,63.4
+Indonesia,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,78
+Iran,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,54.8
+Iran,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,63.4
+Iran,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,29.2
+Iran,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,13.4
+Iran,Oil and Gas,Rule of law,Rule of law,Enabling environment,31.7
+Iran,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,10.9
+Iraq,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,8.5
+Iraq,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,14.6
+Iraq,Oil and Gas,Open Data Index,Open data,Enabling environment,27.1
+Iraq,Oil and Gas,Open data inventory,Open data,Enabling environment,35.2
+Iraq,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,4.8
+Iraq,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,17
+Iraq,Oil and Gas,Rule of law,Rule of law,Enabling environment,7.3
+Iraq,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,25.6
+Kazakhstan,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,41.4
+Kazakhstan,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,70.7
+Kazakhstan,Oil and Gas,Open Data Barometer,Open data,Enabling environment,51.8
+Kazakhstan,Oil and Gas,Open Data Index,Open data,Enabling environment,76.2
+Kazakhstan,Oil and Gas,Open data inventory,Open data,Enabling environment,82.3
+Kazakhstan,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,71.9
+Kazakhstan,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,76.8
+Kazakhstan,Oil and Gas,Rule of law,Rule of law,Enabling environment,65.8
+Kazakhstan,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,30.4
+Kuwait,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,78
+Kuwait,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,73.1
+Kuwait,Oil and Gas,Open Data Index,Open data,Enabling environment,38.9
+Kuwait,Oil and Gas,Open data inventory,Open data,Enabling environment,57.6
+Kuwait,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,68.2
+Kuwait,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,73.1
+Kuwait,Oil and Gas,Rule of law,Rule of law,Enabling environment,80.4
+Kuwait,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,48.7
+Kyrgyzstan,Mining,Control of corruption,Control of corruption,Enabling environment,21.9
+Kyrgyzstan,Mining,Government effectiveness,Government effectiveness,Enabling environment,29.2
+Kyrgyzstan,Mining,Open Data Index,Open data,Enabling environment,81.3
+Kyrgyzstan,Mining,Open data inventory,Open data,Enabling environment,89.4
+Kyrgyzstan,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,32.9
+Kyrgyzstan,Mining,Regulatory quality,Regulatory quality,Enabling environment,56
+Kyrgyzstan,Mining,Rule of law,Rule of law,Enabling environment,28
+Kyrgyzstan,Mining,Voice and accountability,Voice and accountability,Enabling environment,52.4
+Laos,Mining,Control of corruption,Control of corruption,Enabling environment,35.3
+Laos,Mining,Government effectiveness,Government effectiveness,Enabling environment,53.6
+Laos,Mining,Open data inventory,Open data,Enabling environment,20
+Laos,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,85.3
+Laos,Mining,Regulatory quality,Regulatory quality,Enabling environment,40.2
+Laos,Mining,Rule of law,Rule of law,Enabling environment,45.1
+Laos,Mining,Voice and accountability,Voice and accountability,Enabling environment,8.5
+Liberia,Mining,Control of corruption,Control of corruption,Enabling environment,53.6
+Liberia,Mining,Government effectiveness,Government effectiveness,Enabling environment,10.9
+Liberia,Mining,Open data inventory,Open data,Enabling environment,52.9
+Liberia,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,39
+Liberia,Mining,Regulatory quality,Regulatory quality,Enabling environment,34.1
+Liberia,Mining,Rule of law,Rule of law,Enabling environment,36.5
+Liberia,Mining,Voice and accountability,Voice and accountability,Enabling environment,63.4
+Libya,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,3.6
+Libya,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,2.4
+Libya,Oil and Gas,Open Data Index,Open data,Enabling environment,18.6
+Libya,Oil and Gas,Open data inventory,Open data,Enabling environment,2.3
+Libya,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,6
+Libya,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,1.2
+Libya,Oil and Gas,Rule of law,Rule of law,Enabling environment,3.6
+Libya,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,17
+Madagascar,Mining,Control of corruption,Control of corruption,Enabling environment,40.2
+Madagascar,Mining,Government effectiveness,Government effectiveness,Enabling environment,13.4
+Madagascar,Mining,Open data inventory,Open data,Enabling environment,1.1
+Madagascar,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,59.7
+Madagascar,Mining,Regulatory quality,Regulatory quality,Enabling environment,43.9
+Madagascar,Mining,Rule of law,Rule of law,Enabling environment,48.7
+Madagascar,Mining,Voice and accountability,Voice and accountability,Enabling environment,57.3
+Malaysia,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,87.8
+Malaysia,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,89
+Malaysia,Oil and Gas,Open Data Barometer,Open data,Enabling environment,57.4
+Malaysia,Oil and Gas,Open Data Index,Open data,Enabling environment,25.4
+Malaysia,Oil and Gas,Open data inventory,Open data,Enabling environment,52.9
+Malaysia,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,81.7
+Malaysia,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,89
+Malaysia,Oil and Gas,Rule of law,Rule of law,Enabling environment,87.8
+Malaysia,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,58.5
+Mali,Mining,Control of corruption,Control of corruption,Enabling environment,52.4
+Mali,Mining,Government effectiveness,Government effectiveness,Enabling environment,28
+Mali,Mining,Open Data Barometer,Open data,Enabling environment,9.2
+Mali,Mining,Open Data Index,Open data,Enabling environment,44
+Mali,Mining,Open data inventory,Open data,Enabling environment,72.9
+Mali,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,12.1
+Mali,Mining,Regulatory quality,Regulatory quality,Enabling environment,47.5
+Mali,Mining,Rule of law,Rule of law,Enabling environment,43.9
+Mali,Mining,Voice and accountability,Voice and accountability,Enabling environment,65.8
+Mauritania,Mining,Control of corruption,Control of corruption,Enabling environment,30.4
+Mauritania,Mining,Government effectiveness,Government effectiveness,Enabling environment,23.1
+Mauritania,Mining,Open data inventory,Open data,Enabling environment,35.2
+Mauritania,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,41.4
+Mauritania,Mining,Regulatory quality,Regulatory quality,Enabling environment,37.8
+Mauritania,Mining,Rule of law,Rule of law,Enabling environment,40.2
+Mauritania,Mining,Voice and accountability,Voice and accountability,Enabling environment,43.9
+Mexico,Mining,Control of corruption,Control of corruption,Enabling environment,42.6
+Mexico,Mining,Government effectiveness,Government effectiveness,Enabling environment,81.7
+Mexico,Mining,Open Data Barometer,Open data,Enabling environment,88.8
+Mexico,Mining,Open Data Index,Open data,Enabling environment,86.4
+Mexico,Mining,Open data inventory,Open data,Enabling environment,94.1
+Mexico,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,30.4
+Mexico,Mining,Regulatory quality,Regulatory quality,Enabling environment,81.7
+Mexico,Mining,Rule of law,Rule of law,Enabling environment,59.7
+Mexico,Mining,Voice and accountability,Voice and accountability,Enabling environment,69.5
+Mexico,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,42.6
+Mexico,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,81.7
+Mexico,Oil and Gas,Open Data Barometer,Open data,Enabling environment,88.8
+Mexico,Oil and Gas,Open Data Index,Open data,Enabling environment,86.4
+Mexico,Oil and Gas,Open data inventory,Open data,Enabling environment,94.1
+Mexico,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,30.4
+Mexico,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,81.7
+Mexico,Oil and Gas,Rule of law,Rule of law,Enabling environment,59.7
+Mexico,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,69.5
+Mongolia,Mining,Control of corruption,Control of corruption,Enabling environment,62.1
+Mongolia,Mining,Government effectiveness,Government effectiveness,Enabling environment,57.3
+Mongolia,Mining,Open data inventory,Open data,Enabling environment,91.7
+Mongolia,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,89
+Mongolia,Mining,Regulatory quality,Regulatory quality,Enabling environment,63.4
+Mongolia,Mining,Rule of law,Rule of law,Enabling environment,64.6
+Mongolia,Mining,Voice and accountability,Voice and accountability,Enabling environment,82.9
+Morocco,Mining,Control of corruption,Control of corruption,Enabling environment,76.8
+Morocco,Mining,Government effectiveness,Government effectiveness,Enabling environment,69.5
+Morocco,Mining,Open Data Barometer,Open data,Enabling environment,42.5
+Morocco,Mining,Open Data Index,Open data,Enabling environment,62.7
+Morocco,Mining,Open data inventory,Open data,Enabling environment,27
+Morocco,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,62.1
+Morocco,Mining,Regulatory quality,Regulatory quality,Enabling environment,71.9
+Morocco,Mining,Rule of law,Rule of law,Enabling environment,76.8
+Morocco,Mining,Voice and accountability,Voice and accountability,Enabling environment,47.5
+Mozambique,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,37.8
+Mozambique,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,34.1
+Mozambique,Oil and Gas,Open Data Barometer,Open data,Enabling environment,24
+Mozambique,Oil and Gas,Open data inventory,Open data,Enabling environment,27
+Mozambique,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,50
+Mozambique,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,53.6
+Mozambique,Oil and Gas,Rule of law,Rule of law,Enabling environment,37.8
+Mozambique,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,60.9
+Myanmar,Mining,Control of corruption,Control of corruption,Enabling environment,31.7
+Myanmar,Mining,Government effectiveness,Government effectiveness,Enabling environment,17
+Myanmar,Mining,Open Data Barometer,Open data,Enabling environment,5.5
+Myanmar,Mining,Open Data Index,Open data,Enabling environment,15.2
+Myanmar,Mining,Open data inventory,Open data,Enabling environment,35.2
+Myanmar,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,15.8
+Myanmar,Mining,Regulatory quality,Regulatory quality,Enabling environment,14.6
+Myanmar,Mining,Rule of law,Rule of law,Enabling environment,14.6
+Myanmar,Mining,Voice and accountability,Voice and accountability,Enabling environment,23.1
+Myanmar,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,31.7
+Myanmar,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,17
+Myanmar,Oil and Gas,Open Data Barometer,Open data,Enabling environment,5.5
+Myanmar,Oil and Gas,Open Data Index,Open data,Enabling environment,15.2
+Myanmar,Oil and Gas,Open data inventory,Open data,Enabling environment,35.2
+Myanmar,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,15.8
+Myanmar,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,14.6
+Myanmar,Oil and Gas,Rule of law,Rule of law,Enabling environment,14.6
+Myanmar,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,23.1
+Niger,Mining,Control of corruption,Control of corruption,Enabling environment,58.5
+Niger,Mining,Government effectiveness,Government effectiveness,Enabling environment,46.3
+Niger,Mining,Open Data Index,Open data,Enabling environment,33.8
+Niger,Mining,Open data inventory,Open data,Enabling environment,32.9
+Niger,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,26.8
+Niger,Mining,Regulatory quality,Regulatory quality,Enabling environment,45.1
+Niger,Mining,Rule of law,Rule of law,Enabling environment,52.4
+Niger,Mining,Voice and accountability,Voice and accountability,Enabling environment,64.6
+Nigeria,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,20.7
+Nigeria,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,26.8
+Nigeria,Oil and Gas,Open Data Barometer,Open data,Enabling environment,38.8
+Nigeria,Oil and Gas,Open Data Index,Open data,Enabling environment,22
+Nigeria,Oil and Gas,Open data inventory,Open data,Enabling environment,60
+Nigeria,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,9.7
+Nigeria,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,39
+Nigeria,Oil and Gas,Rule of law,Rule of law,Enabling environment,24.3
+Nigeria,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,54.8
+Norway,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,98.7
+Norway,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,98.7
+Norway,Oil and Gas,Open Data Barometer,Open data,Enabling environment,85.1
+Norway,Oil and Gas,Open data inventory,Open data,Enabling environment,98.8
+Norway,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,97.5
+Norway,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,95.1
+Norway,Oil and Gas,Rule of law,Rule of law,Enabling environment,98.7
+Norway,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,98.7
+Oman,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,86.5
+Oman,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,76.8
+Oman,Oil and Gas,Open Data Index,Open data,Enabling environment,66.1
+Oman,Oil and Gas,Open data inventory,Open data,Enabling environment,70.5
+Oman,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,90.2
+Oman,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,86.5
+Oman,Oil and Gas,Rule of law,Rule of law,Enabling environment,86.5
+Oman,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,37.8
+Papua New Guinea,Mining,Control of corruption,Control of corruption,Enabling environment,26.8
+Papua New Guinea,Mining,Government effectiveness,Government effectiveness,Enabling environment,45.1
+Papua New Guinea,Mining,Open data inventory,Open data,Enabling environment,4.7
+Papua New Guinea,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,45.1
+Papua New Guinea,Mining,Regulatory quality,Regulatory quality,Enabling environment,48.7
+Papua New Guinea,Mining,Rule of law,Rule of law,Enabling environment,35.3
+Papua New Guinea,Mining,Voice and accountability,Voice and accountability,Enabling environment,75.6
+Peru,Mining,Control of corruption,Control of corruption,Enabling environment,56
+Peru,Mining,Government effectiveness,Government effectiveness,Enabling environment,58.5
+Peru,Mining,Open Data Barometer,Open data,Enabling environment,62.9
+Peru,Mining,Open Data Index,Open data,Enabling environment,1.6
+Peru,Mining,Open data inventory,Open data,Enabling environment,52.9
+Peru,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,54.8
+Peru,Mining,Regulatory quality,Regulatory quality,Enabling environment,85.3
+Peru,Mining,Rule of law,Rule of law,Enabling environment,57.3
+Peru,Mining,Voice and accountability,Voice and accountability,Enabling environment,80.4
+Philippines,Mining,Control of corruption,Control of corruption,Enabling environment,67
+Philippines,Mining,Government effectiveness,Government effectiveness,Enabling environment,79.2
+Philippines,Mining,Open Data Barometer,Open data,Enabling environment,77.7
+Philippines,Mining,Open Data Index,Open data,Enabling environment,55.9
+Philippines,Mining,Open data inventory,Open data,Enabling environment,76.4
+Philippines,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,37.8
+Philippines,Mining,Regulatory quality,Regulatory quality,Enabling environment,74.3
+Philippines,Mining,Rule of law,Rule of law,Enabling environment,67
+Philippines,Mining,Voice and accountability,Voice and accountability,Enabling environment,76.8
+Qatar,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,90.2
+Qatar,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,90.2
+Qatar,Oil and Gas,Open Data Barometer,Open data,Enabling environment,44.4
+Qatar,Oil and Gas,Open Data Index,Open data,Enabling environment,47.4
+Qatar,Oil and Gas,Open data inventory,Open data,Enabling environment,35.2
+Qatar,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,95.1
+Qatar,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,87.8
+Qatar,Oil and Gas,Rule of law,Rule of law,Enabling environment,91.4
+Qatar,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,39
+Russia,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,34.1
+Russia,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,65.8
+Russia,Oil and Gas,Open Data Barometer,Open data,Enabling environment,66.6
+Russia,Oil and Gas,Open data inventory,Open data,Enabling environment,87
+Russia,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,20.7
+Russia,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,50
+Russia,Oil and Gas,Rule of law,Rule of law,Enabling environment,46.3
+Russia,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,35.3
+Saudi Arabia,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,82.9
+Saudi Arabia,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,80.4
+Saudi Arabia,Oil and Gas,Open Data Barometer,Open data,Enabling environment,46.2
+Saudi Arabia,Oil and Gas,Open Data Index,Open data,Enabling environment,32.2
+Saudi Arabia,Oil and Gas,Open data inventory,Open data,Enabling environment,27
+Saudi Arabia,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,52.4
+Saudi Arabia,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,78
+Saudi Arabia,Oil and Gas,Rule of law,Rule of law,Enabling environment,84.1
+Saudi Arabia,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,7.3
+Sierra Leone,Mining,Control of corruption,Control of corruption,Enabling environment,39
+Sierra Leone,Mining,Government effectiveness,Government effectiveness,Enabling environment,15.8
+Sierra Leone,Mining,Open Data Barometer,Open data,Enabling environment,12.9
+Sierra Leone,Mining,Open Data Index,Open data,Enabling environment,1.6
+Sierra Leone,Mining,Open data inventory,Open data,Enabling environment,44.7
+Sierra Leone,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,73.1
+Sierra Leone,Mining,Regulatory quality,Regulatory quality,Enabling environment,35.3
+Sierra Leone,Mining,Rule of law,Rule of law,Enabling environment,34.1
+Sierra Leone,Mining,Voice and accountability,Voice and accountability,Enabling environment,59.7
+South Africa,Mining,Control of corruption,Control of corruption,Enabling environment,81.7
+South Africa,Mining,Government effectiveness,Government effectiveness,Enabling environment,84.1
+South Africa,Mining,Open Data Barometer,Open data,Enabling environment,59.2
+South Africa,Mining,Open Data Index,Open data,Enabling environment,71.1
+South Africa,Mining,Open data inventory,Open data,Enabling environment,85.8
+South Africa,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,67
+South Africa,Mining,Regulatory quality,Regulatory quality,Enabling environment,80.4
+South Africa,Mining,Rule of law,Rule of law,Enabling environment,81.7
+South Africa,Mining,Voice and accountability,Voice and accountability,Enabling environment,91.4
+South Sudan,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,2.4
+South Sudan,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,1.2
+South Sudan,Oil and Gas,Open data inventory,Open data,Enabling environment,9.4
+South Sudan,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,3.6
+South Sudan,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,6
+South Sudan,Oil and Gas,Rule of law,Rule of law,Enabling environment,2.4
+South Sudan,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,13.4
+Sudan,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,4.8
+Sudan,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,7.3
+Sudan,Oil and Gas,Open Data Index,Open data,Enabling environment,22
+Sudan,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,8.5
+Sudan,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,9.7
+Sudan,Oil and Gas,Rule of law,Rule of law,Enabling environment,15.8
+Sudan,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,6
+Tanzania,Mining,Control of corruption,Control of corruption,Enabling environment,43.9
+Tanzania,Mining,Government effectiveness,Government effectiveness,Enabling environment,47.5
+Tanzania,Mining,Open Data Barometer,Open data,Enabling environment,35.1
+Tanzania,Mining,Open data inventory,Open data,Enabling environment,35.2
+Tanzania,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,56
+Tanzania,Mining,Regulatory quality,Regulatory quality,Enabling environment,60.9
+Tanzania,Mining,Rule of law,Rule of law,Enabling environment,62.1
+Tanzania,Mining,Voice and accountability,Voice and accountability,Enabling environment,67
+Tanzania,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,43.9
+Tanzania,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,47.5
+Tanzania,Oil and Gas,Open Data Barometer,Open data,Enabling environment,35.1
+Tanzania,Oil and Gas,Open data inventory,Open data,Enabling environment,35.2
+Tanzania,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,56
+Tanzania,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,60.9
+Tanzania,Oil and Gas,Rule of law,Rule of law,Enabling environment,62.1
+Tanzania,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,67
+Timor-Leste,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,46.3
+Timor-Leste,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,21.9
+Timor-Leste,Oil and Gas,Open Data Index,Open data,Enabling environment,38.9
+Timor-Leste,Oil and Gas,Open data inventory,Open data,Enabling environment,30.5
+Timor-Leste,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,64.6
+Timor-Leste,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,26.8
+Timor-Leste,Oil and Gas,Rule of law,Rule of law,Enabling environment,17
+Timor-Leste,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,79.2
+Trinidad and Tobago,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,60.9
+Trinidad and Tobago,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,82.9
+Trinidad and Tobago,Oil and Gas,Open Data Index,Open data,Enabling environment,52.5
+Trinidad and Tobago,Oil and Gas,Open data inventory,Open data,Enabling environment,5.8
+Trinidad and Tobago,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,82.9
+Trinidad and Tobago,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,79.2
+Trinidad and Tobago,Oil and Gas,Rule of law,Rule of law,Enabling environment,75.6
+Trinidad and Tobago,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,89
+Tunisia,Mining,Control of corruption,Control of corruption,Enabling environment,80.4
+Tunisia,Mining,Government effectiveness,Government effectiveness,Enabling environment,67
+Tunisia,Mining,Open Data Barometer,Open data,Enabling environment,72.2
+Tunisia,Mining,Open Data Index,Open data,Enabling environment,47.4
+Tunisia,Mining,Open data inventory,Open data,Enabling environment,80
+Tunisia,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,34.1
+Tunisia,Mining,Regulatory quality,Regulatory quality,Enabling environment,58.5
+Tunisia,Mining,Rule of law,Rule of law,Enabling environment,79.2
+Tunisia,Mining,Voice and accountability,Voice and accountability,Enabling environment,81.7
+Tunisia,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,80.4
+Tunisia,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,67
+Tunisia,Oil and Gas,Open Data Barometer,Open data,Enabling environment,72.2
+Tunisia,Oil and Gas,Open Data Index,Open data,Enabling environment,47.4
+Tunisia,Oil and Gas,Open data inventory,Open data,Enabling environment,80
+Tunisia,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,34.1
+Tunisia,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,58.5
+Tunisia,Oil and Gas,Rule of law,Rule of law,Enabling environment,79.2
+Tunisia,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,81.7
+Turkmenistan,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,15.8
+Turkmenistan,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,30.4
+Turkmenistan,Oil and Gas,Open data inventory,Open data,Enabling environment,12.9
+Turkmenistan,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,69.5
+Turkmenistan,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,3.6
+Turkmenistan,Oil and Gas,Rule of law,Rule of law,Enabling environment,10.9
+Turkmenistan,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,1.2
+Uganda,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,23.1
+Uganda,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,54.8
+Uganda,Oil and Gas,Open Data Barometer,Open data,Enabling environment,27.7
+Uganda,Oil and Gas,Open Data Index,Open data,Enabling environment,1.6
+Uganda,Oil and Gas,Open data inventory,Open data,Enabling environment,57.6
+Uganda,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,35.3
+Uganda,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,67
+Uganda,Oil and Gas,Rule of law,Rule of law,Enabling environment,68.2
+Uganda,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,50
+Ukraine,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,28
+Ukraine,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,51.2
+Ukraine,Oil and Gas,Open Data Barometer,Open data,Enabling environment,40.7
+Ukraine,Oil and Gas,Open Data Index,Open data,Enabling environment,71.1
+Ukraine,Oil and Gas,Open data inventory,Open data,Enabling environment,70.5
+Ukraine,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,10.9
+Ukraine,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,46.3
+Ukraine,Oil and Gas,Rule of law,Rule of law,Enabling environment,42.6
+Ukraine,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,74.3
+United Arab Emirates,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,91.4
+United Arab Emirates,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,93.9
+United Arab Emirates,Oil and Gas,Open Data Barometer,Open data,Enabling environment,61.1
+United Arab Emirates,Oil and Gas,Open Data Index,Open data,Enabling environment,33.8
+United Arab Emirates,Oil and Gas,Open data inventory,Open data,Enabling environment,50.5
+United Arab Emirates,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,92.6
+United Arab Emirates,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,91.4
+United Arab Emirates,Oil and Gas,Rule of law,Rule of law,Enabling environment,90.2
+United Arab Emirates,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,36.5
+United Kingdom,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,96.3
+United Kingdom,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,96.3
+United Kingdom,Oil and Gas,Open Data Barometer,Open data,Enabling environment,98.1
+United Kingdom,Oil and Gas,Open Data Index,Open data,Enabling environment,98.3
+United Kingdom,Oil and Gas,Open data inventory,Open data,Enabling environment,84.7
+United Kingdom,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,86.5
+United Kingdom,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,98.7
+United Kingdom,Oil and Gas,Rule of law,Rule of law,Enabling environment,95.1
+United Kingdom,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,95.1
+United States of America (Gulf of Mexico),Oil and Gas,Control of corruption,Control of corruption,Enabling environment,93.9
+United States of America (Gulf of Mexico),Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,92.6
+United States of America (Gulf of Mexico),Oil and Gas,Open Data Barometer,Open data,Enabling environment,96.2
+United States of America (Gulf of Mexico),Oil and Gas,Open Data Index,Open data,Enabling environment,91.5
+United States of America (Gulf of Mexico),Oil and Gas,Open data inventory,Open data,Enabling environment,96.4
+United States of America (Gulf of Mexico),Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,91.4
+United States of America (Gulf of Mexico),Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,92.6
+United States of America (Gulf of Mexico),Oil and Gas,Rule of law,Rule of law,Enabling environment,93.9
+United States of America (Gulf of Mexico),Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,93.9
+Uzbekistan,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,19.5
+Uzbekistan,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,40.2
+Uzbekistan,Oil and Gas,Open Data Index,Open data,Enabling environment,1.6
+Uzbekistan,Oil and Gas,Open data inventory,Open data,Enabling environment,3.5
+Uzbekistan,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,58.5
+Uzbekistan,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,7.3
+Uzbekistan,Oil and Gas,Rule of law,Rule of law,Enabling environment,23.1
+Uzbekistan,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,4.8
+Venezuela,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,12.1
+Venezuela,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,18.2
+Venezuela,Oil and Gas,Open Data Barometer,Open data,Enabling environment,20.3
+Venezuela,Oil and Gas,Open data inventory,Open data,Enabling environment,32.9
+Venezuela,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,23.1
+Venezuela,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,4.8
+Venezuela,Oil and Gas,Rule of law,Rule of law,Enabling environment,1.2
+Venezuela,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,31.7
+Vietnam,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,64.6
+Vietnam,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,75.6
+Vietnam,Oil and Gas,Open Data Barometer,Open data,Enabling environment,50
+Vietnam,Oil and Gas,Open data inventory,Open data,Enabling environment,50.5
+Vietnam,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,76.8
+Vietnam,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,52.4
+Vietnam,Oil and Gas,Rule of law,Rule of law,Enabling environment,71.9
+Vietnam,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,19.5
+Yemen,Oil and Gas,Control of corruption,Control of corruption,Enabling environment,6
+Yemen,Oil and Gas,Government effectiveness,Government effectiveness,Enabling environment,3.6
+Yemen,Oil and Gas,Open Data Barometer,Open data,Enabling environment,1.8
+Yemen,Oil and Gas,Open Data Index,Open data,Enabling environment,1.6
+Yemen,Oil and Gas,Open data inventory,Open data,Enabling environment,44.7
+Yemen,Oil and Gas,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,1.2
+Yemen,Oil and Gas,Regulatory quality,Regulatory quality,Enabling environment,23.1
+Yemen,Oil and Gas,Rule of law,Rule of law,Enabling environment,13.4
+Yemen,Oil and Gas,Voice and accountability,Voice and accountability,Enabling environment,15.8
+Zambia,Mining,Control of corruption,Control of corruption,Enabling environment,70.7
+Zambia,Mining,Government effectiveness,Government effectiveness,Enabling environment,50
+Zambia,Mining,Open Data Barometer,Open data,Enabling environment,11.1
+Zambia,Mining,Open Data Index,Open data,Enabling environment,1.6
+Zambia,Mining,Open data inventory,Open data,Enabling environment,8.2
+Zambia,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,80.4
+Zambia,Mining,Regulatory quality,Regulatory quality,Enabling environment,57.3
+Zambia,Mining,Rule of law,Rule of law,Enabling environment,73.1
+Zambia,Mining,Voice and accountability,Voice and accountability,Enabling environment,70.7
+Zimbabwe,Mining,Control of corruption,Control of corruption,Enabling environment,14.6
+Zimbabwe,Mining,Government effectiveness,Government effectiveness,Enabling environment,19.5
+Zimbabwe,Mining,Open Data Barometer,Open data,Enabling environment,3.7
+Zimbabwe,Mining,Open Data Index,Open data,Enabling environment,1.6
+Zimbabwe,Mining,Open data inventory,Open data,Enabling environment,20
+Zimbabwe,Mining,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,48.7
+Zimbabwe,Mining,Regulatory quality,Regulatory quality,Enabling environment,8.5
+Zimbabwe,Mining,Rule of law,Rule of law,Enabling environment,12.1
+Zimbabwe,Mining,Voice and accountability,Voice and accountability,Enabling environment,26.8

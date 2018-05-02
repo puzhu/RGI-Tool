@@ -132,3 +132,12 @@ questionID,question,lawPractice,questionLabel,indicator,subComponent,component,q
 159,Does the sovereign wealth fund publicly disclose its annual financial reports?,Practice,SWF financial report disclosure,SWF financial reporting practice,Sovereign wealth funds,Revenue management,131,131
 166,Were these annual financial reports audited over the most recently completed audit timeframe?,Practice,SWF financial audit timeframe,SWF financial reporting practice,Sovereign wealth funds,Revenue management,132,131
 168,"From 2015 onwards, has the legislature reviewed the sovereign wealth fund's annual financial reports?",Practice,SWF legislative review,SWF financial reporting practice,Sovereign wealth funds,Revenue management,133,131
+NA,NA,NA,NA,Control of corruption,Control of corruption,Enabling environment,NA,132
+NA,NA,NA,NA,Government effectiveness,Government effectiveness,Enabling environment,NA,133
+NA,NA,NA,NA,Political stability and absence of violence,Political stability and absence of violence,Enabling environment,NA,134
+NA,NA,NA,NA,Regulatory quality,Regulatory quality,Enabling environment,NA,135
+NA,NA,NA,NA,Rule of law,Rule of law,Enabling environment,NA,136
+NA,NA,NA,NA,Voice and accountability,Voice and accountability,Enabling environment,NA,137
+NA,NA,NA,NA,Open Data Index,Open data,Enabling environment,NA,138
+NA,NA,NA,NA,Open data inventory,Open data,Enabling environment,NA,139
+NA,NA,NA,NA,Open Data Barometer,Open data,Enabling environment,NA,140
