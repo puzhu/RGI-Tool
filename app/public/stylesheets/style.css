@@ -18,8 +18,8 @@ h1, h2, h3, h4, h5{
 
 }
 
-#countryContent, #chart{
-	height:600px;
+#countryContent, #chart, #countryIndicators{
+	height:500px;
 }
 
 
@@ -33,7 +33,7 @@ h1, h2, h3, h4, h5{
 
 }
 .countryBlurb{
-	height: 150px;
+	height: 100px;
 	overflow-y: scroll;
 }
 .inner {
@@ -44,7 +44,7 @@ h1, h2, h3, h4, h5{
 }
 #countryIndicators{
 	border: 1px red solid;
-	height: 600px;
+	/*height: 600px;*/
 }
 
 

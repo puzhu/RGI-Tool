@@ -2,16 +2,15 @@
 // const stateVars = {lockedRank: 0, sortBy: "indexScore", sortDirection: {indexScore: "ascending", valueRealization: "ascending", revenueManagement: "ascending", enablingEnvironment: "ascending"},}
 const stateVars = {lockedRank: 0, sortBy: "indexScore", sortDirection: "ascending",}
 
-const countryBlurbInitial = `
-  <div class="col-md-12 sticky-top dynamicTitle">
+const initialBlurb = `
+  <div class="row ml-2">
     <h5>Click on a country to view profile</h5>
-  </div>
-  <div class="col-md-12" id="dynamicBlurb">
     <p class="explainer">The chart to the left shows the scores (overall and component) for the 2017 RGI. By default the chart is sorted by the overall score. Use the panel headers to change the default sort settings.</p>
     <p class="explainer">In addition to the sorting, you can also click on individual rows to lock them (one at a time). This in combination with sorting will allow you to visually observe a country's relative performance 
     across different index components. Finally, locking a country also will show more detailed information about each country that you can manipulate.</p>
   </div>
 `
+
 /**
  * Check an function argument
  * @function required
@@ -45,40 +44,48 @@ const createSVG = (selector = required(), margin = {top: 5, right: 5, bottom: 5,
 /**
  * Render the initial view
  * @function renderInitialView
- * @param {string} countryBlurbInitial - The initial text to be appended to the country blurb section
+ * @param {string} initialBlurb - The initial text to be appended to the country blurb section
  * @description given a set of template strings render the initial views
  */
 
-const renderInitialView = (countryBlurbInitial) => {
-  const countryBlurbEl = document.querySelector(".js-countryBlurb")
+const renderInitialView = (initialBlurb) => {
+  const countryBlurbEl = document.querySelector("#countryContent")
   while(countryBlurbEl.firstChild){
     countryBlurbEl.removeChild(countryBlurbEl.firstChild);
   }
   // document.querySelector(".js-line").classList.contains("inner") ? document.querySelector(".js-line").classList.remove("inner") : null;
-  countryBlurbEl.innerHTML = countryBlurbInitial;
+  countryBlurbEl.innerHTML = initialBlurb;
 }
 
 const renderCountryBlurb = (country, alias, sector, countryData) => {
-  const countryBlurbEl = document.querySelector(".js-countryBlurb")
+  const countryBlurbEl = document.querySelector("#countryContent")
   while(countryBlurbEl.firstChild){
     countryBlurbEl.removeChild(countryBlurbEl.firstChild);
   }
   const blurbText = countryData.filter(d => d.country === country && d.sector === sector)[0].blurb
+  
   const countryBlurb = `
-    <div class = "col-md-12 sticky-top dynamicTitle">
-      <h5>${country.concat(sector).length < 34 ? country : alias} - ${sector} sector</h5>
-    </div>
-    <div class = "col-md-12" >
-      <p class="explainer">${blurbText}</p>
-    </div>
+    <div class="row">
+      <div class="col-md-2 js-countryIndicators m-0 p-0" id="countryIndicators">
+        
+      </div>
+      <div class="col-md-10 m-0 p-0">
+        <div class = "col-md-12 sticky-top dynamicTitle">
+          <h5>${country.concat(sector).length < 34 ? country : alias} - ${sector} sector</h5>
+        </div>
+        <div class = "col-md-12 js-countryBlurb countryBlurb">
+          <p class="explainer">${blurbText}</p>
+        </div>
+      </div>
+    </div>  
   `
   countryBlurbEl.innerHTML = countryBlurb;
   // document.querySelector(".js-line").classList.add("inner")
 }
 
-const renderIndicatorChart = (country, sector, indicatorScores) => {
-  const indicatorData = indicatorScores.filter(d => d.country === country && d.sector === sector)
-}
+// const renderIndicatorChart = (country, sector, indicatorScores) => {
+//   const indicatorData = indicatorScores.filter(d => d.country === country && d.sector === sector)
+// }
 
 /**
  * Calculate the indicator scores from the clean data + ee data
@@ -259,8 +266,6 @@ const computePanelData = (indicatorScores, countryData, framework) => {
   return panelData
 }
 
-
-
 /**
  * Compute the ranks of different countries for the index, component and subcomponents
  * @function computeScores
@@ -278,6 +283,18 @@ const computeRanks = (panelData = required(), rankVar = "indexScore", sortDirect
 
   return ranked
 }
+
+//given the indicator framework initialize the indicator chart
+const initializeCountryIndicatorData = (framework) => {
+  console.log(framework)
+}
+
+//update the country indicator data given indicator data, country and sector
+const updateCountryIndicatorData = (indicatorData, country, sector) => {
+
+}
+
+//update indicator data
 
 /**
  * Update the panel using the indicator data
@@ -384,7 +401,7 @@ const labelOnClick = (d, countryData, indicatorScores) => {
     stateVars.lockedRank = 0;
 
     //clear initial view
-    renderInitialView(countryBlurbInitial);
+    renderInitialView(initialBlurb);
   } else {
     stateVars.lockedRank = currRank;
 
@@ -392,7 +409,7 @@ const labelOnClick = (d, countryData, indicatorScores) => {
     renderCountryBlurb(d.country, d.alias, d.sector, countryData)
 
     //render indicator chart
-    renderIndicatorChart(d.country, d.sector, indicatorScores)
+    // renderIndicatorChart(d.country, d.sector, indicatorScores)
   }
 
   //show the lock
@@ -406,11 +423,6 @@ const labelOnClick = (d, countryData, indicatorScores) => {
   //change the opacity on labels
   d3.selectAll(".countryLabels").filter(e => e.rank === stateVars.lockedRank).style("opacity", 1)
   d3.selectAll(".countryLabels").filter(e => e.rank !== stateVars.lockedRank).style("opacity", stateVars.lockedRank === 0 ? 1 : 0.2)  
-}
-
-//given an indicator country and sector find its score by reducing corresponding question scores
-const calculateIndicatorScores = (indicator, country, sector, framework) => {
-
 }
 
 
@@ -428,7 +440,7 @@ const calculateIndicatorScores = (indicator, country, sector, framework) => {
 
 const draw = (allScores = required(), framework = required(), questionScores = required(), countryData = required(), eeScores = required()) => {
   //RENDER THE INITIAL VIEW
-  renderInitialView(countryBlurbInitial);
+  renderInitialView(initialBlurb);
 
   //APPEND THE DIFFERENT SVGS  
   const labelChart = createSVG("#labels", margin = {top: 0, right: 0, bottom: 0, left: 0}),
@@ -448,10 +460,11 @@ const draw = (allScores = required(), framework = required(), questionScores = r
   const enablingChart = createSVG("#enablingEnvironment", margin = {top: 0, right: 0, bottom: 0, left: 1}),
     enablingSVG = enablingChart.plotVar;
 
-  const indicatorChart = createSVG("#countryIndicators", margin = {top: 0, right: 0, bottom: 0, left: 0}),
-    indicatorWidth = indicatorChart.width,
-    indicatorHeight = indicatorChart.height,
-    indicatorSVG = indicatorChart.plotVar
+  //cannot draw this until the element is created through renderCountryBlurb
+  // const indicatorChart = createSVG("#countryIndicators", margin = {top: 0, right: 0, bottom: 0, left: 0}),
+  //   indicatorWidth = indicatorChart.width,
+  //   indicatorHeight = indicatorChart.height,
+  //   indicatorSVG = indicatorChart.plotVar
 
   //GENERATE THE INITIAL DATA
   let indicatorScores = computeIndicatorData(allScores, eeScores, framework)
