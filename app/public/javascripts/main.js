@@ -284,13 +284,95 @@ const computeRanks = (panelData = required(), rankVar = "indexScore", sortDirect
   return ranked
 }
 
-//given the indicator framework initialize the indicator chart
-const initializeCountryIndicatorData = (framework) => {
-  console.log(framework)
-}
 
-//update the country indicator data given indicator data, country and sector
-const updateCountryIndicatorData = (indicatorData, country, sector) => {
+//draw the country indicator chart
+const drawCountryChart = (selector, country, sector, indicatorData, colorScale) => {
+  let countryData = indicatorData.filter(d => d.country === country && d.sector === sector && d.component !== "Enabling environment")
+  
+  const indicatorChart = createSVG(selector, margin = {top: 0, right: 0, bottom: 0, left: 0}),
+    indicatorWidth = indicatorChart.width,
+    indicatorHeight = indicatorChart.height,
+    indicatorSVG = indicatorChart.plotVar
+  // const {indicatorWidth, indicatorHeight, indicatorSVG} = createSVG(selector, margin = {top: 0, right: 0, bottom: 0, left: 0})
+
+  const indicatorYScale = d3.scaleBand()
+      .rangeRound([0, indicatorHeight])
+      .padding(0.1)
+      .domain([...new Set(countryData.map(d => d.indicator))]);
+
+
+  //indicator tooltip
+  const indiTip = d3.tip()
+    .attr('class', 'd3-tip')
+
+  //on component label mouseover draw left border on the indicator chart
+  const mouseOverComponent = (d) => {
+    // const componentData = countryData.filter()
+    const indiBars = d3.selectAll(".indiBars").filter(e => e.component === d)
+    const indiText = d3.selectAll(".indiText").filter(e => e.component === d)
+
+    indiText.classed("activeText", true)
+
+    // indiText.attr("fill", "red")
+  }
+  //on component label mouseout remove left border on the indicator chart
+  const mouseOutComponent = (d) => {
+    // const componentData = countryData.filter()
+    const indiBars = d3.selectAll(".indiBars").filter(e => e.component === d)
+    const indiText = d3.selectAll(".indiText").filter(e => e.component === d)
+
+    indiText.classed("activeText", false)
+  }
+  //on indicator mouseover show tool tip with name of the indicator and subcomponent 
+  //and change class on component label to show active
+
+  //on indicator mouseout remove tool tip and active class on component label
+
+
+
+  const countryChart = indicatorSVG.append("g")
+      .selectAll(".countryIndicators")
+      .data(countryData)
+      .enter()
+
+  countryChart.append("g")
+    .append("rect")
+      .attr("class", "indiBars")
+      .attr("x", 3 * indicatorWidth/5)
+      .attr("y", d => indicatorYScale(d.indicator))
+      .attr("width", indicatorWidth/5)
+      .attr("height", indicatorYScale.bandwidth())
+      .attr("fill", d => colorScale(d.score))
+      .call(indiTip)
+
+  countryChart.append("g")
+    .append("text")
+    .attr("class", "indiText valueText")
+    .attr("x", 2.5 * indicatorWidth/5)
+    .attr("y", d => indicatorYScale(d.indicator) + 2)
+    .text(d => Math.round(d.score))
+    .style("text-anchor", "end")
+    .style("dominant-baseline", "hanging")
+
+  const componentLabels = indicatorSVG.append("g")
+      .selectAll(".componentLabels")
+      .data(["Value realization", "Revenue management"])
+      .enter()
+
+
+  componentLabels.append("g")
+    .append("text")
+      .text((d) => d)
+      .attr("class", "componentLabels")
+      .attr("y", indicatorWidth/5)
+      .attr("x", (d, i) => i === 0 ? -indicatorHeight/4 : -3*indicatorHeight/4)
+      .attr("transform", "rotate(270)")
+      .style("text-anchor", "middle")
+      .on("mouseover", mouseOverComponent)
+      .on("mouseout", mouseOutComponent)
+
+  // d3.selectAll(".componentLabels")
+
 
 }
 
@@ -392,7 +474,7 @@ const panelUpdate = (xScale, yScale, colorScale) => {
  * @param {object} indicatorScores - The scores for each indicator/country
  * @description when a label is clicked lock it and update the charts
  */
-const labelOnClick = (d, countryData, indicatorScores) => {
+const labelOnClick = (d, countryData, indicatorScores, colorScale) => {
   let currRank = d.rank;
 
   //update the locked global rank
@@ -409,7 +491,7 @@ const labelOnClick = (d, countryData, indicatorScores) => {
     renderCountryBlurb(d.country, d.alias, d.sector, countryData)
 
     //render indicator chart
-    // renderIndicatorChart(d.country, d.sector, indicatorScores)
+    drawCountryChart("#countryIndicators", d.country, d.sector, indicatorScores, colorScale)
   }
 
   //show the lock
@@ -461,10 +543,7 @@ const draw = (allScores = required(), framework = required(), questionScores = r
     enablingSVG = enablingChart.plotVar;
 
   //cannot draw this until the element is created through renderCountryBlurb
-  // const indicatorChart = createSVG("#countryIndicators", margin = {top: 0, right: 0, bottom: 0, left: 0}),
-  //   indicatorWidth = indicatorChart.width,
-  //   indicatorHeight = indicatorChart.height,
-  //   indicatorSVG = indicatorChart.plotVar
+  
 
   //GENERATE THE INITIAL DATA
   let indicatorScores = computeIndicatorData(allScores, eeScores, framework)
@@ -556,7 +635,7 @@ const draw = (allScores = required(), framework = required(), questionScores = r
       .call(labelTip)
       .on("mouseover", labelMouseOver)
       .on("mouseout", labelMouseOut)
-      .on("click", d => labelOnClick(d, countryData, indicatorScores))
+      .on("click", d => labelOnClick(d, countryData, indicatorScores, colorScale))
 
 
     //add the mining and oil-gas icons
@@ -675,30 +754,6 @@ const draw = (allScores = required(), framework = required(), questionScores = r
       .text(d => Math.round(d.enablingEnvironment))
       .attr("text-anchor", d => xScale(d.enablingEnvironment) < 9 ? "start" : "end")
       .style("dominant-baseline", "hanging")
-
-
-  //Draw the defaults indicator chart
-  // const initialIndicatorData = initializeIndicatorChartData(allScores, indicatorScores, framework, eeScores)
-
-  // calcIndicatorScores(initialIndicatorData)
-  
-  // const indicatorYScale = d3.scaleBand()
-  //     .rangeRound([0, indicatorHeight])
-  //     .padding(0.1)
-  //     .domain([...new Set(initialIndicatorData.map(d => d.indicator))]);
-
-
-  // const countryChart = indicatorSVG.append("g")
-  //     .selectAll(".countryIndicators")
-  //     .data(initialIndicatorData)
-  //     .enter()
-
-  // countryChart.append("g")
-  //   .append("rect")
-  //     .attr("x", 2*indicatorWidth/5)
-  //     .attr("y", d => indicatorYScale(d.indicator))
-  //     .attr("width", indicatorWidth/5)
-  //     .attr("height", indicatorYScale.bandwidth())
 
 
   //Label click event listener

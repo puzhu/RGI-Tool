@@ -43,7 +43,7 @@ h1, h2, h3, h4, h5{
     border-bottom: 1.5px solid darkgrey;
 }
 #countryIndicators{
-	border: 1px red solid;
+	/*border: 1px red solid;*/
 	/*height: 600px;*/
 }
 
@@ -145,6 +145,21 @@ h1, h2, h3, h4, h5{
 
 /*Country section*/
 
+.componentLabels{
+	font-family: 'Merriweather', serif;
+	font-style: light;
+	font-size: 0.8em;
+	cursor: pointer;
+}
+
+/*.componentLabels:hover .indiText{
+	color: red;
+}*/
+
+.activeText{
+	font-weight: bold;
+	fill: grey;
+}
 
 
 
