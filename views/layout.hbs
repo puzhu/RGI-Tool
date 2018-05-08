@@ -11,6 +11,20 @@
   <body>
     {{{body}}}
   </body>
+
+<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  let config = {
+    apiKey: "AIzaSyBV6VUDD6TiKUqw_1W-Az92dI3EZ9EX7IA",
+    authDomain: "rgi-tool.firebaseapp.com",
+    databaseURL: "https://rgi-tool.firebaseio.com",
+    projectId: "rgi-tool",
+    storageBucket: "",
+    messagingSenderId: "830647400900"
+  };
+  firebase.initializeApp(config);
+</script>
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script> -->
   <script src="/javascripts/d3Tip.js"></script>
