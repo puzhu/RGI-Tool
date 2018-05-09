@@ -73,15 +73,17 @@ hr {
 	font-size: 0.6em;
 	cursor: default;
 	text-align: center;
-	background-color: rgba(242,243,235, 0.8);
-	z-index: 2;
+	background-color: rgba(242, 243, 235, 0.8);
+	z-index: 100;
 }
+
 .topLabel p{
 	cursor: pointer;
+	font-weight: bold;
 }
 
 .topLabel:hover p{
-	font-weight: bold;
+	font-weight: lighter;
 }
 
 
@@ -108,6 +110,9 @@ hr {
 #index, #valueRealization, #revenueManagement, #enablingEnvironment{
 	background-color: #EBEAE6;
 }
+/*#index{
+	background-color: rgba(174, 187, 206, 0.5);	
+}*/
 
 .card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -143,11 +148,12 @@ hr {
 	opacity: 1;
 }
 
-.indexText, .valueText, .revenueText, .enablingText, .ranks{
+.indexText, .valueText, .revenueText, .enablingText, .ranks {
 	font-size: 0.55em;
 	font-family: 'Merriweather', serif;
-	
 }
+
+
 
 /*Country section*/
 
