@@ -69,7 +69,7 @@ hr {
 	
 .topLabel{
 	font-family: 'Merriweather', serif;
-	font-weight: bold;
+	font-weight: normal;
 	font-size: 0.6em;
 	cursor: default;
 	text-align: center;
@@ -79,7 +79,7 @@ hr {
 
 .topLabel p{
 	cursor: pointer;
-	font-weight: bold;
+	/*font-weight: bold;*/
 }
 
 .topLabel:hover p{
@@ -106,13 +106,12 @@ hr {
 #labels, #index, #valueRealization, #revenueManagement, #enablingEnvironment{
 	min-height:1800px;
 }
-
-#index, #valueRealization, #revenueManagement, #enablingEnvironment{
-	background-color: #EBEAE6;
+#valueRealization, #revenueManagement, #enablingEnvironment{
+	background-color: rgb(235, 234, 230);
 }
-/*#index{
-	background-color: rgba(174, 187, 206, 0.5);	
-}*/
+#index{
+	background-color: rgb(200, 200, 210, 0.8);
+}
 
 .card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -129,8 +128,8 @@ hr {
 /*The D3 CSS*/
 .countryLabels{
 	font-family: 'Merriweather', serif;
-	font-style: light;
-	font-size: 0.8em;
+	font-style: lighter;
+	font-size: 0.75em;
 	cursor: pointer;
 	opacity: 1
 }
@@ -149,7 +148,7 @@ hr {
 }
 
 .indexText, .valueText, .revenueText, .enablingText, .ranks {
-	font-size: 0.55em;
+	font-size: 0.5em;
 	font-family: 'Merriweather', serif;
 }
 
@@ -157,10 +156,16 @@ hr {
 
 /*Country section*/
 
-.componentLabels{
+.componentLabels {
 	font-family: 'Merriweather', serif;
-	font-style: light;
+	font-style: lighter;
 	font-size: 0.8em;
+	cursor: pointer;
+}
+.subComponentLabels{
+	font-family: 'Merriweather', serif;
+	font-style: lighter;
+	font-size: 0.6em;
 	cursor: pointer;
 }
 

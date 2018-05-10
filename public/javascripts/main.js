@@ -2,6 +2,42 @@
 // const stateVars = {lockedRank: 0, sortBy: "indexScore", sortDirection: {indexScore: "ascending", valueRealization: "ascending", revenueManagement: "ascending", enablingEnvironment: "ascending"},}
 const stateVars = {lockedRank: 0, sortBy: "indexScore", sortDirection: "ascending", indicator: "", component: ""}
 
+const textwrap = (text, width) => {
+  text.each(function() {
+    let text = d3.select(this),
+        words = text.text().split(/\s+/).reverse(),
+        word,
+        line = [],
+        lineNumber = 0,
+        lineHeight = 1.1, // ems
+        y = text.attr("y"),
+        x = text.attr("x")
+    const textWidth = this.getBoundingClientRect().width
+    let dy = textWidth < width ? 0 : -(0.25 * 1.1 * Math.ceil(textWidth/width)) //replace with text.attr("dy") if there is no need for centering vertically
+    // console.log(dy, textWidth, width, Math.ceil(textWidth/width))
+
+    let tspan = text.text(null).append("tspan").attr("x", x).attr("y", y).attr("dy", dy + "em");
+
+      // console.log(this, this.clientWidth, width)
+        
+    while (word = words.pop()) {
+      line.push(word);
+      tspan.text(line.join(" "));
+      if (tspan.node().getComputedTextLength() > width && line.length > 1) {
+        line.pop();
+        tspan.text(line.join(" "));
+        line = [word];
+        tspan = text.append("tspan")
+            .attr("x", x)
+            .attr("y", y)
+            .attr("dy", ++lineNumber * lineHeight + dy + "em")
+            .text(word);
+        // console.log(word, lineNumber)
+      }
+    }
+  });
+}
+
 const initialBlurb = `
   <div class="row ml-2">
   <h3>RGI Tool</h3>
@@ -69,17 +105,14 @@ const renderCountryBlurb = (country, alias, sector, countryData) => {
   
   const countryBlurb = `
     <div class="row">
-      <div class="col-md-2 js-countryIndicators m-0 p-0" id="countryIndicators">
+      <div class="col-md-4 js-countryIndicators m-0 p-0" id="countryIndicators">
         
       </div>
-      <div class="col-md-10 m-0 p-0">
+      <div class="col-md-8 m-0 p-0">
         <div class = "col-md-12 sticky-top dynamicTitle">
           <h5>${country.concat(sector).length < 34 ? country : alias} - ${sector} sector</h5>
         </div>
-        <div class = "col-md-12 js-countryBlurb countryBlurb">
-          <p class="explainer">${blurbText}</p>
-        </div>
-        <hr>
+        
         <div class = "col-md-12">
           <h7 class="js-indiTitle"></h7>
           <p class="explainer">Click on indicator to view questions</p>
@@ -103,6 +136,7 @@ const renderQuestions = (country, sector, indicator, allScores) => {
  * @param {object} framework - The additional information required for each question, i.e. map to indicators, labels etc
  * @description given an id an margin object, append an svg to DOM and return SVG characteristics
  */
+
 const computeIndicatorData = (allScores, eeScores, framework) => {
   // console.log(indicatorScores)
   const indicatorList = [...new Set(framework.map(d => d.indicator))]
@@ -298,16 +332,15 @@ const computeRanks = (panelData = required(), rankVar = "indexScore", sortDirect
 const drawCountryChart = (selector, countryData, framework, colorScale) => {
   
   //Fill in the framework data
-  // console.log(countryData, framework)
-
   //Create a dataset at the level of the indicator. Mark those that are absent as not covered to fill with grey
   const indicatorList = [...new Set(framework.filter(d => d.component !== "Enabling environment").map(d => d.indicator))]
+  const subComponentList = [...new Set(framework.filter(d => d.component !== "Enabling environment").map(d => d.subComponent))]
 
   const chartData = indicatorList.reduce((data, indicator) => {
     const indiData = countryData.filter(d => d.indicator === indicator)
     const score = indiData.length === 0 ? "Not Covered" : indiData[0].score
 
-    data.push({indicator, score, component: framework.filter(d => d.indicator === indicator)[0].component})
+    data.push({indicator, score, subComponent: framework.filter(d => d.indicator === indicator)[0].subComponent, component: framework.filter(d => d.indicator === indicator)[0].component})
     return data
   }, [])
 
@@ -371,26 +404,6 @@ const drawCountryChart = (selector, countryData, framework, colorScale) => {
     indiText.classed("activeText", false)
     indiRect.classed("selectedRect", false)  
       
-
-      // if(clicked === ""){
-      //   const component = d3.selectAll(".componentLabels").filter(e => e === d.component)
-      //   const indiText = d3.selectAll(".indiText").filter(e => e.indicator === d.indicator)
-      //   const indiRect = d3.selectAll(".indiBars").filter(e => e.indicator === d.indicator)
-      //   const indiTitle = document.querySelector(".js-indiTitle")
-      //   indiTitle.innerHTML = ""
-      //   component.classed("activeText", false)
-      //   indiText.classed("activeText", false)
-      //   indiRect.classed("selectedRect", false)   
-      // } else {
-      //   const component = d3.selectAll(".componentLabels").filter(e => e === d.component)
-      //   const indiText = d3.selectAll(".indiText").filter(e => e.indicator === clicked)
-      //   const indiRect = d3.selectAll(".indiBars").filter(e => e.indicator === clicked)
-      //   const indiTitle = document.querySelector(".js-indiTitle")
-      //   indiTitle.innerHTML = clicked
-      // }
-      
-    
-    
   }
 
   //onClick Indicator
@@ -412,9 +425,9 @@ const drawCountryChart = (selector, countryData, framework, colorScale) => {
   countryChart.append("g")
     .append("rect")
       .attr("class", "indiBars")
-      .attr("x", 3 * indicatorWidth/5)
+      .attr("x", 5 * indicatorWidth/7)
       .attr("y", d => indicatorYScale(d.indicator))
-      .attr("width", indicatorWidth/5)
+      .attr("width", indicatorWidth/10)
       .attr("height", indicatorYScale.bandwidth())
       .attr("fill", d => d.score === "Not Covered" ? "grey" :colorScale(d.score))
       .on("mouseover", mouseOverIndicator)
@@ -423,29 +436,61 @@ const drawCountryChart = (selector, countryData, framework, colorScale) => {
 
   countryChart.append("g")
     .append("text")
-    .attr("class", "indiText valueText")
-    .attr("x", 2.5 * indicatorWidth/5)
-    .attr("y", d => indicatorYScale(d.indicator))
-    .text(d => d.score === "Not Covered" ? "" : Math.round(d.score))
-    .style("text-anchor", "end")
-    .style("dominant-baseline", "hanging")
+      .attr("class", "indiText valueText")
+      .attr("x", 4.8 * indicatorWidth/7)
+      .attr("y", d => indicatorYScale(d.indicator) + indicatorYScale.bandwidth()/2)
+      .text(d => d.score === "Not Covered" ? "" : Math.round(d.score))
+      .style("text-anchor", "end")
+      .style("dominant-baseline", "middle")
 
   const componentLabels = indicatorSVG.append("g")
       .selectAll(".componentLabels")
       .data(["Value realization", "Revenue management"])
       .enter()
 
+  //given a component or subcomponent find its position
+  const findPos = (item, itemType) => {
+    const allIndicators = chartData.filter(d => d[itemType] === item)
+    const firstIndicator = d3.selectAll(".indiBars").filter(d => d.indicator === allIndicators[0].indicator).attr("y")
+    const lastIndicator = d3.selectAll(".indiBars").filter(d => d.indicator === allIndicators[allIndicators.length - 1].indicator).attr("y")
+    const barHeight = indicatorYScale.bandwidth()
+
+    return (parseFloat(firstIndicator) + parseFloat(lastIndicator) + parseFloat(barHeight))/2
+  }
+
 
   componentLabels.append("g")
     .append("text")
-      .text((d) => d)
+      .text(d => d)
       .attr("class", "componentLabels")
-      .attr("y", indicatorWidth/5)
-      .attr("x", (d, i) => i === 0 ? -1.4*indicatorHeight/4 : -0.82*indicatorHeight)
-      .attr("transform", "rotate(270)")
+      .attr("transform", d => `translate(${0.5 * indicatorWidth/7}, ${findPos(d, 'component')}) rotate(270)`)
+      // .attr("x",  )
+      // .attr("y", d => )
       .style("text-anchor", "middle")
       .on("mouseover", mouseOverComponent)
       .on("mouseout", mouseOutComponent)
+
+
+  const subComponentLabels = indicatorSVG.append("g")
+      .selectAll(".subComponentLabels")
+      .data(subComponentList)
+      .enter()
+
+
+  subComponentLabels.append("text")
+      .attr("class", "subComponentLabels")
+      .attr("x", 4 * indicatorWidth/7)
+      .attr("y", d => findPos(d, "subComponent"))
+      .attr("dy", 0)
+      .text(d => d)
+      // .style("dominant-baseline", "middle")
+      .call(textwrap, 3.2 * indicatorWidth/7)
+      .style("text-anchor", "end")
+
+
+  //console.log(chartData)
+  findPos("Value realization", "component")
+  //create a line draw function that takes either subcomponent or component and draws lines to highlight the indicators
 
   //draw strokes to separate the value realization and revenue management indicators
   const firstValue = countryData.filter((d) => d.component === "Value realization")[0].indicator;
@@ -474,8 +519,7 @@ const drawCountryChart = (selector, countryData, framework, colorScale) => {
       .attr("x1", 1*indicatorWidth/5)
       .attr("x2", 4*indicatorWidth/5)
       .attr("y1", lastRevPos)
-      .attr("y2", lastRevPos)
-    
+      .attr("y2", lastRevPos)    
 }
 
 //update indicator data
@@ -488,10 +532,11 @@ const drawCountryChart = (selector, countryData, framework, colorScale) => {
  * @param {object} colorScale - The colorScale for the bars
  * @description given the new panel data, update the charts and the labels
  */
-const panelUpdate = (yLabels, panelData, xScale, yScale, colorScale) => {
-    // console.log(panelData)
+const panelUpdate = (yLabels, panelData, allScales, allChartVars) => {
+  console.log(stateVars.sortBy, stateVars.sortDirection)
     //update the data
-    d3.selectAll(".countryLabels").data(panelData, d => d.rank)
+    //d3.selectAll(".countryLabels").data(panelData, d => d.rank)
+
     //SET: Update all the label elements
     const labelText = d3.selectAll(".labelText")
     const sectorIcons = d3.selectAll(".sectorIcons")
@@ -507,47 +552,27 @@ const panelUpdate = (yLabels, panelData, xScale, yScale, colorScale) => {
     
 
     // rankCircles.filter(d => d.rank === 10).style("fill", colorScale(d => d[stateVars.sortBy]))
-
-    const nRanks = document.querySelectorAll(".labelText").length
     
-    labelText.transition().duration(500).attr("y", d => yScale(d.rank))
-    sectorIcons.transition().duration(500).attr("y", d => yScale(d.rank))
-    lockIcons.transition().duration(500).attr("y", d => yScale(d.rank))    
-    rankText.transition().duration(500).text((d, i) => stateVars.sortDirection === "ascending" ? i + 1 : nRanks - i)//if sort direction is reverse then reverse the ranks
-    // rankText.attr("fill", d => colorScale(d[stateVars.sortBy]))
-    // rankCircles.transition().duration(500).attr("fill", (d) => colorScale(d[stateVars.sortBy]))
-    // rankCircles.attr("dy", d => yScale(d.rank) ) //+ 0.7 * barWidth
-
-    // labelText.each(function(d) {console.log(this,d.country, colorScale(d[stateVars.sortBy]))})
-
-
-
-    // attr("fill", (d, i) => {
-    //   // console.log(d.rank, d.country, colorScale(d[stateVars.sortBy]))
-    //   return newColors[i]
-    // })
-
+    rankText.transition().duration(500).attr("y", d => allScales.yScale(d.rank) + allChartVars.barWidth/2)
+        .text((d) => stateVars.sortDirection === "ascending" ? d.rank : allChartVars.nRanks - d.rank + 1)//if sort direction is reverse then reverse the ranks
+    rankCircles.attr("stroke", d => allScales.colorScale(d[stateVars.sortBy]))
+      //.attr("cy", d => allScales.yScale(d.rank) + allChartVars.barWidth/2)
+    
+    labelText.transition().duration(500).attr("y", d => allScales.yScale(d.rank) + 1.2 * allChartVars.barWidth/2)
+    sectorIcons.transition().duration(500).attr("y", d => allScales.yScale(d.rank))
+    lockIcons.transition().duration(500).attr("y", d => allScales.yScale(d.rank))    
+    
+    
+    
+    
     //SET: Update all the bars
-    const indexBars = d3.selectAll(".indexBars")
-    const indexText = d3.selectAll(".indexText")
-    const valueBars = d3.selectAll(".valueBars")
-    const valueText = d3.selectAll(".valueText")
-    const revenueBars = d3.selectAll(".revenueBars")
-    const revenueText = d3.selectAll(".revenueText")
-    const enablingBars = d3.selectAll(".enablingBars")
-    const enablingText = d3.selectAll(".enablingText")
+    const allBars = d3.selectAll(".bars");
+    const allBarText = d3.selectAll(".barText");
     
-    indexBars.transition().duration(500).attr("y", d => yScale(d.rank))
-        
-    indexText.transition().duration(500).attr("y", d => yScale(d.rank))
-    valueBars.transition().duration(500).attr("y", d => yScale(d.rank))
-    valueText.transition().duration(500).attr("y", d => yScale(d.rank))
-    revenueBars.transition().duration(500).attr("y", d => yScale(d.rank))
-    revenueText.transition().duration(500).attr("y", d => yScale(d.rank))
-    enablingBars.transition().duration(500).attr("y", d => yScale(d.rank))
-    enablingText.transition().duration(500).attr("y", d => yScale(d.rank))
-    
-
+    allBars.transition().duration(500).attr("y", d => allScales.yScale(d.rank))    
+    allBarText.transition().duration(500).attr("y", d => allScales.yScale(d.rank) + allChartVars.barWidth/2)
+    // allBars.each(function(d) {console.log(this, d[stateVars.sortBy], d.country,
+     // d.rank)})
     //implemet a scroll if locked is on: http://bl.ocks.org/humbletim/5507619
     // const scrollTopTween(scrollTop){
 
@@ -595,21 +620,34 @@ const labelOnClick = (d, countryData, indicatorScores, framework, colorScale) =>
     drawCountryChart("#countryIndicators", countrySectorData, framework, colorScale)
   }
 
+  //select all the elements
+  const lockIcons = d3.selectAll(".lockIcons");
+  const allBars = d3.selectAll(".bars");
+  const countryLabels = d3.selectAll(".countryLabels");
+  const rankText = d3.selectAll(".ranks");
+  const rankCircles = d3.selectAll(".rankCircles");
+
+
   //show the lock
-  d3.selectAll(".lockIcons").filter(e => e.rank === stateVars.lockedRank).style("opacity", 1);
-  d3.selectAll(".lockIcons").filter(e => e.rank !== stateVars.lockedRank).style("opacity", 0);
+  lockIcons.filter(e => e.rank === stateVars.lockedRank).style("opacity", 1);
+  lockIcons.filter(e => e.rank !== stateVars.lockedRank).style("opacity", 0);
 
   //change the opacity on bars
-  d3.selectAll(".bars").filter(e => e.rank === stateVars.lockedRank).style("opacity", 1)//classed("notLocked", lockedRank === 0 ? false : true)
-  d3.selectAll(".bars").filter(e => e.rank !== stateVars.lockedRank).style("opacity", stateVars.lockedRank === 0 ? 1 : 0.2)
+  allBars.filter(e => e.rank === stateVars.lockedRank).style("opacity", 1)//classed("notLocked", lockedRank === 0 ? false : true)
+  allBars.filter(e => e.rank !== stateVars.lockedRank).style("opacity", stateVars.lockedRank === 0 ? 1 : 0.2)
 
   //change the opacity on labels
-  d3.selectAll(".countryLabels").filter(e => e.rank === stateVars.lockedRank).style("opacity", 1)
-  d3.selectAll(".countryLabels").filter(e => e.rank !== stateVars.lockedRank).style("opacity", stateVars.lockedRank === 0 ? 1 : 0.2)  
+  countryLabels.filter(e => e.rank === stateVars.lockedRank).style("opacity", 1)
+  countryLabels.filter(e => e.rank !== stateVars.lockedRank).style("opacity", stateVars.lockedRank === 0 ? 1 : 0.2)
+
+  //change the opacity on the rank text
+  rankText.filter(e => e.rank === stateVars.lockedRank).style("opacity", 1)
+  rankText.filter(e => e.rank !== stateVars.lockedRank).style("opacity", stateVars.lockedRank === 0 ? 1 : 0.2)
+
+  //change the strokewidth opacity
+  rankCircles.filter(e => e.rank === stateVars.lockedRank).style("stroke-opacity", 1)
+  rankCircles.filter(e => e.rank !== stateVars.lockedRank).style("stroke-opacity", stateVars.lockedRank === 0 ? 1 : 0.2)
 }
-
-
-
 /**
  * Draw the RGI scores
  * @function draw
@@ -676,12 +714,19 @@ const draw = (allScores = required(), framework = required(), questionScores = r
     .range(colorRange)
     .domain(colorDomain)
 
+  const allScales ={xScale, yScale, colorScale} //collect all the scale functions
+
     //Chart dimension controls
   const labelSpace = document.querySelector(".js-labels").clientWidth,
+    barWidth = 0.6 * yScale.bandwidth(),
     iconPadding = 2,
-    iconSize = 12,
+    iconSize = barWidth,
     labelXPos = labelSpace - iconPadding * 2 - iconSize,
-    barWidth = 0.5*yScale.bandwidth()
+    nRanks = [... new Set(countryData.map(d => d.country + d.sector))].length
+
+
+  const allChartVars = {labelSpace, barWidth, iconPadding, iconSize, labelXPos, nRanks} //collect all the charting
+
 
   //All tool tips
   const iconTip = d3.tip()
@@ -725,26 +770,43 @@ const draw = (allScores = required(), framework = required(), questionScores = r
       .enter()
 
     //draw labels
+  // yLabels.append("line")
+  //   .attr("x1", 0)
+  //   .attr("x2", labelSpace)
+  //   .attr("y1", d => yScale(d.rank) + barWidth/2)
+  //   .attr("y2", d => yScale(d.rank) + barWidth/2)
+  //   .style("stroke", "lightgrey")
+
   yLabels.append("text")
       .attr("class", "countryLabels labelText")
       .attr("x", labelXPos)
-      .attr("y", (d) => yScale(d.rank))
+      .attr("y", (d) => yScale(d.rank) + 1.2 * barWidth/2) //this is hardcoded relative to the font size. Should find a more elegant solution
       .text(d => labelXPos/12 < d.country.length ? d.alias : d.country)
       .attr("text-anchor", "end")
-      .style("dominant-baseline", "hanging")
+      .style("dominant-baseline", "middle")
       .call(labelTip)
       .on("mouseover", labelMouseOver)
       .on("mouseout", labelMouseOut)
       .on("click", d => labelOnClick(d, countryData, indicatorScores, framework, colorScale))
 
+  yLabels.append("circle")
+    .attr("class", "rankCircles")
+    // .attr("cx", iconSize + 10 * iconPadding)
+    .attr("cx", 10 * iconPadding)
+    .attr("cy",d => yScale(d.rank) + barWidth/2)
+    .attr("r", barWidth/2)
+    .style("stroke", d => colorScale(d[stateVars.sortBy]))
+    .style("stroke-width", "1px")
+    .attr("fill-opacity", 0.1)
+
   yLabels.append("text")
       .attr("class", "ranks")
-      .attr("x", iconSize + 10 * iconPadding)
-      .attr("y", d => yScale(d.rank) + 0.12 * barWidth)
-      .text((d, i) => i + 1)
-      .style("dominant-baseline", "hanging")
+      // .attr("x", iconSize + 10 * iconPadding)
+      .attr("x", 10 * iconPadding)
+      .attr("y", d => yScale(d.rank) + barWidth/2)
+      .text((d, i) => stateVars.sortDirection === "ascending" ? d.rank : nRanks - i)
+      .style("dominant-baseline", "middle")
       .attr("text-anchor", "middle")
-
 
     //add the mining and oil-gas icons
   yLabels.append("svg:image")
@@ -766,20 +828,10 @@ const draw = (allScores = required(), framework = required(), questionScores = r
       .attr("class", "lockIcons")
       .attr("width", iconSize)
       .attr("height", iconSize)
-      .attr("x", iconPadding)
+      .attr("x", iconSize + 10 * iconPadding)
+      // .attr("x", iconPadding)
       .attr("y", (d) => yScale(d.rank))
       .attr("opacity", 0)
-
-    //add ranks inside circles
-  // yLabels.append("circle")
-  //     .attr("class", "countryLabels rankCircles")
-  //     .attr("cx", iconSize + 4 * iconPadding)
-  //     .attr("cy",d => yScale(d.rank) + 0.7 * barWidth)
-  //     .attr("r", "6.5px")
-  //     .style("fill", d => colorScale(d[stateVars.sortBy]))
-
-
-
   
     //draw all the panels
   const indexPanel = indexSVG.append("g")
@@ -798,13 +850,13 @@ const draw = (allScores = required(), framework = required(), questionScores = r
 
   indexPanel.append("g")
     .append("text")
-      .attr("class", "indexText")
+      .attr("class", "barText indexText")
       .attr("x", d =>  xScale(d.indexScore))
-      .attr("y", d => yScale(d.rank))
+      .attr("y", d => yScale(d.rank) + barWidth/2) //position at the middle of the bars
       .text(d => Math.round(d.indexScore))
       .attr("text-anchor", d => xScale(d.indexScore) < 9 ? "start" : "end")
       .style("fill", d => d.indexScore < 30 && xScale(d.indexScore) >= 9 ? "lightgrey" : "black")
-      .style("dominant-baseline", "hanging")
+      .style("dominant-baseline", "middle")
 
   const valuePanel = valueSVG.append("g")
       .selectAll(".bars")
@@ -822,13 +874,13 @@ const draw = (allScores = required(), framework = required(), questionScores = r
 
   valuePanel.append("g")
     .append("text")
-      .attr("class", "valueText")
+      .attr("class", "barText valueText")
       .attr("x", d => xScale(d.valueRealization))
-      .attr("y", d => yScale(d.rank))
+      .attr("y", d => yScale(d.rank) + barWidth/2)
       .text(d => Math.round(d.valueRealization))
       .attr("text-anchor", d => xScale(d.valueRealization) < 9 ? "start" : "end")
       .style("fill", d => d.valueRealization < 30 && xScale(d.valueRealization) >= 9 ? "lightgrey" : "black")
-      .style("dominant-baseline", "hanging")
+      .style("dominant-baseline", "middle")
 
   const revenuePanel = revenueSVG.append("g")
       .selectAll(".bars")
@@ -845,13 +897,13 @@ const draw = (allScores = required(), framework = required(), questionScores = r
 
   revenuePanel.append("g")
     .append("text")
-      .attr("class", "revenueText")
+      .attr("class", "barText revenueText")
       .attr("x", d => xScale(d.revenueManagement))
-      .attr("y", d => yScale(d.rank))
+      .attr("y", d => yScale(d.rank) + barWidth/2)
       .text(d => Math.round(d.revenueManagement))
       .attr("text-anchor", d => xScale(d.revenueManagement) < 9 ? "start" : "end")
       .style("fill", d => d.revenueManagement < 30 && xScale(d.revenueManagement) >= 9 ? "lightgrey" : "black")
-      .style("dominant-baseline", "hanging")
+      .style("dominant-baseline", "middle")
 
   const enablingPanel = enablingSVG.append("g")
       .selectAll(".bars")
@@ -868,13 +920,13 @@ const draw = (allScores = required(), framework = required(), questionScores = r
 
   enablingPanel.append("g")
     .append("text")
-      .attr("class", "enablingText")
+      .attr("class", "barText enablingText")
       .attr("x", d => xScale(d.enablingEnvironment))
-      .attr("y", d => yScale(d.rank))
+      .attr("y", d => yScale(d.rank) + barWidth/2)
       .text(d => Math.round(d.enablingEnvironment))
       .attr("text-anchor", d => xScale(d.enablingEnvironment) < 9 ? "start" : "end")
       .style("fill", d => d.enablingEnvironment < 30 && xScale(d.enablingEnvironment) >= 9 ? "lightgrey" : "black")
-      .style("dominant-baseline", "hanging")
+      .style("dominant-baseline", "middle")
 
 
   //Label click event listener
@@ -929,7 +981,7 @@ const draw = (allScores = required(), framework = required(), questionScores = r
     stateVars.lockedRank = currRank === 0 ? 0 : panelScores.filter(d => d.country === lockedCountry && d.sector === lockedSector)[0].rank
 
     //redraw plots
-    panelUpdate(yLabels, panelScores, xScale, yScale, colorScale)
+    panelUpdate(yLabels, panelScores, allScales, allChartVars)
   }
   
   //Bind the sort function on the label selection nodese
