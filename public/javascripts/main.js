@@ -35,7 +35,7 @@ const textwrap = (text, width) => {
   });
 
 }
-//just some changes
+
 const initialBlurb = `
   <div class="row ml-2">
   <h3>RGI Tool</h3>
@@ -434,7 +434,17 @@ const computeRanks = (panelData = required(), rankVar = "indexScore", sortDirect
 }
 
 
-//draw the country indicator chart
+/**
+ * Draw the country indicator chart and render the questions
+ * @function drawCountryChart
+ * @param {string} selector - The id of the css selector for the indicator chart
+ * @param {string} country - The name of the country being displayed
+ * @param {string} sector - The name of the sector being displayed
+ * @param {object} allData - All the datasets associated with the charts
+ * @param {object} allScales - All the scales associated with the charts
+ * @param {object} allChartVars - All the charting variables
+ * @description given the selector and the charting variables plot the indicator chart
+ */
 const drawCountryChart = (selector, country, sector, allData, allScales, allChartVars) => {
   //Fill in the framework data
   //Create a dataset at the level of the indicator. Mark those that are absent as not covered to fill with grey
@@ -792,10 +802,9 @@ const drawCountryChart = (selector, country, sector, allData, allScales, allChar
       .attr("y2", lastRevPos)    
 }
 
-//update indicator data
 
 /**
- * Update the panel using the indicator data
+ * Update the panel chart
  * @function panelUpdate
  * @param {object} xScale - The x-axis scale for the chart
  * @param {object} yScale - The y-axis scale for the chart
@@ -803,61 +812,45 @@ const drawCountryChart = (selector, country, sector, allData, allScales, allChar
  * @description given the new panel data, update the charts and the labels
  */
 const panelUpdate = (panelData, allScales, allChartVars) => {
-  // console.log(stateVars.sortBy, stateVars.sortDirection)
-    //update the data
-    //d3.selectAll(".countryLabels").data(panelData, d => d.rank)
+  
+  //Select all the label elements
+  const labelText = d3.selectAll(".labelText")
+  const sectorIcons = d3.selectAll(".sectorIcons")
+  const lockIcons = d3.selectAll(".lockIcons")
+  const rankCircles = d3.selectAll(".rankCircles")
+  const rankText = d3.selectAll(".ranks")
+  
+  //update all label and sector text + icons: The only thing we need to change here is the y position, 
+  //the names of the country or sector will never be updated
+  labelText.transition().duration(500).attr("y", d => allScales.yScale(d.rank) + 1.2 * allChartVars.barWidth/2)
+  sectorIcons.transition().duration(500).attr("y", d => allScales.yScale(d.rank))
 
-    //SET: Update all the label elements
-    const labelText = d3.selectAll(".labelText")
-    const sectorIcons = d3.selectAll(".sectorIcons")
-    const lockIcons = d3.selectAll(".lockIcons")
-    const rankCircles = d3.selectAll(".rankCircles")
-    const rankText = d3.selectAll(".ranks")
+  //Update all the rank text and circles: The rank text attr and y position are updated based on the new data.
+  //The circles need to have new fill colors
+  rankText.transition().duration(500)
+      .attr("y", d => allScales.yScale(d.rank) + allChartVars.barWidth/2)
+      .text((d) => stateVars.sortDirection === "ascending" ? d.rank : allChartVars.nRanks - d.rank + 1)//if sort direction is reverse then reverse the ranks
+  rankCircles
+      .attr("cy", d => allScales.yScale(d.rank) + allChartVars.barWidth/2)
+      .style("stroke", d => allScales.colorScale(d[stateVars.sortBy]))
+  
+  // rankCircles.each(function(d) {console.log(this, d.country, d.rank)})
+  
+  //Update the lock icons: The only thing to update here is the y position of the lock icon
+  lockIcons.transition().duration(500).attr("y", d => allScales.yScale(d.rank))    
+  
+  
+  //SET: Update all the bars
+  const allBars = d3.selectAll(".bars");
+  const allBarText = d3.selectAll(".barText");
+  
+  allBars.transition().duration(500).attr("y", d => allScales.yScale(d.rank))    
+  allBarText.transition().duration(500).attr("y", d => allScales.yScale(d.rank) + allChartVars.barWidth/2)
 
-    // rankCircles.data(panelData, d => d.rank)
-    // labelText.data(panelData, d => d.rank)
-    // sectorIcons.data(panelData, d => d.rank)
-    
-    //this works but the general setup doesn't
-    
 
-    // rankCircles.filter(d => d.rank === 10).style("fill", colorScale(d => d[stateVars.sortBy]))
-    
-    rankText.transition().duration(500).attr("y", d => allScales.yScale(d.rank) + allChartVars.barWidth/2)
-        .text((d) => stateVars.sortDirection === "ascending" ? d.rank : allChartVars.nRanks - d.rank + 1)//if sort direction is reverse then reverse the ranks
-    rankCircles.attr("stroke", d => allScales.colorScale(d[stateVars.sortBy]))
-      //.attr("cy", d => allScales.yScale(d.rank) + allChartVars.barWidth/2)
-    
-    labelText.transition().duration(500).attr("y", d => allScales.yScale(d.rank) + 1.2 * allChartVars.barWidth/2)
-    sectorIcons.transition().duration(500).attr("y", d => allScales.yScale(d.rank))
-    lockIcons.transition().duration(500).attr("y", d => allScales.yScale(d.rank))    
-    
-    
-    
-    
-    //SET: Update all the bars
-    const allBars = d3.selectAll(".bars");
-    const allBarText = d3.selectAll(".barText");
-    
-    allBars.transition().duration(500).attr("y", d => allScales.yScale(d.rank))    
-    allBarText.transition().duration(500).attr("y", d => allScales.yScale(d.rank) + allChartVars.barWidth/2)
-    // allBars.each(function(d) {console.log(this, d[stateVars.sortBy], d.country,
-     // d.rank)})
-    //implemet a scroll if locked is on: http://bl.ocks.org/humbletim/5507619
-    // const scrollTopTween(scrollTop){
+  //implemet a scroll if locked is on: http://bl.ocks.org/humbletim/5507619
 
-    // }
-    // function scrollTopTween(scrollTop) {
-    //   return function() {
-    //     var i = d3.interpolateNumber(this.scrollTop, scrollTop);
-    //     return function(t) { this.scrollTop = i(t); };
-    // }
 
-    // if(stateVars.lockedRank !== 0) {
-    //   d3.select("#chart").transition().duration(3000)
-    //     .tween("scroll", scrollTween(document.body.getBoundingClientRect().height - window.innerHeight))
-    //     .tween("uniquetweenname", scrollTopTween(yScale(stateVars.lockedRank)))
-    // }
 }
 
 
@@ -1210,9 +1203,6 @@ const draw = (allScores = required(), framework = required(), scoringMetric = re
   const allChartVars = {labelSpace, barWidth, iconPadding, iconSize, labelXPos, nRanks} //collect all the charting
 
   drawLabels(labelSVG, allData, allScales, allChartVars)
-  
-    //draw all the panels
-
   drawPanel(allSVGs, allData, allScales, allChartVars)
   
 
