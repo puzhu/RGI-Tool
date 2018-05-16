@@ -155,7 +155,7 @@ hr {
 	font-size: 0.6em;
 	cursor: pointer;
 }
-.subScoreText, .userSubScore, .rankBy{
+.subScoreText, .userSubScore{
 	font-family: 'Merriweather', serif;
 	font-style: lighter;
 	font-size: 0.6em;
@@ -218,5 +218,5 @@ hr {
 
 .secondaryText{
 	font-family: 'Open Sans', sans-serif;
-	font-size: 0.6em;
+	font-size: 0.7em;
 }

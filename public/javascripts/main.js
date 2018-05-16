@@ -556,16 +556,6 @@ const computeRanks = (panelData = required(), rankVar = "indexScore", sortDirect
  * @description given the selector and the charting variables plot the indicator chart
  */
 const drawCountryChart = (selector, country, sector, allData, allScales, allChartVars) => {
-
-  //reset everything before replot
-  // allData.panelScores = computePanelData(allData.indicatorScores, allData.countryData, allData.framework)
-
-  // //update the ranks
-  // allData.panelScores = computeRanks(allData.panelScores, stateVars.sortBy)
-
-  //redraw panel
-  panelUpdate(allScales, allChartVars)
-
   //Fill in the framework data
   //Create a dataset at the level of the indicator. Mark those that are absent as not covered to fill with grey
   const indicatorList = [...new Set(allData.framework.filter(d => d.component !== "Enabling environment").map(d => d.indicator))]
@@ -1057,6 +1047,15 @@ const panelUpdate = (allScales, allChartVars) => {
  * @description when a label is clicked lock it and update the charts
  */
 const labelOnClick = (d, allData, allScales, allChartVars) => {
+  //reset everything before replot
+  // allData.panelScores = computePanelData(allData.indicatorScores, allData.countryData, allData.framework)
+
+  // //update the ranks
+  // allData.panelScores = computeRanks(allData.panelScores, stateVars.sortBy)
+
+  // // redraw panel
+  // panelUpdate(allScales, allChartVars)
+
   let currRank = d.rank;
   //reset the previously selected indicator and subcomponent
   stateVars.indicator = ""
