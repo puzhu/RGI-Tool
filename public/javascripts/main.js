@@ -1,6 +1,6 @@
 //INITIALIZE CHART STATE VARS
 // const stateVars = {lockedRank: 0, sortBy: "indexScore", sortDirection: {indexScore: "ascending", valueRealization: "ascending", revenueManagement: "ascending", enablingEnvironment: "ascending"},}
-const stateVars = {lockedRank: 0, sortBy: "indexScore", sortDirection: "ascending", indicator: "", subComponent: ""}
+const stateVars = {lockedRank: 0, sortBy: "indexScore", sortDirection: "ascending", indicator: "", subComponent: "", countryEdit: "off"}
 
 const textwrap = (text, width) => {
   text.each(function() {
@@ -126,19 +126,27 @@ const renderCountryBlurb = (country, alias, sector, countryData) => {
 
 //given the params pull out the questions, selected labels and current justification
 const renderQuestions = (country, sector, indicator, chartData, allData, allScales, allChartVars) => {
-  // console.log(allData)
+  //Empty the questions div
   const questionsEl = document.querySelector(".js-questions")
   //remove all the current contents
   while(questionsEl.firstChild){
     questionsEl.removeChild(questionsEl.firstChild);
   }
 
+  //isolate the question data
   const data = chartData.filter(d => d.indicator === indicator)[0].questions
   
-  //render both questions
+  //render questions
   let questions = data.reduce((html, d) => {
+    //get the list of choices
     let choiceList = d.metric.reduce((choices, id) => {
-      const selected = d.newLabel === id.label ? "checked" : d.label === id.label ? "checked" :  "" //if new label has been selected then apply new label else the actual label
+      let selected = ""
+      if(d.newLabel === id.label) {
+        selected = "checked"
+      } else if(d.newLabel === "" && d.label === id.label) {
+        selected = "checked"
+      }
+      // const selected = d.newLabel === id.label ? "checked" : d.label === id.label ? "checked" :  "" //if new label has been selected then apply new label else the actual label
       choices += `
       <div class="form-check">
         <input class="form-check-input js-radio" value="${d.questionID+ "?" +id.label}" type="radio" name="radio${d.questionID}" ${selected}>
@@ -153,9 +161,14 @@ const renderQuestions = (country, sector, indicator, chartData, allData, allScal
     html += `
     <div class="panel panel-default">
       <div class="panel-heading">
-        <p class="panel-title" id="question${d.questionID}" data-toggle="collapse" data-parent="#accordion" href="#collapse${d.questionID}">
-          <span class="item-heading">${d.questionLabel}: </span>${d.question} <span class="badge badge-pill badge-info">${d.label}</span>   <span class="badge badge-pill badge-warning" id="badge${d.questionID}">${d.newLabel}</span>
+        <p class="panel-title mb-0" id="question${d.questionID}" data-toggle="collapse" data-parent="#accordion" href="#collapse${d.questionID}">
+          <span class="item-heading">${d.questionLabel}: </span>${d.question}     
         </p>
+        <p class="m-0 p-0 mb-1">
+        <span class="item-heading-small">RGI score: </span><span class="badge badge-pill badge-info">${d.score === "Not Covered" ? "Not Applicable":d.label}</span>   
+        <span class="item-heading-small">User score: </span><span class="badge badge-pill badge-warning" id="badge${d.questionID}">${d.newLabel !== "" && isNaN(parseFloat(d.newScore)) ? "Not Applicable" : d.newLabel}</span>
+        </p>
+        
       </div>
       <div id="collapse${d.questionID}" class="panel-collapse collapse in">
         <div class="panel-body">${choiceList}</div>
@@ -167,56 +180,138 @@ const renderQuestions = (country, sector, indicator, chartData, allData, allScal
     return html
   }, `<div class="panel-group" id="accordion"> <hr>`)
 
-  questions += `</div>`
+  questions += `</div>` //close the div tag on questions
 
-  // console.log(questions)
-
+  //set the questions as inner html
   questionsEl.innerHTML = questions
 
+  //add event listeners to the radio button clicks to update everything
   document.querySelectorAll(".js-radio").forEach((btn) => {
     btn.addEventListener("click", event => {
+      //get the question and label values from the value attribute of the input
       const questionID = event.target.value.split("?")[0]
-      const label = event.target.value.split("?")[1]
-      const actualLabel = data.filter(d => d.questionID === questionID)[0].label
-      const labelScore = data.filter(d => d.questionID === questionID)[0].metric.filter(e => e.label === label)[0].score
-      const newLabel = document.querySelector(`#badge${questionID}`)
-      const indicator = document.querySelector(".js-indiTitle").innerHTML
-      const indicatorText = d3.selectAll(".changeText").filter(e => e.indicator === indicator)
+      const userLabel = event.target.value.split("?")[1]
+      const userScore = data.filter(d => d.questionID === questionID)[0].metric.filter(d => d.label === userLabel)[0].score
 
-      //update the newlabel property and add a label next to question to indicate change
-      chartData.filter(d => d.indicator === indicator)[0].questions.filter(d => d.questionID === questionID)[0].newLabel = label
-      newLabel.innerHTML = actualLabel !== label ? label : ""
+      //get the true values from the data
+      const actualLabel = data.filter(d => d.questionID === questionID)[0].label
+      const actualScore = data.filter(d => d.questionID === questionID)[0].score
+      const activeSubComponent = chartData.filter(d => d.indicator === indicator)[0].subComponent
+      const activeComponent = chartData.filter(d => d.indicator === indicator)[0].component
       
-      //show text element next to chart
-      if(actualLabel !== label){
-        indicatorText.text(labelScore).attr("opacity", 1)
-      } else{
-        indicatorText.text(labelScore).attr("opacity", 0)
+      //update the new label and score props for each question in the indicator
+      chartData.filter(d => d.indicator === indicator)[0].questions.filter(d=> d.questionID === questionID)[0].newLabel = userLabel === actualLabel ? "" : userLabel
+      chartData.filter(d => d.indicator === indicator)[0].questions.filter(d=> d.questionID === questionID)[0].newScore = userLabel === actualLabel ? 0 : userScore
+
+      //set the userInput as true for indicator
+      const userInput = chartData.filter(d => d.indicator === indicator)[0].questions.filter(d => d.newLabel !== "").length > 0
+      
+      //update the userInput property
+      chartData.filter(d => d.indicator === indicator)[0].userInput = userInput
+
+      //set the badge for user input
+      const userBadgeLabel = document.querySelector(`#badge${questionID}`) //the badge
+      userBadgeLabel.innerHTML = actualLabel !== userLabel ? isNaN(parseFloat(userScore)) ? "Not Applicable": userLabel : ""
+      
+      //we need to update the rest only if user input is true i.e. if the clicked indicator has a user input
+      if(userInput) {
+        //calculate the new indicator score based on user input
+        const indiData = data.filter(d => (d.newLabel === "" && !isNaN(parseFloat(d.score))) || (d.newLabel !== "" && !isNaN(parseFloat(d.newScore)))) //keep if either new or old score score is a number 
+        let newIndiScore = indiData.reduce((sum, question) => {
+          //if a new label has been selected then use the new label score else use the old score
+          const score = question.newLabel !== "" ? question.newScore : question.score
+          if(!isNaN(parseFloat(score))){
+            sum += parseFloat(score)
+          }
+          return sum;
+        }, 0)
+        newIndiScore = parseFloat(newIndiScore) === 0 ? "NA" : newIndiScore/indiData.length
+        
+        //update the chart score
+        chartData.filter(d => d.indicator === indicator)[0].userScore = newIndiScore
+
+        //update the indicator if there is an applicable score
+        const indicatorText = d3.selectAll(".changeText").filter(e => e.indicator === indicator)
+        const indiBars = d3.selectAll(".indiBars").filter(d => d.indicator === indicator)
+        
+        indicatorText.transition().duration(500).text( newIndiScore === "NA" ? "NA" : Math.round(newIndiScore)).attr("opacity", 1)
+        indiBars.attr("fill", newIndiScore === "NA" ? "grey" : allScales.colorScale(newIndiScore))
+        
+
+        //calculate the subComponent scores
+        const subComponentData = chartData.filter(d => d.subComponent === activeSubComponent).filter(d => (!d.userInput && !isNaN(parseFloat(d.score)) || (d.userInput && !isNaN(parseFloat(newIndiScore))))) //select numbers from either user input scores or rgi scores
+        let newSubComponentScore = subComponentData.reduce((sum, indi) => {
+          //if user has updated score then use user score else use actual
+          const score = indi.userInput ? indi.userScore : indi.score
+          if(!isNaN(parseFloat(score))){
+            sum += parseFloat(score)
+          }
+          return sum
+        }, 0)
+        newSubComponentScore = newSubComponentScore === 0 ? "NA" : newSubComponentScore/subComponentData.length
+        
+        //the svg text next to the indicator that shows updated score
+        const subComponentText = d3.selectAll(".userSubScore").filter(d => d.subComponent === activeSubComponent)
+        subComponentText.transition().duration(250).text(Math.round(newSubComponentScore)).attr("opacity", 1)
+
+        //update the component scores in the panel data set
+        const componentData = chartData.filter(d => d.component === activeComponent)
+        const allSubScores = [... new Set(componentData.map(d => d.subComponent))].reduce((scores, sub) => {
+          const subData = chartData.filter(d => d.subComponent === sub).filter(d => (!d.userInput && !isNaN(parseFloat(d.score)) || (d.userInput && !isNaN(parseFloat(newIndiScore))))) //select numbers from either user input scores or rgi scores
+          let currSubScore = subData.reduce((sum, indi) => {
+            //if user has updated score then use user score else use actual
+            const score = indi.userInput ? indi.userScore : indi.score
+            if(!isNaN(parseFloat(score))){
+              sum += parseFloat(score)
+            }
+            return sum
+          }, 0)
+          currSubScore = subData.length === 0 ? "NA" : currSubScore/subData.length
+          
+          if(subData.length !== 0) {
+            scores.push(currSubScore)
+          }
+          return scores
+        }, [])
+        
+        const newComponentScore = allSubScores.reduce((sum, score) => {
+          sum += score
+          return sum
+        }, 0)/allSubScores.length
+  
+        // console.log(allSubScores, newComponentScore)
+
+        //update the panel data
+        if(activeComponent === "Value realization"){
+          allData.panelScores.filter(d => d.country === country && d.sector === sector)[0].valueRealization = newComponentScore
+          
+        } else {
+          allData.panelScores.filter(d => d.country === country && d.sector === sector)[0].revenueManagement = newComponentScore
+        }
+        //the final step is to calculate the updated index score
+        const currData = allData.panelScores.filter(d => d.country === country && d.sector === sector)[0]
+        const indexScore = (currData.valueRealization + currData.revenueManagement + currData.enablingEnvironment)/3
+        allData.panelScores.filter(d => d.country === country && d.sector === sector)[0].indexScore = indexScore
+
+        allData.panelScores = computeRanks(allData.panelScores, stateVars.sortBy)
+
+        console.log(allData.panelScores.filter(d => d.country === country && d.sector === sector))
+      } else {
+        //reset the indicator user score
+        chartData.filter(d => d.indicator === indicator)[0].userScore = 0
+
+        //reset svg
+        const indicatorText = d3.selectAll(".changeText").filter(e => e.indicator === indicator)
+        const subComponentText = d3.selectAll(".userSubScore").filter(d => d.subComponent === activeSubComponent)
+        const indiBars = d3.selectAll(".indiBars").filter(d => d.indicator === indicator)
+
+        indicatorText.text(Math.round(actualScore)).attr("opacity", 0)
+        subComponentText.text(d => d.score ==="Not Covered" ? "" : Math.round(d.score)).attr("opacity", 0)
+        indiBars.attr("fill", d => d.score === "Not Covered" ? "grey" : allScales.colorScale(d.score))
       }
 
-      //update the data and redraw panel
-      const newQuestionData = allData.allScores
-
-      console.log("Before ----------", allData.allScores.filter(d => d.country === country && d.sector === sector && d.questionID === questionID)[0].label)
-      newQuestionData.filter(d => d.country === country && d.sector === sector && d.questionID === questionID)[0].label = label
-      newQuestionData.filter(d => d.country === country && d.sector === sector && d.questionID === questionID)[0].score = labelScore
-      console.log("After ----------", allData.allScores.filter(d => d.country === country && d.sector === sector && d.questionID === questionID)[0].label)
-
-      console.log("Before ----------",allData.panelScores.filter(d => d.country === country && d.sector === sector))
-      allData.indicatorScores = computeIndicatorData(newQuestionData, allData.eeScores, allData.framework)
-      allData.panelScores = computePanelData(allData.indicatorScores, allData.countryData, allData.framework)
-      allData.panelScores = computeRanks(allData.panelScores, stateVars.sortBy)
-      console.log("After ----------",allData.panelScores.filter(d => d.country === country && d.sector === sector))
-
-      const allBars = d3.selectAll(".bars");
-      const allBarText = d3.selectAll(".barText");
-      allBars.transition().duration(500).attr("y", d => allScales.yScale(d.rank))
-      allBarText.transition().duration(500).attr("y", d => allScales.yScale(d.rank) + allChartVars.barWidth/2)
-
-
-
-
-
+      //redraw panel
+      panelUpdate(allScales, allChartVars)
     })
   })
 }
@@ -261,11 +356,13 @@ const computeIndicatorData = (allScores, eeScores, framework) => {
     let countryEnablingData = eeScores.filter(d => d.country === country && d.sector === sector)
 
     //loop through survey indicators to calculate the scores for each indicator
-    //mirror the structure of the indicator scores data
     surveyIndicatorList.forEach((surveyIndicator) => {
       let component = framework.filter(d => d.indicator === surveyIndicator)[0].component
       let subComponent = framework.filter(d => d.indicator === surveyIndicator)[0].subComponent
       let indicatorData = countrySurveyData.filter(d => d.indicator === surveyIndicator)
+      // if(country === "India"){
+      //   console.log(indicatorData)
+      // }
       let indiScore = indicatorData.reduce((sum, d) => {
         sum += parseFloat(d.score)
         return sum
@@ -283,7 +380,6 @@ const computeIndicatorData = (allScores, eeScores, framework) => {
         })
       }
     })
-
 
     //loop through enabling indicators
     enablingIndicatorList.forEach((eeIndicator) => {
@@ -324,12 +420,10 @@ const computeIndicatorData = (allScores, eeScores, framework) => {
  * @description given the countryScores extract the index and component scores along with rank for plotting
  */
 const computePanelData = (indicatorScores, countryData, framework) => {
-  // console.log(countryData)
   const countrySectorList = [...new Set(indicatorScores.map(d => (d.country).concat("?").concat(d.sector)))]
   // const subComponentList = [...new Set(framework.map(d => d.subComponent))]
   const componentList = [...new Set(framework.map(d => d.component))]
 
-  // console.log(countrySectorList)
   //loop through each country list combo
   const panelData = countrySectorList.reduce((outArray, countrySector) => {
     //get the country
@@ -433,7 +527,6 @@ const computeRanks = (panelData = required(), rankVar = "indexScore", sortDirect
   return ranked
 }
 
-
 /**
  * Draw the country indicator chart and render the questions
  * @function drawCountryChart
@@ -445,7 +538,7 @@ const computeRanks = (panelData = required(), rankVar = "indexScore", sortDirect
  * @param {object} allChartVars - All the charting variables
  * @description given the selector and the charting variables plot the indicator chart
  */
-const drawCountryChart = (selector, country, sector, allData, allScales, allChartVars) => {
+const drawCountryChart = (selector, country, sector, allData, allScales, allChartVars) => {  
   //Fill in the framework data
   //Create a dataset at the level of the indicator. Mark those that are absent as not covered to fill with grey
   const indicatorList = [...new Set(allData.framework.filter(d => d.component !== "Enabling environment").map(d => d.indicator))]
@@ -461,7 +554,11 @@ const drawCountryChart = (selector, country, sector, allData, allScales, allChar
         const questionScores = allData.allScores.filter(e => e.country === country && e.sector === sector).filter(e => e.questionID === question)
         const questionFrame = allData.framework.filter(e => e.questionID === question)
         const questionMetric = allData.scoringMetric.filter(e => e.questionID === question)
-
+        let tempLabel = ""
+        if(questionScores.length === 0) {
+          const tempLabelData = questionMetric.filter(d => d.questionID === question && isNaN(parseFloat(d.score)))
+          tempLabel = tempLabelData[tempLabelData.length - 1].label
+        }
         accum.push({
           metric: questionMetric,
           questionID: question, 
@@ -471,10 +568,11 @@ const drawCountryChart = (selector, country, sector, allData, allScales, allChar
           indicator: questionFrame[0].indicator,
           subComponent: questionFrame[0].subComponent,
           component: questionFrame[0].component,
-          label: questionScores.length === 0 ? "Not Covered" : questionScores[0].label,
+          label: questionScores.length === 0 ? tempLabel : questionScores[0].label,
           score: questionScores.length === 0 ? "Not Covered" : questionScores[0].score,
           justification: questionScores.length === 0 ? "Not Covered" : questionScores[0].justification,
-          newLabel: ""
+          newLabel: "",
+          newScore: 0
           })
         return accum
       }, [])
@@ -484,6 +582,8 @@ const drawCountryChart = (selector, country, sector, allData, allScales, allChar
       score, 
       subComponent: allData.framework.filter(d => d.indicator === indicator)[0].subComponent, 
       component: allData.framework.filter(d => d.indicator === indicator)[0].component,
+      userInput: false,
+      userScore: 0,
       questions
     })
     return data
@@ -659,7 +759,7 @@ const drawCountryChart = (selector, country, sector, allData, allScales, allChar
         stateVars.subComponent =  clickedSub //update state
         mouseOverSub(stateVars) //activate sub component
       }
-      
+
       renderQuestions(country, sector, d.indicator, chartData, allData, allScales, allChartVars) //render the questions
       
     }
@@ -684,19 +784,19 @@ const drawCountryChart = (selector, country, sector, allData, allScales, allChar
 
   countryChart.append("g")
     .append("text")
-      .attr("class", "indiText valueText")
+      .attr("class", "indiText")
       .attr("x", 4.8 * indicatorWidth/7)
       .attr("y", d => indicatorYScale(d.indicator) + indicatorYScale.bandwidth()/2)
-      .text(d => d.score === "Not Covered" ? "" : Math.round(d.score))
+      .text(d => d.score === "Not Covered" ? "NA" : Math.round(d.score))
       .style("text-anchor", "end")
       .style("dominant-baseline", "middle")
 
   countryChart.append("g")
     .append("text")
-      .attr("class", "changeText valueText")
+      .attr("class", "changeText")
       .attr("x", 5.9 * indicatorWidth/7)
       .attr("y", d => indicatorYScale(d.indicator) + indicatorYScale.bandwidth()/2)
-      .text(d => d.score === "Not Covered" ? "" : Math.round(d.score))
+      .text(d => d.score === "Not Covered" ? "NA" : Math.round(d.score))
       .attr("opacity", 0)
       .style("text-anchor", "start")
       .style("dominant-baseline", "middle")
@@ -749,6 +849,7 @@ const drawCountryChart = (selector, country, sector, allData, allScales, allChar
   
   const scorePos = allSubs.reduce((accum, node, i) => {
     accum.push({
+      userY:node.getBBox().y - 2,
       y: node.getBBox().y + node.getBBox().height + 7,
       score: subComponentScores[i].score,
       subComponent: subComponentScores[i].subComponent,
@@ -765,11 +866,25 @@ const drawCountryChart = (selector, country, sector, allData, allScales, allChar
     .attr("class", "subScoreText")
     .attr("x", 3 * indicatorWidth/7)
     .attr("y", d => d.y)
-    .text(d => d.score ==="Not Covered" ? "" : Math.round(d.score))
+    .text(d => d.score ==="Not Covered" ? "NA" : Math.round(d.score))
     .style("fill", d => allScales.colorScale(d.score))
     .style("stroke", "lightgrey")
     .style("stroke-width", "0.1px")
     .attr("dominant-baseline", "middle")
+
+  indicatorSVG.append("g")
+    .selectAll(".userSubScore")
+    .data(scorePos)
+    .enter()
+    .append("text")
+    .attr("class", "userSubScore")
+    .attr("x", 3 * indicatorWidth/7)
+    .attr("y", d => d.userY)
+    .text(d => d.score ==="Not Covered" ? "NA" : Math.round(d.score))
+    .style("fill", d => allScales.colorScale(d.score))
+    .style("stroke", "lightgrey")
+    .style("stroke-width", "0.1px")
+    .attr("opacity", 0)
 
   
   //draw strokes to separate the value realization and revenue management indicators
@@ -811,8 +926,8 @@ const drawCountryChart = (selector, country, sector, allData, allScales, allChar
  * @param {object} colorScale - The colorScale for the bars
  * @description given the new panel data, update the charts and the labels
  */
-const panelUpdate = (panelData, allScales, allChartVars) => {
-  
+const panelUpdate = (allScales, allChartVars) => {
+  console.log("Updating panel based on new data")
   //Select all the label elements
   const labelText = d3.selectAll(".labelText")
   const sectorIcons = d3.selectAll(".sectorIcons")
@@ -822,7 +937,7 @@ const panelUpdate = (panelData, allScales, allChartVars) => {
   
   //update all label and sector text + icons: The only thing we need to change here is the y position, 
   //the names of the country or sector will never be updated
-  labelText.transition().duration(500).attr("y", d => allScales.yScale(d.rank) + 1.2 * allChartVars.barWidth/2)
+  labelText.transition().duration(250).attr("y", d => allScales.yScale(d.rank) + 1.2 * allChartVars.barWidth/2)
   sectorIcons.transition().duration(500).attr("y", d => allScales.yScale(d.rank))
 
   //Update all the rank text and circles: The rank text attr and y position are updated based on the new data.
@@ -833,26 +948,67 @@ const panelUpdate = (panelData, allScales, allChartVars) => {
   rankCircles
       .attr("cy", d => allScales.yScale(d.rank) + allChartVars.barWidth/2)
       .style("stroke", d => allScales.colorScale(d[stateVars.sortBy]))
-  
-  // rankCircles.each(function(d) {console.log(this, d.country, d.rank)})
-  
+
   //Update the lock icons: The only thing to update here is the y position of the lock icon
   lockIcons.transition().duration(500).attr("y", d => allScales.yScale(d.rank))    
   
   
-  //SET: Update all the bars
-  const allBars = d3.selectAll(".bars");
-  const allBarText = d3.selectAll(".barText");
+  //Select all the panel bars and text
+  const indexBars = d3.selectAll(".indexBars");
+  const indexBarText = d3.selectAll(".indexText");
+  const valueBars = d3.selectAll(".valueBars");
+  const valueBarText = d3.selectAll(".valueText");
+  const revenueBars = d3.selectAll(".revenueBars");
+  const revenueBarText = d3.selectAll(".revenueText");
+  const enablingBars = d3.selectAll(".enablingBars");
+  const enablingBarText = d3.selectAll(".enablingText");
   
-  allBars.transition().duration(500).attr("y", d => allScales.yScale(d.rank))    
-  allBarText.transition().duration(500).attr("y", d => allScales.yScale(d.rank) + allChartVars.barWidth/2)
+  
+  indexBars.transition().duration(500)
+      .attr("y", d => allScales.yScale(d.rank))
+      .attr("width", d => allScales.xScale(d.indexScore))
+      .attr("fill", d => allScales.colorScale(d.indexScore))
 
+  indexBarText.transition().duration(500)
+      .attr("y", d => allScales.yScale(d.rank) + allChartVars.barWidth/2)
+      .attr("x", d =>  allScales.xScale(d.indexScore))
+      .text(d => Math.round(d.indexScore))
 
+  valueBars.transition().duration(500)
+      .attr("y", d => allScales.yScale(d.rank))
+      .attr("width", d => allScales.xScale(d.valueRealization))
+      .attr("fill", d => allScales.colorScale(d.valueRealization))
+
+  valueBarText.transition().duration(500)
+      .attr("y", d => allScales.yScale(d.rank) + allChartVars.barWidth/2)
+      .attr("x", d =>  allScales.xScale(d.valueRealization))
+      .text(d => Math.round(d.valueRealization))
+
+  revenueBars.transition().duration(500)
+      .attr("y", d => allScales.yScale(d.rank))
+      .attr("width", d => allScales.xScale(d.revenueManagement))
+      .attr("fill", d => allScales.colorScale(d.revenueManagement))
+
+  revenueBarText.transition().duration(500)
+      .attr("y", d => allScales.yScale(d.rank) + allChartVars.barWidth/2)
+      .attr("x", d =>  allScales.xScale(d.revenueManagement))
+      .text(d => Math.round(d.revenueManagement))
+  
+  enablingBars.transition().duration(500)
+      .attr("y", d => allScales.yScale(d.rank))
+      .attr("width", d => allScales.xScale(d.enablingEnvironment))
+      .attr("fill", d => allScales.colorScale(d.enablingEnvironment))
+
+  enablingBarText.transition().duration(500)
+      .attr("y", d => allScales.yScale(d.rank) + allChartVars.barWidth/2)
+      .attr("x", d =>  allScales.xScale(d.enablingEnvironment))
+      .text(d => Math.round(d.enablingEnvironment))
   //implemet a scroll if locked is on: http://bl.ocks.org/humbletim/5507619
-
+  
+  
+  
 
 }
-
 
 /**
  * Update the html content, lock a bar and show country level plot based on click
@@ -863,10 +1019,19 @@ const panelUpdate = (panelData, allScales, allChartVars) => {
  * @description when a label is clicked lock it and update the charts
  */
 const labelOnClick = (d, allData, allScales, allChartVars) => {
+  console.log("new country", d.country,"clicked")
   let currRank = d.rank;
   //reset the previously selected indicator and subcomponent
   stateVars.indicator = ""
   stateVars.subComponent = ""
+
+  //reset everything before replot
+  allData.panelScores = computePanelData(allData.indicatorScores, allData.countryData, allData.framework)
+
+  //update the ranks
+  allData.panelScores = computeRanks(allData.panelScores, stateVars.sortBy)
+  //redraw panel
+  panelUpdate(allScales, allChartVars)
 
   //update the locked global rank
   if(currRank === stateVars.lockedRank){ //you click on the same country twice go back to default
@@ -882,8 +1047,6 @@ const labelOnClick = (d, allData, allScales, allChartVars) => {
     renderCountryBlurb(d.country, d.alias, d.sector, allData.countryData, allScales)
 
     //render indicator chart
-    // let countryIndicatorData = indicatorScores.filter(e => e.country === d.country && e.sector === d.sector && e.component !== "Enabling environment")
-    // let countryQuestionData = allData.filter(e => e.country === d.country && e.sector === d.sector && e.component !== "Enabling environment")
     drawCountryChart("#countryIndicators", d.country, d.sector, allData, allScales, allChartVars)
   }
 
@@ -920,8 +1083,6 @@ const labelOnClick = (d, allData, allScales, allChartVars) => {
   rankCircles.filter(e => e.rank === stateVars.lockedRank).style("stroke-opacity", 1)
   rankCircles.filter(e => e.rank !== stateVars.lockedRank).style("stroke-opacity", stateVars.lockedRank === 0 ? 1 : 0.2)
 }
-
-
 
 const drawLabels = (labelSVG, allData, allScales, allChartVars) => {
   //DRAW THE LABELS
@@ -1124,6 +1285,7 @@ const drawPanel = (allSVGs, allData, allScales, allChartVars) => {
       .style("fill", d => d.enablingEnvironment < 30 && allScales.xScale(d.enablingEnvironment) >= 9 ? "lightgrey" : "black")
       .style("dominant-baseline", "middle")
 }
+
 /**
  * Draw the RGI scores
  * @function draw
@@ -1167,7 +1329,7 @@ const draw = (allScores = required(), framework = required(), scoringMetric = re
   let panelScores = computePanelData(indicatorScores, countryData, framework)
   
   //update the data for default plot that is sorted on overall index ranks
-  panelScores = computeRanks(panelScores, "indexScore")
+  panelScores = computeRanks(panelScores, stateVars.sortBy)
 
   const allData = {allScores, indicatorScores, panelScores, framework, scoringMetric, countryData, eeScores}
 
@@ -1258,7 +1420,7 @@ const draw = (allScores = required(), framework = required(), scoringMetric = re
     stateVars.lockedRank = currRank === 0 ? 0 : panelScores.filter(d => d.country === lockedCountry && d.sector === lockedSector)[0].rank
 
     //redraw plots
-    panelUpdate(panelScores, allScales, allChartVars)
+    panelUpdate(allScales, allChartVars)
   }
   
   //Bind the sort function on the label selection nodese
@@ -1267,7 +1429,6 @@ const draw = (allScores = required(), framework = required(), scoringMetric = re
 }
 
 //fix the top x axis: http://bl.ocks.org/lmatteis/895a134f490626b0e62796e92a06b9c1
-
 
 //Load all the data and draw
 async function getData() {
