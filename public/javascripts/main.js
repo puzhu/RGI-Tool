@@ -1,5 +1,4 @@
 //INITIALIZE CHART STATE VARS
-// const stateVars = {lockedRank: 0, sortBy: "indexScore", sortDirection: {indexScore: "ascending", valueRealization: "ascending", revenueManagement: "ascending", enablingEnvironment: "ascending"},}
 const stateVars = {lockedRank: 0, sortBy: "indexScore", sortDirection: "ascending", indicator: "", subComponent: "", countryEdit: "off"}
 
 const textwrap = (text, width) => {
@@ -102,7 +101,7 @@ const renderCountryBlurb = (country, alias, sector, allData) => {
   const idMaps ={ //maps each ranking to the variable name used for scoring
     "indexScore": "2017 Overall Index",
     "valueRealization": "Value realization",
-    "revenueManagement": "Revenue management",
+    "revenueManagement": "Rev. management",
     "enablingEnvironment": "Enabling environment"
     }
   // const currRank = allData.panelScores.filter(d => d.country === country && d.sector === sector)[0].rank
@@ -1025,7 +1024,7 @@ const panelUpdate = (allScales, allChartVars) => {
     const mapping ={ //maps each ranking to the variable name used for scoring
       "indexScore": "2017 Overall Index",
       "valueRealization": "Value realization",
-      "revenueManagement": "Revenue management",
+      "revenueManagement": "Rev. management",
       "enablingEnvironment": "Enabling environment"
       }
     //update the country blurb stuff
