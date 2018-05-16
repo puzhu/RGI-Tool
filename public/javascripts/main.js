@@ -93,23 +93,35 @@ const renderInitialView = (initialBlurb) => {
   countryBlurbEl.innerHTML = initialBlurb;
 }
 
-const renderCountryBlurb = (country, alias, sector, countryData) => {
+const renderCountryBlurb = (country, alias, sector, allData) => {
   const countryBlurbEl = document.querySelector("#countryContent")
   while(countryBlurbEl.firstChild){
     countryBlurbEl.removeChild(countryBlurbEl.firstChild);
   }
-  const blurbText = countryData.filter(d => d.country === country && d.sector === sector)[0].blurb
-  
+  //const blurbText = allData.countryData.filter(d => d.country === country && d.sector === sector)[0].blurb
+  const idMaps ={ //maps each ranking to the variable name used for scoring
+    "indexScore": "2017 Overall Index",
+    "valueRealization": "Value realization",
+    "revenueManagement": "Revenue management",
+    "enablingEnvironment": "Enabling environment"
+    }
+  // const currRank = allData.panelScores.filter(d => d.country === country && d.sector === sector)[0].rank
   const countryBlurb = `
     <div class="row">
       <div class="col-md-4 js-countryIndicators m-0 p-0" id="countryIndicators">
         
       </div>
       <div class="col-md-8 m-0 p-0">
-        <div class = "col-md-12 sticky-top dynamicTitle">
-          <h5>${country.concat(sector).length < 34 ? country : alias} - ${sector} sector</h5>
+        <div class = "col-md-12 dynamicTitle">
+          <h5>${country.concat(sector).length < 24 ? country : alias} - ${sector} sector</h5>
         </div>
-        
+        <div class="col-md-12 mt-0">
+          <p class="secondaryText">
+            <span class="item-heading-small">Ranked by: </span><span class="js-rankBy rankBy">${idMaps[stateVars.sortBy]}</span>   
+            <span class="item-heading-small">Actual rank: </span><span class="badge badge-pill badge-info js-currRank">${stateVars.lockedRank}</span>
+            <span class="item-heading-small">User rank: </span><span class="badge badge-pill badge-warning js-UserRank"></span>
+          </p>
+        </div>
         <div class = "col-md-12">
           <h7 class="js-indiTitle"></h7>
           <div class="js-questions">
@@ -164,7 +176,7 @@ const renderQuestions = (country, sector, indicator, chartData, allData, allScal
         <p class="panel-title mb-0" id="question${d.questionID}" data-toggle="collapse" data-parent="#accordion" href="#collapse${d.questionID}">
           <span class="item-heading">${d.questionLabel}: </span>${d.question}     
         </p>
-        <p class="m-0 p-0 mb-1">
+        <p class="secondaryText m-0 p-0 mt-1 mb-1">
         <span class="item-heading-small">RGI score: </span><span class="badge badge-pill badge-info">${d.score === "Not Covered" ? "Not Applicable":d.label}</span>   
         <span class="item-heading-small">User score: </span><span class="badge badge-pill badge-warning" id="badge${d.questionID}">${d.newLabel !== "" && isNaN(parseFloat(d.newScore)) ? "Not Applicable" : d.newLabel}</span>
         </p>
@@ -215,6 +227,7 @@ const renderQuestions = (country, sector, indicator, chartData, allData, allScal
       
       //we need to update the rest only if user input is true i.e. if the clicked indicator has a user input
       if(userInput) {
+        console.log("Before-------", allData.panelScores.filter(d => d.country === country && d.sector === sector))
         //calculate the new indicator score based on user input
         const indiData = data.filter(d => (d.newLabel === "" && !isNaN(parseFloat(d.score))) || (d.newLabel !== "" && !isNaN(parseFloat(d.newScore)))) //keep if either new or old score score is a number 
         let newIndiScore = indiData.reduce((sum, question) => {
@@ -278,10 +291,8 @@ const renderQuestions = (country, sector, indicator, chartData, allData, allScal
           sum += score
           return sum
         }, 0)/allSubScores.length
-  
-        // console.log(allSubScores, newComponentScore)
 
-        //update the panel data
+        //update the panel data scores for the corresponding component
         if(activeComponent === "Value realization"){
           allData.panelScores.filter(d => d.country === country && d.sector === sector)[0].valueRealization = newComponentScore
           
@@ -295,7 +306,10 @@ const renderQuestions = (country, sector, indicator, chartData, allData, allScal
 
         allData.panelScores = computeRanks(allData.panelScores, stateVars.sortBy)
 
-        console.log(allData.panelScores.filter(d => d.country === country && d.sector === sector))
+        
+
+        // console.log(allData.panelScores.filter(d => d.country === country && d.sector === sector))
+        console.log("After-------", allData.panelScores.filter(d => d.country === country && d.sector === sector))
       } else {
         //reset the indicator user score
         chartData.filter(d => d.indicator === indicator)[0].userScore = 0
@@ -312,6 +326,9 @@ const renderQuestions = (country, sector, indicator, chartData, allData, allScal
 
       //redraw panel
       panelUpdate(allScales, allChartVars)
+
+      //update the rank
+      document.querySelector(".js-UserRank").innerHTML = allData.panelScores.filter(d => d.country === country && d.sector === sector)[0].rank
     })
   })
 }
@@ -538,13 +555,21 @@ const computeRanks = (panelData = required(), rankVar = "indexScore", sortDirect
  * @param {object} allChartVars - All the charting variables
  * @description given the selector and the charting variables plot the indicator chart
  */
-const drawCountryChart = (selector, country, sector, allData, allScales, allChartVars) => {  
+const drawCountryChart = (selector, country, sector, allData, allScales, allChartVars) => {
+
+  //reset everything before replot
+  // allData.panelScores = computePanelData(allData.indicatorScores, allData.countryData, allData.framework)
+
+  // //update the ranks
+  // allData.panelScores = computeRanks(allData.panelScores, stateVars.sortBy)
+
+  //redraw panel
+  panelUpdate(allScales, allChartVars)
+
   //Fill in the framework data
   //Create a dataset at the level of the indicator. Mark those that are absent as not covered to fill with grey
   const indicatorList = [...new Set(allData.framework.filter(d => d.component !== "Enabling environment").map(d => d.indicator))]
   const subComponentList = [...new Set(allData.framework.filter(d => d.component !== "Enabling environment").map(d => d.subComponent))]
-
-
 
   const chartData = indicatorList.reduce((data, indicator) => {
     const indiData = allData.indicatorScores.filter(d => d.country === country && d.sector === sector).filter(d => d.indicator === indicator)
@@ -823,8 +848,8 @@ const drawCountryChart = (selector, country, sector, allData, allScales, allChar
       .attr("class", "componentLabels")
       .attr("transform", d => `translate(${0.5 * indicatorWidth/7}, ${findPos(d, 'component')}) rotate(270)`)
       .style("text-anchor", "middle")
-      .on("mouseover", mouseOverComponent)
-      .on("mouseout", mouseOutComponent)
+      // .on("mouseover", mouseOverComponent)
+      // .on("mouseout", mouseOutComponent)
 
 
   const subComponentLabels = indicatorSVG.append("g")
@@ -927,7 +952,7 @@ const drawCountryChart = (selector, country, sector, allData, allScales, allChar
  * @description given the new panel data, update the charts and the labels
  */
 const panelUpdate = (allScales, allChartVars) => {
-  console.log("Updating panel based on new data")
+  
   //Select all the label elements
   const labelText = d3.selectAll(".labelText")
   const sectorIcons = d3.selectAll(".sectorIcons")
@@ -1006,7 +1031,20 @@ const panelUpdate = (allScales, allChartVars) => {
   //implemet a scroll if locked is on: http://bl.ocks.org/humbletim/5507619
   
   
-  
+  if(stateVars.lockedRank !== 0) {//a country is selected
+    const mapping ={ //maps each ranking to the variable name used for scoring
+      "indexScore": "2017 Overall Index",
+      "valueRealization": "Value realization",
+      "revenueManagement": "Revenue management",
+      "enablingEnvironment": "Enabling environment"
+      }
+    //update the country blurb stuff
+    const currRankBy = document.querySelector(".js-rankBy")
+    const currRankEl = document.querySelector(".js-currRank")
+    
+    currRankBy.innerHTML = mapping[stateVars.sortBy]
+    currRankEl.innerHTML = stateVars.lockedRank
+  }
 
 }
 
@@ -1019,19 +1057,10 @@ const panelUpdate = (allScales, allChartVars) => {
  * @description when a label is clicked lock it and update the charts
  */
 const labelOnClick = (d, allData, allScales, allChartVars) => {
-  console.log("new country", d.country,"clicked")
   let currRank = d.rank;
   //reset the previously selected indicator and subcomponent
   stateVars.indicator = ""
   stateVars.subComponent = ""
-
-  //reset everything before replot
-  allData.panelScores = computePanelData(allData.indicatorScores, allData.countryData, allData.framework)
-
-  //update the ranks
-  allData.panelScores = computeRanks(allData.panelScores, stateVars.sortBy)
-  //redraw panel
-  panelUpdate(allScales, allChartVars)
 
   //update the locked global rank
   if(currRank === stateVars.lockedRank){ //you click on the same country twice go back to default
@@ -1044,7 +1073,7 @@ const labelOnClick = (d, allData, allScales, allChartVars) => {
     stateVars.lockedRank = currRank;
 
     //trigger changes to the text
-    renderCountryBlurb(d.country, d.alias, d.sector, allData.countryData, allScales)
+    renderCountryBlurb(d.country, d.alias, d.sector, allData, allScales)
 
     //render indicator chart
     drawCountryChart("#countryIndicators", d.country, d.sector, allData, allScales, allChartVars)
@@ -1379,7 +1408,8 @@ const draw = (allScores = required(), framework = required(), scoringMetric = re
     "Revenue management": "revenueManagement",
     "Enabling environment": "enablingEnvironment"
     }
-      //GET: current sorting column
+    
+    //GET: current sorting column
     const labelVar = idMaps[event.target.innerText];
 
       //GET: classes of parent svg
